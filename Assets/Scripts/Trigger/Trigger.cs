@@ -11,12 +11,13 @@ public class Trigger : MonoBehaviour
 
     //public 이 아니면 안됨. 왜 public이면 되는거지?
     //버튼 누르고 있기 및 버튼 연타로 다 먹기 안됨
-    public bool coolDown = false;
+    bool coolDown = false;
     public bool click = false;
-    public bool triggOn = false;
+    bool triggOn = false;
 
     private void Start()
     {
+        EventManager.eventManager.GameOverEvent += OnGameOver;
         if (size == null)
             size = new Vector2(1, 0.5f);
     }
@@ -43,11 +44,19 @@ public class Trigger : MonoBehaviour
             {
                 foreach(Collider2D c in inTrigger)
                 {
-                    Debug.Log(c.gameObject.name);
-                    //EventManager.eventManager.Invoke_IngrDestroyedEvent("Trigger,Eaten,Tomato");
+                    Action(c.gameObject);
                 }
             }
         }
+    }
+
+    private void OnGameOver()
+    {
+        gameObject.SetActive(false);
+    }
+    public virtual void Action(GameObject g)
+    {
+        Debug.Log(g.name);
     }
 
     private IEnumerator triggerOnTimer()

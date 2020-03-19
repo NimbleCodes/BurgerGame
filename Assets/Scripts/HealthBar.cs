@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HealthBar : MonoBehaviour
 {
-    Material HealthBarMat;
     int health = 100;
     int healthReduc_perSec = 5;
 
@@ -20,28 +19,28 @@ public class HealthBar : MonoBehaviour
 
     private void Start()
     {
-        HealthBarMat = GetComponent<Renderer>().material;
         EventManager.eventManager.BurgerCompleteEvent += OnBurgerCompleteEvent;
     }
 
     private void Update()
     {
-        if (health <= 0 & !GameOver)
+        if (!GameOver)
         {
-            EventManager.eventManager.Invoke_GameOverEvent();
-            GameOver = true;
-        }
-        if(HealthBarMat != null)
-            HealthBarMat.SetFloat("_Health",health);
-        if (!healthReducTimerOn)
-        {
-            StartCoroutine("healthReducTimer");
-            healthReducTimerOn = true;
-        }
-        if (!newBurgerOrderTimerOn)
-        {
-            StartCoroutine("newBurgerOrderTimer");
-            newBurgerOrderTimerOn = true;
+            if (health <= 0)
+            {
+                EventManager.eventManager.Invoke_GameOverEvent();
+                GameOver = true;
+            }
+            if (!healthReducTimerOn)
+            {
+                StartCoroutine("healthReducTimer");
+                healthReducTimerOn = true;
+            }
+            if (!newBurgerOrderTimerOn)
+            {
+                StartCoroutine("newBurgerOrderTimer");
+                newBurgerOrderTimerOn = true;
+            }
         }
     }
 
@@ -64,7 +63,7 @@ public class HealthBar : MonoBehaviour
     
     private string getNewBurgerOrder()
     {
-        return "{patty:chicken,veg1:lettuce,veg2:tomato,other:cheese}";
+        return "";
     }
 
     private IEnumerator healthReducTimer()

@@ -11,7 +11,9 @@ public class EventManager : MonoBehaviour
     }
 
     public event Action GameOverEvent;
-    public event Action<string> IngrDestroyedEvent;
+    public event Action IngrDestroyedEvent;
+    public event Action<string> IngrEatenEvent;
+    //public event Action<string> IngrRecycledEvent;
     public event Action<string> BurgerCompleteEvent;
     
     public void Invoke_GameOverEvent()
@@ -19,11 +21,23 @@ public class EventManager : MonoBehaviour
         if(GameOverEvent != null)
             GameOverEvent();
     }
-    public void Invoke_IngrDestroyedEvent(string destr_info)
+    public void Invoke_IngrDestroyedEvent()
     {
         if (IngrDestroyedEvent != null)
-            IngrDestroyedEvent(destr_info);
+            IngrDestroyedEvent();
     }
+    public void Invoke_IngrEatenEvent(string ingr_info)
+    {
+        if (IngrEatenEvent != null)
+            IngrEatenEvent(ingr_info);
+    }
+    /*
+    public void Invoke_IngrRecycledEvent(string ingr_info)
+    {
+        if (IngrRecycledEvent != null)
+            IngrRecycledEvent(ingr_info);
+    }
+    */
     public void Invoke_BurgerCompleteEvent(string burger_info)
     {
         if (BurgerCompleteEvent != null)
