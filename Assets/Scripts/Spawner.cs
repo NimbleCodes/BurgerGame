@@ -6,8 +6,8 @@ public class Spawner : MonoBehaviour
 {
     public static Spawner callObject;
 
+    public float fallTime = 0.5f;
     public GameObject Patty_Pool;
-
     public GameObject SpawnPoint1;
 
     public int PattyNumb = 5;
@@ -30,17 +30,20 @@ public class Spawner : MonoBehaviour
             PoolObjs_P.Add(obj_P); ///만들고 비활성화해둔 오브젝트 풀에 저장.
         }
 
+        InvokeRepeating("Fall", fallTime, fallTime);
     }
 
-    public GameObject GetPooledPatty()
+    void GetPooledPatty()
     {
         for(int i =0; i<PoolObjs_P.Count; i++)
         {
             if(!PoolObjs_P[i].activeInHierarchy)
             {
-                return PoolObjs_P[i];
+                PoolObjs_P[i].transform.position = transform.position;
+                PoolObjs_P[i].transform.rotation = transform.rotation;
+                PoolObjs_P[i].SetActive(true);
+                break;
             }
         }
-        return null; /// PoolObjs_P에 prefab이 없으면 null 넘겨줌
     }
 }
