@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3227334903128901129}
   - component: {fileID: 5568520541142745818}
   - component: {fileID: 2152427908943466038}
-  - component: {fileID: 2487208345947251780}
   - component: {fileID: 8646189451503367012}
-  m_Layer: 0
+  - component: {fileID: 5693798976088136100}
+  m_Layer: 8
   m_Name: CratePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,18 +105,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2487208345947251780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7943620850869341785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c09caa45a5824314d8d250240df7b8e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &8646189451503367012
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -143,3 +131,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
+--- !u!114 &5693798976088136100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7943620850869341785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f79f44bd46c61184c8eec901d6bb7500, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

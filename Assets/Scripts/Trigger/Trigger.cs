@@ -9,6 +9,8 @@ public class Trigger : MonoBehaviour
     public float triggerOnTime = .25f;
     public float coolDownTime = .5f;
 
+    public LayerMask triggeredBy;
+
     //public 이 아니면 안됨. 왜 public이면 되는거지?
     //버튼 누르고 있기 및 버튼 연타로 다 먹기 안됨
     bool coolDown = false;
@@ -39,7 +41,7 @@ public class Trigger : MonoBehaviour
 
         if (triggOn)
         {
-            Collider2D[] inTrigger = Physics2D.OverlapBoxAll(transform.position, size, 0);
+            Collider2D[] inTrigger = Physics2D.OverlapBoxAll(transform.position, size, 0, triggeredBy);
             if (inTrigger.Length > 0)
             {
                 foreach(Collider2D c in inTrigger)

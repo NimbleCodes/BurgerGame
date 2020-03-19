@@ -11,6 +11,6 @@ public class Inventory : MonoBehaviour
 
     void OnIngrEaten(string ingr_info)
     {
-        Debug.Log(ingr_info);
+        Debug.Log("Inventory: " + ingr_info);
     }
 }
