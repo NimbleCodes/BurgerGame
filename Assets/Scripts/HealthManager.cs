@@ -86,6 +86,10 @@ public class HealthManager : MonoBehaviour
             decrTime -= time;
         }
     }
+    public void recoverAllHP(){
+        curHealth = maxHealth;
+        activeTime = 0;
+    }
     //HP가 시간에 따라 감소하는 것을 실행한다.
     public void decrHealth(){
         //실제로 HP를 감소시키는 기능을 하는 코드
@@ -121,7 +125,6 @@ public class HealthManager : MonoBehaviour
             return false;
         }
     }
-    
     #endregion
 
 }
