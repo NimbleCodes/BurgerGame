@@ -23,7 +23,7 @@ public class Spawner : MonoBehaviour
             PoolObjs_P.Add(obj_P); ///만들고 비활성화해둔 오브젝트 풀에 저장.
         }
 
-        InvokeRepeating("Fall", fallTime, 0.5f);
+        InvokeRepeating("Fall", fallTime, 1.0f);
     }
 
     void Fall()

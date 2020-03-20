@@ -8,12 +8,8 @@ public class HealthManager : MonoBehaviour
     public Image cooldown;
     public bool coolingDown;
     public float waitTime = 30.0f;
-   /// void Start()
-    ///{
-       
-    ///}
+    public float Score = 5.0f;
 
-    // Update is called once per frame
     void Update()
     {
         if(coolingDown==true)
@@ -21,5 +17,9 @@ public class HealthManager : MonoBehaviour
             cooldown.fillAmount -= 1.0f / waitTime * Time.deltaTime;
         }
         
+    }
+
+    void AddHealth(Score){
+        cooldown.fillAmount =+ Score;
     }
 }
