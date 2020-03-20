@@ -16,6 +16,7 @@ public class EventManager : MonoBehaviour
     public event Action<string> BurgerCompleteEvent;
 
     public event Action<string> PauseButtonPressed;
+    public event Action<int> ScoreChangedEvent;
     
     public void Invoke_GameOverEvent()
     {
@@ -43,4 +44,10 @@ public class EventManager : MonoBehaviour
         if (PauseButtonPressed != null)
             PauseButtonPressed(status);
     }
+    public void Invoke_ScoreChangedEvent(int val)
+    {
+        if (ScoreChangedEvent != null)
+            ScoreChangedEvent(val);
+    }
+
 }

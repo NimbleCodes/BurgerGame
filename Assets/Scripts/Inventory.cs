@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    int count = 0;
+
     private void Start()
     {
         EventManager.eventManager.IngrEatenEvent += OnIngrEaten;
@@ -11,6 +13,8 @@ public class Inventory : MonoBehaviour
 
     void OnIngrEaten(string ingr_info)
     {
-        Debug.Log("Inventory: " + ingr_info);
+        count++;
+        if (count >= 3)
+            EventManager.eventManager.Invoke_BurgerCompleteEvent("burger done!");
     }
 }
