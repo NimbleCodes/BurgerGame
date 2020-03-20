@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
 
-    public float fallTime = 0.1f;
+    public float fallTime = 0.005f;
     public GameObject Patty_Pool;
 
     public int PattyNumb = 5;
@@ -23,7 +23,7 @@ public class Spawner : MonoBehaviour
             PoolObjs_P.Add(obj_P); ///만들고 비활성화해둔 오브젝트 풀에 저장.
         }
 
-        InvokeRepeating("Fall", fallTime, fallTime);
+        InvokeRepeating("Fall", fallTime, 0.5f);
     }
 
     void Fall()

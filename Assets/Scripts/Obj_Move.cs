@@ -8,7 +8,7 @@ public class Obj_Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       this.transform.Translate(Vector2.down);
+       this.transform.GetComponent<Rigidbody>().velocity = new Vector2(0,-1);
     }
 
 }
