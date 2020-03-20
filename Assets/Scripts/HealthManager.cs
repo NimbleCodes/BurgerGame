@@ -22,6 +22,7 @@ public class HealthManager : MonoBehaviour
     void Update()
     {
         DecHealth();
+        DecTime();
 
         if(Input.GetKeyDown(KeyCode.S)){
             AddHealth(Score);
@@ -44,24 +45,24 @@ public class HealthManager : MonoBehaviour
     }
 
     public void DecTime(){
-        if(GameTime > 0)
+        if(GameTime > 20)
         {
-            if(calTime % Time.deltaTime == 0)
+            if(minimumT % calTime < 1)
             {
                 GameTime -= decTimeval;
             }
         }
-        if(GameTime <= 20)//최소시간 이하로 내려가는걸 방지
+        if(GameTime <= 20.0f)//최소시간 이하로 내려가는걸 방지
         {
-            GameTime = 20;
+            GameTime = 20.0f;
         }
     }
 
     public void DecHealth(){
         float percent = Time.deltaTime/GameTime;
-        calTime = Time.deltaTime;
+        calTime += Time.deltaTime;
         if(coolingDown){
-            cooldown.fillAmount -= Mathf.Lerp(1,0,percent) * 0.0001f;
+            cooldown.fillAmount = Mathf.Lerp(1,0,percent);
         }
     }
 
