@@ -1942,9 +1942,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4298c35eb77b3b54787c8fb1b07552f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: {fileID: 1487759404}
-  coolingDown: 1
+  cooldown: {fileID: 0}
+  coolingDown: 0
   waitTime: 30
+  Score: 5
+  minusScore: -3
+  decTimeval: 5
 --- !u!114 &1487759404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2728,10 +2731,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 894f0fa5fb9c87442ad33be63acd7105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallTime: 0.05
+  fallTime: 0.005
   Patty_Pool: {fileID: 6806536775962198904, guid: fc12e5bc927cc49459e3053030156dee,
     type: 3}
-  SpawnPoint1: {fileID: 2035328530}
   PattyNumb: 5
   PoolObjs_P: []
 --- !u!1 &2051047558
