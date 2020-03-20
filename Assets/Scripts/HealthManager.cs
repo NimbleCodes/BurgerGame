@@ -53,8 +53,6 @@ public class HealthManager : MonoBehaviour
             minusTime(10);
         }
         decrHealth();
-        Debug.Log("HP : " + curHealth + " time : " + activeTime);
-
         #endregion
     }
 
