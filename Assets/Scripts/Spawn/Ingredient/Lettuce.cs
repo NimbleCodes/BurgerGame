@@ -11,14 +11,14 @@ public class Lettuce : Ingredient
 
     public override void Eaten()
     {
-        Debug.Log(getName() + " was Eaten");
+        //Debug.Log(getName() + " was Eaten");
     }
     public override void Recycled()
     {
-        Debug.Log(getName() + " was Recycled");
+        //Debug.Log(getName() + " was Recycled");
     }
     public override void Destroyed()
     {
-        Debug.Log(getName() + " was Destroyed");
+        //Debug.Log(getName() + " was Destroyed");
     }
 }

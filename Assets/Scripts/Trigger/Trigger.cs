@@ -11,10 +11,8 @@ public class Trigger : MonoBehaviour
 
     public LayerMask triggeredBy;
 
-    //public 이 아니면 안됨. 왜 public이면 되는거지?
-    //버튼 누르고 있기 및 버튼 연타로 다 먹기 안됨
     bool coolDown = false;
-    public bool click = false;
+    bool click = false;
     bool triggOn = false;
 
     private void Start()
