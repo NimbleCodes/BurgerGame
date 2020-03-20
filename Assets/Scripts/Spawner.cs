@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public static Spawner callObject;
 
-    public float fallTime = 0.5f;
+    public float fallTime = 0.1f;
     public GameObject Patty_Pool;
-    public GameObject SpawnPoint1;
 
     public int PattyNumb = 5;
-
-
     public List<GameObject> PoolObjs_P;
 
 
@@ -23,9 +19,6 @@ public class Spawner : MonoBehaviour
         for(int i = 0; i< PattyNumb; i++)
         {
             GameObject obj_P = (GameObject)Instantiate(Patty_Pool);
-
-            obj_P.transform.parent = SpawnPoint1.transform;///object SpawnPoint에 생성
-
             obj_P.SetActive(false);
             PoolObjs_P.Add(obj_P); ///만들고 비활성화해둔 오브젝트 풀에 저장.
         }
@@ -33,7 +26,7 @@ public class Spawner : MonoBehaviour
         InvokeRepeating("Fall", fallTime, fallTime);
     }
 
-    void GetPooledPatty()
+    void Fall()
     {
         for(int i =0; i<PoolObjs_P.Count; i++)
         {

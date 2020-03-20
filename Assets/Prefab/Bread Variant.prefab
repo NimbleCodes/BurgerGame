@@ -1,5 +1,26 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!50 &2707392436578804993
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6806536775962198904}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &6426283418543066999
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26,27 +47,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2512006, y: 0.041573964}
   m_EdgeRadius: 0
---- !u!50 &2707392436578804993
-Rigidbody2D:
-  serializedVersion: 4
+--- !u!114 &-6490059259958833851
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6806536775962198904}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8056a6dc082e5d488c3cfd16448e3fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8164549531536143128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6806536775962198904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baa5945d7564faf47a7c19d75360ba7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5926074964955050361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -112,9 +136,10 @@ PrefabInstance:
     - target: {fileID: 884967132048601601, guid: cc30264882967d54d8a2a4368baad939,
         type: 3}
       propertyPath: m_Name
-      value: Bread
+      value: Bread Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 885948450006595047, guid: cc30264882967d54d8a2a4368baad939, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cc30264882967d54d8a2a4368baad939, type: 3}
 --- !u!1 &6806536775962198904 stripped
 GameObject:
