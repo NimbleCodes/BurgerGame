@@ -10,7 +10,7 @@ public class Inventory : MonoBehaviour
     public float newBurgerOrderTime = 10f;
     System.Random rand;
 
-    string inventory = "DoubleCheeseBurgerRecipe";
+    string inventory = "";
 
     bool click = false;
 
@@ -44,6 +44,7 @@ public class Inventory : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) & !click)
         {
             bool success = cmpToBurgerOrder(inventory);
+            inventory = "";
             EventManager.eventManager.Invoke_BurgerCompleteEvent(success);
             click = true;
         }
@@ -62,7 +63,8 @@ public class Inventory : MonoBehaviour
 
     void OnIngrEaten(string ingr_info)
     {
-       
+        inventory += (ingr_info + ", ");
+        Debug.Log(inventory);
     }
 
     string createNewBurgerOrder()
