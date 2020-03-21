@@ -53,9 +53,9 @@ public class HealthBar : MonoBehaviour
         health += val;
     }
     
-    public void OnBurgerCompleteEvent(string burger_info)
+    public void OnBurgerCompleteEvent(bool success)
     {
-        if (burger_info.Equals(current_burgerOrder))
+        if (success)
             incHealth(correctBurger);
         else
             decHealth(wrongBurger);

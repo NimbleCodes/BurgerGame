@@ -56,7 +56,8 @@ public class Trigger : MonoBehaviour
     }
     public virtual void Action(GameObject g)
     {
-        Debug.Log(g.name);
+        g.transform.position = gameObject.transform.position;
+        g.SetActive(false);
     }
 
     private IEnumerator triggerOnTimer()

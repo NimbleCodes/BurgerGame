@@ -1,0 +1,13 @@
+{
+  "BurgerMenu": [
+    {
+      "BurgerName": "DoubleCheeseBurger",
+      "BurgerRecipe": "DoubleCheeseBurgerRecipe"
+    },
+
+    {
+      "BurgerName": "CheeseBurger",
+      "BurgerRecipe": "CheeseBurgerRecipe"
+    }
+  ]
+}

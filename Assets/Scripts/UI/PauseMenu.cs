@@ -4,31 +4,28 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
+    bool hidden;
+
     void Start()
     {
         Hide();
-        EventManager.eventManager.PauseButtonPressed += OnPauseButtonPressed;
+        EventManager.eventManager.GamePausedEvent += OnGamePausedEvent;
     }
 
-    void OnPauseButtonPressed(string str)
+    void OnGamePausedEvent()
     {
-        if (str.Equals("pause"))
-        {
-            Show();
-        }
-        else
-        {
-            Hide();
-        }
+        if (hidden) Show();
+        else Hide();
     }
 
     void Show()
     {
+        hidden = false;
         gameObject.SetActive(true);
     }
-
     void Hide()
     {
+        hidden = true;
         gameObject.SetActive(false);
     }
 }

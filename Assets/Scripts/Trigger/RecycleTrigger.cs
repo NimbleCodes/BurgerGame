@@ -6,7 +6,7 @@ public class RecycleTrigger : Trigger
 {
     override public void Action(GameObject g)
     {
-        g.SetActive(false);
+        base.Action(g);
         g.GetComponent<Ingredient>().Recycled();
     }
 

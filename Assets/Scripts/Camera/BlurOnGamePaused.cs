@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnGamePaused : MonoBehaviour
+public class BlurOnGamePaused : MonoBehaviour
 {
     bool blur = false;
     public Shader blurShad;
@@ -14,11 +14,11 @@ public class OnGamePaused : MonoBehaviour
 
     private void Start()
     {
-        EventManager.eventManager.PauseButtonPressed += OnPauseButtonPressedEvent;
+        EventManager.eventManager.GamePausedEvent += OnGamePausedEvent;
         if (blurShad == null)
         {
             Debug.Log("blur shader not initialized");
-            gameObject.GetComponent<OnGamePaused>().enabled = false;
+            gameObject.GetComponent<BlurOnGamePaused>().enabled = false;
         }
         else
         {
@@ -40,7 +40,6 @@ public class OnGamePaused : MonoBehaviour
         Graphics.Blit(rt, destination);
         RenderTexture.ReleaseTemporary(rt);
     }
-
     private void blurFunc(RenderTexture source, RenderTexture destination)
     {
         int width = source.width, height = source.height;
@@ -69,12 +68,9 @@ public class OnGamePaused : MonoBehaviour
         Graphics.Blit(rt, destination);
         RenderTexture.ReleaseTemporary(rt);
     }
-
-    public void OnPauseButtonPressedEvent(string status)
+    public void OnGamePausedEvent()
     {
-        if (status.Equals("pause"))
-            blur = true;
-        else
-            blur = false;
+        if (blur) blur = false;
+        else blur = true;
     } 
 }

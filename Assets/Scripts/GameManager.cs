@@ -25,12 +25,12 @@ public class GameManager : MonoBehaviour
     {
         gamePaused = true;
         Time.timeScale = 0;
-        EventManager.eventManager.Invoke_PauseButtonPressed("pause");
+        EventManager.eventManager.Invoke_GamePausedEvent();
     }
     void resumeGame()
     {
         gamePaused = false;
         Time.timeScale = 1;
-        EventManager.eventManager.Invoke_PauseButtonPressed("resume");
+        EventManager.eventManager.Invoke_GamePausedEvent();
     }
 }

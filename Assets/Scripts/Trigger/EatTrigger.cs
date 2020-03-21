@@ -6,7 +6,7 @@ public class EatTrigger : Trigger
 {
     override public void Action(GameObject g)
     {
-        g.SetActive(false);
+        base.Action(g);
         g.GetComponent<Ingredient>().Eaten();
         EventManager.eventManager.Invoke_IngrEatenEvent(g.GetComponent<Ingredient>().getName());
     }

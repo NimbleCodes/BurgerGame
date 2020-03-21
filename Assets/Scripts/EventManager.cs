@@ -11,17 +11,20 @@ public class EventManager : MonoBehaviour
     }
 
     public event Action GameOverEvent;
+    public event Action GamePausedEvent;
     public event Action IngrDestroyedEvent;
     public event Action<string> IngrEatenEvent;
-    public event Action<string> BurgerCompleteEvent;
-
-    public event Action<string> PauseButtonPressed;
-    public event Action<int> ScoreChangedEvent;
+    public event Action<bool> BurgerCompleteEvent;
     
     public void Invoke_GameOverEvent()
     {
         if(GameOverEvent != null)
             GameOverEvent();
+    }
+    public void Invoke_GamePausedEvent()
+    {
+        if (GamePausedEvent != null)
+            GamePausedEvent();
     }
     public void Invoke_IngrDestroyedEvent()
     {
@@ -33,21 +36,9 @@ public class EventManager : MonoBehaviour
         if (IngrEatenEvent != null)
             IngrEatenEvent(ingr_info);
     }
-    public void Invoke_BurgerCompleteEvent(string burger_info)
+    public void Invoke_BurgerCompleteEvent(bool burger_info)
     {
         if (BurgerCompleteEvent != null)
             BurgerCompleteEvent(burger_info);
     }
-    
-    public void Invoke_PauseButtonPressed(string status)
-    {
-        if (PauseButtonPressed != null)
-            PauseButtonPressed(status);
-    }
-    public void Invoke_ScoreChangedEvent(int val)
-    {
-        if (ScoreChangedEvent != null)
-            ScoreChangedEvent(val);
-    }
-
 }
