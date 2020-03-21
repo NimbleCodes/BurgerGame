@@ -30,7 +30,10 @@ public class GameControl : MonoBehaviour
     //오브젝트 풀링을 위해 ingrePool의 Component를 받아오도록 한다.
     public ingrePool objPool;
     //각 재료의 Class에 맞추어 게임오브젝트를 만들어 그 안에서 Child 로 clone 들을 관리한다.
-    public GameObject[] meatArr, vegeArr, sauceArr;
+    public List<GameObject[]> meatArr, vegeArr, sauceArr;
+    int meatIdx = 0;
+    int vegeIdx = 0;
+    int sauceIdx = 0;
     // Start is called before the first frame update
     void Awake()
     {
@@ -43,13 +46,16 @@ public class GameControl : MonoBehaviour
         objPool.poolArray = new GameObject[IngreTable.Ingredient.Length,10];
         
         //ingreTable 각자에 맞는 Sprite를 Resources 폴더에서 가져오도록 한다.
-        int index = 0; 
+        int index = 0;
+
         foreach(var cell in IngreTable.Ingredient){
             cell.ingreSprite = Resources.Load<Sprite>("Sprites/" + cell.ingreName);
+            
             for(int i=0; i<5; i++){
                 objPool.poolArray[index, i] = Instantiate((GameObject)Resources.Load("Prefab/IngrePrefab"));
                 objPool.poolArray[index, i].GetComponent<IngreClass>().setIngrValue(cell);
                 objPool.poolArray[index, i].name = cell.ingreName + i;
+                
             }
             
             index++;
