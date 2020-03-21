@@ -67,7 +67,8 @@ public class Inventory : MonoBehaviour
 
     string createNewBurgerOrder()
     {
-        int nextBurgerInd = rand.Next(0,menu.BurgerMenu.Length-1);
+        int nextBurgerInd = rand.Next(0,menu.BurgerMenu.Length);
+        Debug.Log(menu.BurgerMenu[nextBurgerInd].BurgerName);
         return menu.BurgerMenu[nextBurgerInd].BurgerRecipe;
     }
     bool cmpToBurgerOrder(string burger_info)
