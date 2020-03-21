@@ -1,0 +1,41 @@
+{
+	"DoublePatty":[
+		{
+			"DPClass":"bread",
+			"ingreName":"bread"
+		},
+		{
+			"DPClass":"vege",
+			"ingreName":"lettuce"	
+		},
+		{
+			"DPClass":"meat",
+			"ingreName":"beef"	
+		},
+		{
+			"DPClass":"cheese",
+			"ingreName":"cheese"	
+		},
+		{
+			"DPClass":"meat",
+			"ingreName":"beaf"	
+		},
+		{
+			"DPClass":"cheese",
+			"ingreName":"cheese"	
+		},
+		{
+			"DPClass":"vege",
+			"ingreName":"lettuce"	
+		},
+		{
+			"DPClass":"vege",
+			"ingreName":"tomato"	
+		},
+		{
+			"DPClass":"bread",
+			"ingreName":"bread"	
+		}
+	]
+
+}

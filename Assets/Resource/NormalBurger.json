@@ -1,0 +1,28 @@
+{
+	"NormalBurger":[
+		{
+			"NBClass":"bread",
+			"ingreName":"bread"
+		},
+		{
+			"NBClass":"vege",
+			"ingreName":"lettuce"
+		},
+		{
+			"NBClass":"meat",
+			"ingreName":"beaf"
+		},
+		{
+			"NBClass":"cheese",
+			"ingreName":"cheese"
+		},
+		{
+			"NBClass":"vege",
+			"ingreName":"tomato"
+		},
+		{
+			"NBClass":"bread",
+			"ingreName":"bread"
+		}
+	]
+}
