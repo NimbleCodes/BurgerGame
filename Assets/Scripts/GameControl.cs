@@ -75,14 +75,14 @@ public class GameControl : MonoBehaviour
 
     void getNBOrder(){
     	ingreJson = File.ReadAllText(Application.dataPath + "/Resources/Json/NormalBurger.json");
-    	IngreTable = JasonUtility.FromJson<ingreTable>(ingreJson);
+    	IngreTable = JsonUtility.FromJson<ingreTable>(ingreJson);
     	foreach(var cell in IngreTable.Ingredient){
     		cell.ingreSprite=Resources.Load<Sprite>("Sprite/" + cell.ingreName);
     	}
     }
 
     void getDPOrder(){
-    	IngreTable = JasonUtility.FromJson<IngreTable>(ingreJson);
+    	IngreTable = JsonUtility.FromJson<ingreTable>(ingreJson);
     	foreach(var cell in IngreTable.Ingredient){
     		cell.ingreSprite = Resources.Load<Sprite>("Srite/" + cell.ingreName);
     	}
