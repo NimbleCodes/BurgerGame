@@ -1942,9 +1942,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4298c35eb77b3b54787c8fb1b07552f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: {fileID: 0}
-  coolingDown: 0
-  waitTime: 30
+  cooldown: {fileID: 1487759404}
+  coolingDown: 1
+  calHealth: 0
+  calTime: 0
+  GameTime: 60
+  minimumT: 20
   Score: 5
   minusScore: -3
   decTimeval: 5
