@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public abstract class Ingredient : MonoBehaviour, ISpawnedObject
+public class Ingredient : MonoBehaviour, ISpawnedObject
 {
 
 
@@ -12,20 +11,45 @@ public abstract class Ingredient : MonoBehaviour, ISpawnedObject
     //재료의 이름
     public string ingreName;
     //재료의 Sprite 경로
-    public Sprite ingreSprite;
 
-    public abstract void Eaten();
-    public abstract void Recycled();
-    public abstract void Destroyed();
+    
+    public SpriteRenderer ingreSprite;
+
+    private void Awake() {
+        ingreSprite = GetComponent<SpriteRenderer>();
+    }
+    
+
+    public void Eaten(){
+
+    }
+    public void Recycled(){
+
+    }
+    public void Destroyed(){
+
+    }
 
     public string getName()
     {
         return ingreName;
     }
-    protected void setName(string val)
+    public void setName(string val)
     {
         ingreName = val;
     }
+
+    public void setSprite(Sprite _sprite){
+        ingreSprite.sprite = _sprite;
+    }
+
+    //ingredient 정보 초기화
+    public void initIngre(string _class, string _name){
+        ingreClass = _class;
+        ingreName = _name;
+        ingreSprite.sprite = Resources.Load<Sprite>("Sprites/" + ingreName);
+    }
+
 
     public void OnSpawn()
     {

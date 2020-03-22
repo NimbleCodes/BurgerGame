@@ -50,7 +50,7 @@ public class GameControl : MonoBehaviour
             for(int i=0; i<5; i++){
                 GameObject tempObj = Instantiate((GameObject)Resources.Load("Prefab/IngrePrefab"));
                 tempObj.name = cell.ingreName + i;
-                
+                tempObj.GetComponent<Ingredient>().initIngre(cell.ingreClass,cell.ingreName);
             }
             
             index++;
