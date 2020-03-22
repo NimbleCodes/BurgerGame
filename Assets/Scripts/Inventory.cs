@@ -12,7 +12,7 @@ public class Inventory : MonoBehaviour
 
     string inventory = "";
 
-    bool click = false;
+    public bool click = false;
 
     [System.Serializable]
     public class burgerMenu
@@ -70,7 +70,8 @@ public class Inventory : MonoBehaviour
     string createNewBurgerOrder()
     {
         int nextBurgerInd = rand.Next(0,menu.BurgerMenu.Length);
-        Debug.Log(menu.BurgerMenu[nextBurgerInd].BurgerName);
+        //Debug.Log(menu.BurgerMenu[nextBurgerInd].BurgerName);
+        Debug.Log(menu.BurgerMenu[nextBurgerInd].BurgerRecipe);
         return menu.BurgerMenu[nextBurgerInd].BurgerRecipe;
     }
     bool cmpToBurgerOrder(string burger_info)

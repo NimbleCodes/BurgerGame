@@ -52,7 +52,7 @@ public class SpawnerManager : MonoBehaviour
 
     void OnDiffIncEvent()
     {
-        if (numSpawner < 6) {
+        if (numSpawner < 5) {
             numSpawner++;
             initSpawners();
             EventManager.eventManager.Invoke_NumSpawnerIncEvent(numSpawner);

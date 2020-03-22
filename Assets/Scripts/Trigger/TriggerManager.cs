@@ -8,7 +8,7 @@ public class TriggerManager : MonoBehaviour
     List<GameObject> recycleTriggers;
     int numTriggers = 3;
 
-    char[] keyorder = { 'q', 'w', 'e', 'r', 't' };
+    string[] keyorder = { "q", "w", "e", "r", "t" };
 
     private void Start()
     {
@@ -44,7 +44,7 @@ public class TriggerManager : MonoBehaviour
                 temp.AddComponent<EatTrigger>();
                 //initialize eattrigger members
                 temp.GetComponent<Trigger>().size = new Vector2(1, 0.5f);
-                temp.GetComponent<Trigger>().key = keyorder[i].ToString();
+                temp.GetComponent<Trigger>().key = keyorder[i];
                 temp.GetComponent<Trigger>().triggeredBy = LayerMask.GetMask("Ingredients");
 
                 temp.GetComponent<Transform>().position = triggerPos[i];
