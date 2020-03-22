@@ -33,7 +33,7 @@ public class Spawner : MonoBehaviour
     void chooseRandomIngr()
     {
         int ingrIndex = rand.Next(0, ObjectManager.objectManager.poolInfo.Count);
-        objTag = ObjectManager.objectManager.poolInfo[ingrIndex].tag;
+        objTag = ObjectManager.objectManager.poolInfo[ingrIndex].ingreName;
     }
 
     private void spawnObject()

@@ -399,15 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e55783060e005346a0ff5fee070429b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolInfo:
-  - tag: Crate
-    prefab: {fileID: 7943620850869341785, guid: 51845285034a1154dbbe90548dd4e501,
-      type: 3}
-    size: 10
-  - tag: Block
-    prefab: {fileID: 5616222178321217736, guid: 078078b36ce62be4a8a0f28745daed52,
-      type: 3}
-    size: 10
+  poolInfo: []
 --- !u!4 &218604260
 Transform:
   m_ObjectHideFlags: 0
