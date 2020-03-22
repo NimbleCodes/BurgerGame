@@ -2,9 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public abstract class Ingredient : MonoBehaviour, ISpawnedObject
 {
-    string typeOfIngr = "UNDEF";
+
+
+        //재료의 분류 (고기, 야채, 소스 등등)
+    public string ingreClass;
+    //재료의 이름
+    public string ingreName;
+    //재료의 Sprite 경로
+    public Sprite ingreSprite;
 
     public abstract void Eaten();
     public abstract void Recycled();
@@ -12,11 +20,11 @@ public abstract class Ingredient : MonoBehaviour, ISpawnedObject
 
     public string getName()
     {
-        return typeOfIngr;
+        return ingreName;
     }
     protected void setName(string val)
     {
-        typeOfIngr = val;
+        ingreName = val;
     }
 
     public void OnSpawn()
