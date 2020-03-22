@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,6 +22,7 @@ public class ObjectManager : MonoBehaviour
     }
     private void Start()
     {
+        EventManager.eventManager.DiffIncEvent += OnDiffIncEvent;
         objPools = new Dictionary<string, Queue<GameObject>>();
         foreach (Pool pool in poolInfo)
         {
@@ -48,5 +49,11 @@ public class ObjectManager : MonoBehaviour
             Debug.Log("ObjectManager: Invalid tag value from spawner");
             return null;
         }
+    }
+    void OnDiffIncEvent()
+    {
+        //increase difficulty
+        foreach (GameObject g in objPools["Crate"])
+            g.GetComponent<GravityTest>().speed = -20;
     }
 }

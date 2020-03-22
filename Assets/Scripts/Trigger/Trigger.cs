@@ -17,7 +17,7 @@ public class Trigger : MonoBehaviour
 
     private void Start()
     {
-        EventManager.eventManager.GameOverEvent += OnGameOver;
+        //EventManager.eventManager.GameOverEvent += OnGameOver;
         if (size == null)
             size = new Vector2(1, 0.5f);
     }

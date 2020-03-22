@@ -7,6 +7,6 @@ public class GravityTest : MonoBehaviour
     public float speed = -10;
     void Update()
     {
-        transform.Translate(0, speed * Time.deltaTime, 0);       
+        transform.Translate(0, speed * Time.deltaTime, 0);
     }
 }

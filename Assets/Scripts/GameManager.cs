@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     bool gamePaused = false;
     bool click = false;
+    public bool incDiff = false;    //임시 코드
 
     private void Update()
     {
@@ -18,6 +19,12 @@ public class GameManager : MonoBehaviour
         if (click & Input.GetKeyUp(KeyCode.Escape))
         {
             click = false;
+        }
+        //임시 코드
+        if (incDiff)
+        {
+            EventManager.eventManager.Invoke_DiffIncEvent();
+            incDiff = false;
         }
     }
 

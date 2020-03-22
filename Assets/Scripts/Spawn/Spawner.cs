@@ -8,19 +8,16 @@ public class Spawner : MonoBehaviour
     public float nextSpawnTime = 1f;
     bool spawnTimerOn = false;
 
+    public int randSeed = -1;
     System.Random rand;
 
     private void Start()
     {
-        //disable Spawner if objTag is not specified
-        if(objTag == null)
-        {
-            Debug.Log("Spawner: objTag not initialized.");
-            GetComponent<Spawner>().enabled = false;
-        }
-        rand = new System.Random();
+        if (randSeed == -1)
+            rand = new System.Random();
+        else
+            rand = new System.Random(randSeed);
     }
-
     private void Update()
     {
         if (!spawnTimerOn)
@@ -35,7 +32,6 @@ public class Spawner : MonoBehaviour
         int ingrIndex = rand.Next(0, ObjectManager.objectManager.poolInfo.Count);
         objTag = ObjectManager.objectManager.poolInfo[ingrIndex].tag;
     }
-
     private void spawnObject()
     {
         chooseRandomIngr();
@@ -44,7 +40,6 @@ public class Spawner : MonoBehaviour
         spawnedObj.transform.position = gameObject.transform.position;
         spawnedObj.GetComponent<ISpawnedObject>().OnSpawn();
     }
-
     IEnumerator objectSpawnTimer()
     {
         yield return new WaitForSeconds(nextSpawnTime);

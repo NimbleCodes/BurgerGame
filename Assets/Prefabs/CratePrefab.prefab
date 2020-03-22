@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5568520541142745818}
   - component: {fileID: 8646189451503367012}
   - component: {fileID: 5693798976088136100}
-  - component: {fileID: 801248231426945459}
   - component: {fileID: 7639194529407954426}
+  - component: {fileID: 1926714049551923817}
   m_Layer: 8
   m_Name: CratePrefab
   m_TagString: Untagged
@@ -123,19 +123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79f44bd46c61184c8eec901d6bb7500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &801248231426945459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7943620850869341785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ea5991d0df12ec488f8e222458707cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: -10
 --- !u!50 &7639194529407954426
 Rigidbody2D:
   serializedVersion: 4
@@ -157,3 +144,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1926714049551923817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7943620850869341785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a57214d833b25fc42a36913ff7e6a689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: -10
