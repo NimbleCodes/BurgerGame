@@ -8,17 +8,15 @@ public class Spawner : MonoBehaviour
     public float nextSpawnTime = 1f;
     bool spawnTimerOn = false;
 
+    public int randSeed = -1;
     System.Random rand;
 
     private void Start()
     {
-        //disable Spawner if objTag is not specified
-        if(objTag == null)
-        {
-            Debug.Log("Spawner: objTag not initialized.");
-            GetComponent<Spawner>().enabled = false;
-        }
-        rand = new System.Random();
+        if (randSeed == -1)
+            rand = new System.Random();
+        else
+            rand = new System.Random(randSeed);
     }
 
     private void Update()

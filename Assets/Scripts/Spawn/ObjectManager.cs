@@ -5,23 +5,12 @@ using System.IO;
 
 public class ObjectManager : MonoBehaviour
 {
-    
-    [System.Serializable]
-    public class IngreArr{
-        //재료의 분류 (고기, 야채, 소스 등등)
-        public string ingreClass;
-        //재료의 이름
-        public string ingreName;
-        //재료의 Sprite 경로
+    //Singleton
+    public static ObjectManager objectManager;
+    //오브젝트 풀
+    Dictionary<string, Queue<GameObject>> objPools;
 
-    }
-
-    [System.Serializable]
-    class ingreTable{
-        public IngreArr[] IngreArr;
-    }
-
-
+    /*------------------------------재료 관련-----------------------------*/
     [System.Serializable]
     public class Pool
     {
@@ -30,52 +19,31 @@ public class ObjectManager : MonoBehaviour
         public int size;
     }
     public List<IngreArr> poolInfo;
-    public static ObjectManager objectManager;
 
+    [System.Serializable]
+    public class IngreArr{
+        //재료의 분류 (고기, 야채, 소스 등등)
+        public string ingreClass;
+        //재료의 이름
+        public string ingreName;
+        //재료의 Sprite 경로
+    }
+    [System.Serializable]
+    class ingreTable{
+        public IngreArr[] IngreArr;
+    }
     //Json을 String으로 받아온다.
     string ingreJson;
     //Ingredient 정보를 쉽게 받아오기 위한 Table
     ingreTable IngreTable;
-    
-    Dictionary<string, Queue<GameObject>> objPools;
-    private void Awake()
-    {
-        objectManager = this;
-        getJson();
-
-        objPools = new Dictionary<string, Queue<GameObject>>();
-        // foreach (Pool pool in poolInfo)
-        // {
-        //     Queue<GameObject> tempQueue = new Queue<GameObject>();
-        //     for (int i = 0; i < pool.size; i++)
-        //     {
-        //         GameObject temp = Instantiate(pool.prefab);
-        //         temp.SetActive(false);
-        //         tempQueue.Enqueue(temp);
-        //     }
-        //     objPools.Add(pool.tag, tempQueue);
-        // }
-
-        foreach(var cell in IngreTable.IngreArr){
-
-            Queue<GameObject> tempQueue = new Queue<GameObject>();
-            poolInfo.Add(cell);
-            for(int i=0; i<5; i++){
-                GameObject tempObj = Instantiate((GameObject)Resources.Load("Prefab/IngrePrefab"));
-                tempObj.name = cell.ingreName + i;
-                tempObj.GetComponent<Ingredient>().initIngre(cell.ingreClass,cell.ingreName);
-                tempObj.SetActive(false);
-                tempQueue.Enqueue(tempObj);
-            }
-            objPools.Add(cell.ingreName, tempQueue);
-        }
-    }
-    
-    //Json 파일 받아오기
+    //Json 파일에서 버거재료 데이터 받아오기
     void getJson(){
         ingreJson = File.ReadAllText(Application.dataPath + "/Resources/Json/ingredient.json");
         IngreTable = JsonUtility.FromJson<ingreTable>(ingreJson);    
     }
+    /*------------------------------재료 관련-----------------------------*/
+    
+    /*--------------------------오브젝트 풀 사용--------------------------*/
     public GameObject getGameObject(string tag)
     {
         if (objPools.ContainsKey(tag))
@@ -91,6 +59,38 @@ public class ObjectManager : MonoBehaviour
             return null;
         }
     }
+    /*--------------------------오브젝트 풀 사용--------------------------*/
 
+    /*----------------------------이벤트 관련-----------------------------*/
+    //난이도 상승 이벤트
+    void OnDiffIncEvent()
+    {
+        //increase difficulty
+        foreach (GameObject g in objPools["lettuce"])
+            g.GetComponent<GravityTest>().speed = -20;
+    }
+    /*----------------------------이벤트 관련-----------------------------*/
 
+    private void Awake()
+    {
+        objectManager = this;
+        getJson();
+        //오브젝트 풀 초기화
+        objPools = new Dictionary<string, Queue<GameObject>>();
+        foreach(var cell in IngreTable.IngreArr){
+            Queue<GameObject> tempQueue = new Queue<GameObject>();
+            poolInfo.Add(cell);
+            for(int i=0; i<5; i++){
+                GameObject tempObj = Instantiate((GameObject)Resources.Load("Prefab/IngrePrefab"));
+                tempObj.name = cell.ingreName + i;
+                tempObj.GetComponent<Ingredient>().initIngre(cell.ingreClass,cell.ingreName);
+                tempObj.SetActive(false);
+                tempQueue.Enqueue(tempObj);
+            }
+            objPools.Add(cell.ingreName, tempQueue);
+        }
+    }
+    private void Start(){
+        EventManager.eventManager.DiffIncEvent += OnDiffIncEvent;
+    }
 }
