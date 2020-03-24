@@ -61,7 +61,7 @@ public class ObjectManager : MonoBehaviour
     }
     /*--------------------------오브젝트 풀 사용--------------------------*/
 
-    /*----------------------------이벤트 관련-----------------------------*/
+    /*----------------------------이벤트 관련-----------------------------
     //난이도 상승 이벤트
     void OnDiffIncEvent()
     {
@@ -90,7 +90,8 @@ public class ObjectManager : MonoBehaviour
             objPools.Add(cell.ingreName, tempQueue);
         }
     }
+    
     private void Start(){
-        EventManager.eventManager.DiffIncEvent += OnDiffIncEvent;
+        //EventManager.eventManager.DiffIncEvent += OnDiffIncEvent;
     }
 }

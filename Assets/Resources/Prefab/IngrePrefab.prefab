@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2979558420132243894}
   - component: {fileID: 583418198481439217}
   - component: {fileID: 6950034658225697529}
-  - component: {fileID: 5837942601060384766}
   - component: {fileID: -2766600818141588162}
   - component: {fileID: -6069590586392381838}
+  - component: {fileID: 3357110556561845157}
   m_Layer: 8
   m_Name: IngrePrefab
   m_TagString: Untagged
@@ -111,19 +111,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
---- !u!114 &5837942601060384766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5616222178321217736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ea5991d0df12ec488f8e222458707cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: -10
 --- !u!50 &-2766600818141588162
 Rigidbody2D:
   serializedVersion: 4
@@ -132,7 +119,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5616222178321217736}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -160,3 +147,15 @@ MonoBehaviour:
   ingreClass: 
   ingreName: 
   ingreSprite: {fileID: 0}
+--- !u!114 &3357110556561845157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5616222178321217736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ea5991d0df12ec488f8e222458707cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
