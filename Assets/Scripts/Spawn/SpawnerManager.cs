@@ -89,7 +89,7 @@ public class SpawnerManager : MonoBehaviour
     /*-------------------------------이벤트 관련--------------------------------*/
     void OnDiffIncEvent()
     {
-        num_spawner++;
+        if(num_spawner < 5) num_spawner++;
         initSpawners();
     }
     /*-------------------------------이벤트 관련--------------------------------*/

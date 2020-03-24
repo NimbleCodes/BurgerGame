@@ -68,9 +68,11 @@ public class BlurOnGamePaused : MonoBehaviour
         Graphics.Blit(rt, destination);
         RenderTexture.ReleaseTemporary(rt);
     }
-    public void OnGamePausedEvent()
+    public void OnGamePausedEvent(string str)
     {
-        if (blur) blur = false;
-        else blur = true;
+        if(str.Equals("Pause"))
+            blur = true;
+        else
+            blur = false;
     } 
 }

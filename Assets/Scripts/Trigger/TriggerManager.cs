@@ -16,6 +16,8 @@ public class TriggerManager : MonoBehaviour
 
     Vector3 bottom_left, top_right; //트리거가 생성될 영역
     int num_trigger_sets;           //트리거의 개수
+    string[] eatkeyarr = {"q", "w", "e", "r", "t"};
+    string[] reckeyarr = {"y", "u", "i", "o", "p"};
 
     /*----------------------------트리거 초기화 관련----------------------------*/
     bool ValidateInput_GetTriggerPos(Vector3 bottom_left, Vector3 top_right){
@@ -73,10 +75,12 @@ public class TriggerManager : MonoBehaviour
                 ts.triggers[(int)trigger_type.Eat] = new GameObject();
                 ts.triggers[(int)trigger_type.Eat].AddComponent<EatTrigger>();
                 ts.triggers[(int)trigger_type.Eat].name = "EatTrigger" + i;
+                ts.triggers[(int)trigger_type.Eat].GetComponent<Trigger>().key = eatkeyarr[i];
 
                 ts.triggers[(int)trigger_type.Recycle] = new GameObject();
                 ts.triggers[(int)trigger_type.Recycle].AddComponent<RecycleTrigger>();
                 ts.triggers[(int)trigger_type.Recycle].name = "RecycleTrigger" + i;
+                ts.triggers[(int)trigger_type.Recycle].GetComponent<Trigger>().key = reckeyarr[i];
 
                 //공통 변수 초기화
                 foreach(GameObject g in ts.triggers){
@@ -93,7 +97,7 @@ public class TriggerManager : MonoBehaviour
     /*-------------------------------이벤트 관련--------------------------------*/
     void OnDiffIncEvent()
     {
-        num_trigger_sets++;
+        if(num_trigger_sets < 5) num_trigger_sets++;
         initTriggers();
     }
     /*-------------------------------이벤트 관련--------------------------------*/
