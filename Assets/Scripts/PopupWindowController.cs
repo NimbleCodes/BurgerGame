@@ -2,13 +2,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
+
 /// 팝업 윈도우를 띄워주는 클래스
 /// Ok 팝업, Ok/Cancel 팝업, Yes/No 팝업, Yes/No/Cancel 팝업 
-/// </summary>
+
 public class PopupWindowController : MonoBehaviour
 {
     public static PopupWindowController Instance; // singleton 변수
+    public string ScenetoLoad;
 
     public bool useBackground = true;
     public string DefaultOkName = "Ok";         // 기본 Ok 텍스트
