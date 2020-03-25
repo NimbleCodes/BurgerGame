@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+
 public class Inventory : MonoBehaviour
 {
     string cur_burgerOrder;
@@ -18,7 +19,7 @@ public class Inventory : MonoBehaviour
     public class burgerMenu
     {
         public string BurgerName;
-        public string BurgerRecipe;
+        public string[] BurgerRecipe;
     }
     [System.Serializable]
     public class Menu
@@ -71,7 +72,8 @@ public class Inventory : MonoBehaviour
     {
         int nextBurgerInd = rand.Next(0,menu.BurgerMenu.Length);
         Debug.Log(menu.BurgerMenu[nextBurgerInd].BurgerName);
-        return menu.BurgerMenu[nextBurgerInd].BurgerRecipe;
+        Debug.Log(menu.BurgerMenu[nextBurgerInd].BurgerRecipe[0]);
+        return menu.BurgerMenu[nextBurgerInd].BurgerRecipe[0];
     }
     bool cmpToBurgerOrder(string burger_info)
     {
@@ -87,7 +89,7 @@ public class Inventory : MonoBehaviour
 
     void loadMenuFromJson()
     {
-        string menuJson = File.ReadAllText(Application.dataPath + "/Resources/Json/menu.json");
+        string menuJson = File.ReadAllText(Application.dataPath + "/Resources/Json/Recipe.json");
         menu = JsonUtility.FromJson<Menu>(menuJson);
     }
 }
