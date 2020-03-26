@@ -5,8 +5,8 @@
       "BurgerRecipe": [
         "lettuce",
         "cheese",
-        "beef"
-        
+        "beef",
+        "buns"
       ]
     },
 
@@ -15,7 +15,8 @@
       "BurgerRecipe": [
         "lettuce",
         "cheese",
-        "beef"
+        "beef",
+        "buns"
       ]
     },
 
@@ -23,7 +24,8 @@
       "BurgerName": "ChickenBurger",
       "BurgerRecipe": [
         "lettuce",
-        "chicken"
+        "chicken",
+        "buns"
       ]
     },
 
@@ -32,7 +34,8 @@
       "BurgerRecipe":[
         "lettuce",
         "chicken",
-        "tomato"
+        "tomato",
+        "buns"
       ]
     },
 
@@ -43,7 +46,8 @@
         "beef",
         "bread",
         "beef",
-        "tomato"
+        "tomato",
+        "buns"
       ]
     }
   ]

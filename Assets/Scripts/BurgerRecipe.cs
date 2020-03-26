@@ -19,22 +19,43 @@ public class BurgerRecipe : MonoBehaviour
     Menu menu;
 
     class recipeCell{
-
+        public bool used = false;
+        int _termRemain = 0;
+        public int termRemain{
+            get{
+                return _termRemain;
+            }
+            set{
+                if(value <= 0){
+                    _termRemain = 0;
+                    used = false;
+                }else{
+                    _termRemain = value;
+                    used = true;
+                }
+            }
+        }
     }
 
     //recipeTable은 이전에 나왔던 버거 레시피가 다시 나오는 것을 방지하기 위해 이용된다.
-    bool[] recipeTable;
+    recipeCell[] recipeTable;
     //saveNum은 나왔던 레시피가 안나오게 하는 Term을 지정한다. (ex 3이면 다음 세 텀에는 중복 레시피가 나오지 않는다.)
-    int saveNum;
+    public int saveNum = 3;
     //curRecipe는 게임플레이 내에서의 현재 레시피를 가리킨다.
     string[] curRecipe;
     //correctionTable은 재료들이 모두 모였는지를 확인한다.
     bool[] correctionTable;
+    //curRecipe의 index
+    int RecipeIndex = 0;
 
     private void Awake() {
         loadMenuFromJson();
         Debug.Log("Count : " + getRecipeCount());
-        recipeTable = new bool[getRecipeCount()];
+        recipeTable = new recipeCell[getRecipeCount()];
+    }
+
+    private void Start() {
+        
     }
     // Update is called once per frame
     void Update()
@@ -54,9 +75,62 @@ public class BurgerRecipe : MonoBehaviour
     }
 
 
-    public void setRandomRecipe(){
+    //들어온 재료가 curRecipe의 순서와 알맞은지 확인하는 function
+    public void findIngreCorrect(string ingreName){
+        //틀렸을 때
+        if(curRecipe[RecipeIndex] != ingreName){
+            burgerFail();
+            RecipeIndex = 0;
+            //틀렸으므로 다음 레시피로 넘기기
+            goNextRecipe();
+        }
+        //알맞은 재료를 먹었을 때
+        if(curRecipe[RecipeIndex] == ingreName && RecipeIndex < curRecipe.Length-1){
+            correctIngre();
+            RecipeIndex += 1;
+        }
+        //버거가 완성되었을 때
+        if(RecipeIndex == curRecipe.Length){
+            burgerComplete();
+            RecipeIndex = 0;
+            //완성되었으므로 다음 레시피로 넘기기
+            goNextRecipe();
+        }
+    }
+
+    //다음 레시피로 넘어가기(랜덤)
+    public void goNextRecipe(){
+        List<int> tempList = new List<int>();
+        for(int i=0; i<getRecipeCount(); i++)
+        {
+            if(recipeTable[i].used == false){
+                tempList.Add(i);
+            }
+            if(recipeTable[i].termRemain != 0){
+                recipeTable[i].termRemain -= 1;
+            }
+        }
+        int randNum = Random.Range(0,tempList.Count);
+        curRecipe = menu.BurgerMenu[randNum].BurgerRecipe;
+        recipeTable[randNum].termRemain = saveNum;
+    }
+
+    //버거가 모두 완성되었음을 알리는 함수
+    public void burgerComplete(){
+
+    }
+
+    //버거가 실패했음을 알리는 함수
+    public void burgerFail(){
+
+    }
+
+    //알맞은 재료를 먹었다고 알리는 함수
+    public void correctIngre(){
         
     }
+
+    
 
     //레시피 Json 받아오는 function
     void loadMenuFromJson()
