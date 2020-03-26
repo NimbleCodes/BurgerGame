@@ -19,8 +19,13 @@ public class BurgerRecipe : MonoBehaviour
     Menu menu;
 
     class recipeCell{
-        public bool used = false;
-        int _termRemain = 0;
+
+        public recipeCell(){
+
+            termRemain = 0;
+        }
+        public bool used;
+        int _termRemain;
         public int termRemain{
             get{
                 return _termRemain;
@@ -49,9 +54,13 @@ public class BurgerRecipe : MonoBehaviour
     int RecipeIndex = 0;
 
     private void Awake() {
+        
         loadMenuFromJson();
         Debug.Log("Count : " + getRecipeCount());
         recipeTable = new recipeCell[getRecipeCount()];
+        for(int i=0; i<getRecipeCount(); i++){
+            recipeTable[i] = new recipeCell();
+        }
     }
 
     private void Start() {
@@ -60,6 +69,11 @@ public class BurgerRecipe : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Test
+        if(Input.GetKeyDown(KeyCode.Space)){
+            goNextRecipe();
+
+        }
         
     }
 
@@ -111,8 +125,11 @@ public class BurgerRecipe : MonoBehaviour
             }
         }
         int randNum = Random.Range(0,tempList.Count);
-        curRecipe = menu.BurgerMenu[randNum].BurgerRecipe;
-        recipeTable[randNum].termRemain = saveNum;
+        Debug.Log("list num : " + tempList[randNum]);
+        curRecipe = menu.BurgerMenu[tempList[randNum]].BurgerRecipe;
+        recipeTable[tempList[randNum]].termRemain = saveNum;
+        Debug.Log("Name : " + menu.BurgerMenu[tempList[randNum]].BurgerName);
+        
     }
 
     //버거가 모두 완성되었음을 알리는 함수

@@ -42,6 +42,7 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.Space) & !click)
         {
             bool success = cmpToBurgerOrder(inventory);
