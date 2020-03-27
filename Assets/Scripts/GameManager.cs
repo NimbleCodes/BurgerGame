@@ -28,12 +28,19 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
     }
-    void OnGamePausedEvent(string str){
-        if(str.Equals("Pause")){
-            pauseGame();
-        }
-        else{
+    string prevWho = "";
+    bool paused = false;
+    void OnGamePausedEvent(bool action, string who){
+        if (paused & !action & who.Equals(prevWho))
+        {
             resumeGame();
+            paused = false;
+        }
+        else if (!paused & action)
+        {
+            pauseGame();
+            prevWho = who;
+            paused = true;
         }
     }
 }

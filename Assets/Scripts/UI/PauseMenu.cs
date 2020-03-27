@@ -17,8 +17,8 @@ public class PauseMenu : MonoBehaviour
     private void Update() {
         if (!click & Input.GetKeyDown(KeyCode.Escape))
         {
-            string output = paused ? "Resume" : "Pause";
-            EventManager.eventManager.Invoke_GamePausedEvent(output);
+            bool output = !paused;
+            EventManager.eventManager.Invoke_GamePausedEvent(output,"PauseMenu");
             paused = !paused;
             
             if(paused) Show();

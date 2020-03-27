@@ -14,7 +14,7 @@ public class BlurOnGamePaused : MonoBehaviour
 
     private void Start()
     {
-        EventManager.eventManager.GamePausedEvent += OnGamePausedEvent;
+        //EventManager.eventManager.GamePausedEvent += OnGamePausedEvent;
         if (blurShad == null)
         {
             Debug.Log("blur shader not initialized");
