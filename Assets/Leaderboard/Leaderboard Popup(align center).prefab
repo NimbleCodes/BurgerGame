@@ -1,5 +1,23 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &2175461641887602442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7979746154943947217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4345c1d54927a304695b2625d74d32c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BackgroundEnable: 1
+  DefaultBackName: Back
+  Background: {fileID: 7979661037708979261}
+  PopupLeaderboard: {fileID: 7979901009903430345}
+  backButton: {fileID: 8011791180743696243}
+  backText: {fileID: 8011431851219878969}
 --- !u!1001 &4013075375354355633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -309,15 +327,40 @@ PrefabInstance:
       propertyPath: messageText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6385778179474768066, guid: 8eeef43303cbe4543ba66fc48509c86a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2175461641887602442}
+    - target: {fileID: 6385778179474768066, guid: 8eeef43303cbe4543ba66fc48509c86a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickBackButton
+      objectReference: {fileID: 0}
     - target: {fileID: 6416659785107914336, guid: 8eeef43303cbe4543ba66fc48509c86a,
         type: 3}
       propertyPath: m_Name
-      value: Leaderboard Popup
+      value: Leaderboard Popup(align center)
       objectReference: {fileID: 0}
     - target: {fileID: 6416659785107914336, guid: 8eeef43303cbe4543ba66fc48509c86a,
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416887712832377018, guid: 8eeef43303cbe4543ba66fc48509c86a,
+        type: 3}
+      propertyPath: m_Name
+      value: backButton text
+      objectReference: {fileID: 0}
+    - target: {fileID: 6417351819815433592, guid: 8eeef43303cbe4543ba66fc48509c86a,
+        type: 3}
+      propertyPath: m_Name
+      value: LeaderboardWindow
+      objectReference: {fileID: 0}
+    - target: {fileID: 6417599934280822132, guid: 8eeef43303cbe4543ba66fc48509c86a,
+        type: 3}
+      propertyPath: m_Name
+      value: Back Button
       objectReference: {fileID: 0}
     - target: {fileID: 6490053577172122144, guid: 8eeef43303cbe4543ba66fc48509c86a,
         type: 3}
@@ -479,5 +522,48 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6381901471094349866, guid: 8eeef43303cbe4543ba66fc48509c86a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8eeef43303cbe4543ba66fc48509c86a, type: 3}
+--- !u!1 &7979746154943947217 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6416659785107914336, guid: 8eeef43303cbe4543ba66fc48509c86a,
+    type: 3}
+  m_PrefabInstance: {fileID: 4013075375354355633}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7979661037708979261 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6416571348519629708, guid: 8eeef43303cbe4543ba66fc48509c86a,
+    type: 3}
+  m_PrefabInstance: {fileID: 4013075375354355633}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7979901009903430345 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6417351819815433592, guid: 8eeef43303cbe4543ba66fc48509c86a,
+    type: 3}
+  m_PrefabInstance: {fileID: 4013075375354355633}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8011791180743696243 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6385778179474768066, guid: 8eeef43303cbe4543ba66fc48509c86a,
+    type: 3}
+  m_PrefabInstance: {fileID: 4013075375354355633}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8011431851219878969 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6385853686826605448, guid: 8eeef43303cbe4543ba66fc48509c86a,
+    type: 3}
+  m_PrefabInstance: {fileID: 4013075375354355633}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

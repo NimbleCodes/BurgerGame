@@ -9,8 +9,6 @@ using UnityEngine.UI;
 public class PopupWindowController : MonoBehaviour
 {
     public static PopupWindowController Instance; // singleton 변수
-    public string ScenetoLoad;
-
     public bool useBackground = true;
     public string DefaultOkName = "Ok";         // 기본 Ok 텍스트
     [SerializeField]
