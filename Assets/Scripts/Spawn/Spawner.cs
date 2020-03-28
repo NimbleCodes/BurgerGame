@@ -16,6 +16,9 @@ public class Spawner : MonoBehaviour
     System.Random rand;
 
     /*------------------------------오브젝트 생성-------------------------------*/
+    int ingrHistorySize = 5;
+    List<string> ingrHistory;
+
     void chooseRandomIngr()
     {
         int ingrIndex = rand.Next(0, ObjectManager.objectManager.poolInfo.Count);
@@ -25,9 +28,9 @@ public class Spawner : MonoBehaviour
     {
         chooseRandomIngr();
         GameObject spawnedObj = ObjectManager.objectManager.getGameObject(objTag);
-        spawnedObj.SetActive(true);
         spawnedObj.transform.position = gameObject.transform.position;
-        if(SpawnerErrorOccured){
+        spawnedObj.SetActive(true);
+        if (SpawnerErrorOccured){
             spawnedObj.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,-faster),ForceMode2D.Impulse);
             SpawnerErrorOccured = false;
         }

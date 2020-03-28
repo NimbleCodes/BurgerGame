@@ -56,7 +56,6 @@ public class Trigger : MonoBehaviour
     }
     public virtual void Action(GameObject g)
     {
-        g.transform.position = gameObject.transform.position;
         g.SetActive(false);
     }
 
