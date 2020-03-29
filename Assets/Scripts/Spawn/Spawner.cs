@@ -17,16 +17,71 @@ public class Spawner : MonoBehaviour
 
     /*------------------------------오브젝트 생성-------------------------------*/
     int ingrHistorySize = 5;
-    List<string> ingrHistory;
-
-    void chooseRandomIngr()
+    Queue<string> ingrHistory;
+    List<tuple> occurList;
+    public class tuple
     {
-        int ingrIndex = rand.Next(0, ObjectManager.objectManager.poolInfo.Count);
-        objTag = ObjectManager.objectManager.poolInfo[ingrIndex].ingreName;
+        public string ingrName;
+        public int occur;
+        public tuple(string name)
+        {
+            ingrName = name;
+            occur = 0;
+        }
+    }
+
+    int findIgnoredIngr()
+    {
+        for(int i = 0; i < occurList.Count; i++)
+        {
+            if (occurList[i].occur == 0)
+                return i;
+        }
+        return -1;
+    }
+    void chooseIngr()
+    {
+        int ignored;
+        if (ingrHistory.Count < ingrHistorySize || (ignored = findIgnoredIngr()) == -1) {
+            int ingrIndex = rand.Next(0, ObjectManager.objectManager.poolInfo.Count);
+            objTag = ObjectManager.objectManager.poolInfo[ingrIndex].ingreName;
+        }
+        else
+        {
+            objTag = occurList[ignored].ingrName;
+            //DEBUG
+            /*
+            string total = gameObject.name + ": ";
+            foreach (string str in ingrHistory)
+                total += (str + " ");
+            Debug.Log(total);
+            Debug.Log(objTag + " ignored!");
+            */
+        }
     }
     private void spawnObject()
     {
-        chooseRandomIngr();
+        chooseIngr();
+        if(ingrHistory.Count < ingrHistorySize)
+        {
+            ingrHistory.Enqueue(objTag);
+        }
+        else
+        {
+            string remove = ingrHistory.Dequeue();
+            ingrHistory.Enqueue(objTag);
+            for (int i = 0; i < occurList.Count; i++)
+            {
+                if (occurList[i].ingrName == remove)
+                    occurList[i].occur -= 1;
+            }
+        }
+        for (int i = 0; i < occurList.Count; i++)
+        {
+            if (occurList[i].ingrName == objTag)
+                occurList[i].occur += 1;
+        }
+
         GameObject spawnedObj = ObjectManager.objectManager.getGameObject(objTag);
         spawnedObj.transform.position = gameObject.transform.position;
         spawnedObj.SetActive(true);
@@ -46,6 +101,13 @@ public class Spawner : MonoBehaviour
     
     private void Start()
     {
+        ingrHistory = new Queue<string>();
+        occurList = new List<tuple>();
+        for(int i = 0; i < ObjectManager.objectManager.poolInfo.Count; i++)
+        {
+            occurList.Add(new tuple(ObjectManager.objectManager.poolInfo[i].ingreName));
+        }
+
         if (randSeed == -1)
             rand = new System.Random();
         else
