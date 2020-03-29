@@ -17,7 +17,6 @@ public class Trigger : MonoBehaviour
 
     private void Start()
     {
-        EventManager.eventManager.GameOverEvent += OnGameOver;
         if (size == null)
             size = new Vector2(1, 0.5f);
     }
@@ -50,10 +49,6 @@ public class Trigger : MonoBehaviour
         }
     }
 
-    private void OnGameOver()
-    {
-        gameObject.SetActive(false);
-    }
     public virtual void Action(GameObject g)
     {
         g.SetActive(false);

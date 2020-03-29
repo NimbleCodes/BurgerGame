@@ -1,146 +1,91 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class SpawnerManager : MonoBehaviour
 {
-    List<GameObject> spawners;
-    Vector3 bottom_left, top_right;     //스포너가 생성될 영역
-    int num_spawner = 6;                //생성될 스포너의 개수
+    GameObject[] spawner_arr;
+    //스포너가 생성될 사각 영역의 두 점(왼쪽-아래, 오른쪽-위)
+    Vector2 bottom_left, top_right;
+    //스포너가 활성호하되는 순서
+    int[] activation_order = { 2, 3, 1, 4, 0, 5 };
+    int num_spawner = 6;
     int num_active_spawner = 3;
-
-    /*-----------------------------스포너 오류 관련-----------------------------*/
-    bool SpawnerError = false;
-    float SpawnerErrorTime;
-    IEnumerator SpawnerErrorTimer()
-    {
-        yield return new WaitForSeconds(SpawnerErrorTime);
-        SpawnerError = true;
-    }
+    //각 스포너에 할당 될 스폰 주기
+    float[] spawn_rate;
+    //랜덤 선택 기능
     System.Random rand;
+    public float faster_spawn_time = 5f;
+    bool faster_spawn_cont = true;
+    
     int ChooseRandomSpawner()
     {
-        return rand.Next(0, spawners.Count);
+        int chosen_one = activation_order[rand.Next(0, num_active_spawner)];
+        return chosen_one;
     }
-    void FasterSpawnedObject()
+    void SpawnObjFaster(int ind)
     {
-        int chosen_one = ChooseRandomSpawner();
-        spawners[chosen_one].GetComponent<Spawner>().SpawnerErrorOccured = true;
+        spawner_arr[ind].GetComponent<Spawner>().SpawnerErrorOccured = true;
     }
-    /*-----------------------------스포너 오류 관련-----------------------------*/
-
-    /*----------------------------스포너 초기화 관련----------------------------*/
-    bool ValidateInput_GetSpawnerPos(Vector3 bottom_left, Vector3 top_right)
+    IEnumerator FasterSpawnTimer()
     {
-        Vector3 mcam_bottom_left = Camera.main.ScreenToWorldPoint(new Vector3(0, 0));
-        Vector3 mcam_top_right = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight));
-
-        if (bottom_left.x < top_right.x && bottom_left.x >= mcam_bottom_left.x && top_right.x <= mcam_top_right.x)
+        yield return new WaitForSeconds(faster_spawn_time);
+        SpawnObjFaster(ChooseRandomSpawner());
+        if (faster_spawn_cont)
+            StartCoroutine("FasterSpawnTimer");
+    }
+    void ActivateSpawners()
+    {
+        for (int i = 0; i < num_active_spawner; i++)
         {
-            if (bottom_left.y < top_right.y && bottom_left.y >= mcam_bottom_left.y && top_right.y <= mcam_top_right.y)
-                return true;
+            spawner_arr[activation_order[i]].GetComponent<Spawner>().enabled = true;
         }
-        return false;
     }
-    List<Vector3> GetSpawnerPos(Vector3 bottom_left, Vector3 top_right)
+    void InitSpawners()
     {
-        //입력 타당성 검사
-        if (!ValidateInput_GetSpawnerPos(bottom_left, top_right))
+        spawner_arr = new GameObject[num_spawner];
+        for(int i = 0; i < num_spawner; i++)
         {
-            Debug.LogError("SpawnerManager: invalid input for function GetSpawnerPos");
-            return null;
-        }
-        //스포너 위치 계산 및 반환
-        List<Vector3> output = new List<Vector3>();
-        for (int i = 0; i < num_spawner; i++)
-        {
-            float dx = (top_right.x - bottom_left.x) / num_spawner;
-            float x = bottom_left.x + dx / 2 + dx * i;
+            spawner_arr[i] = new GameObject();
+            spawner_arr[i].name = "Spawner" + i;
+            float sizex = (top_right.x - bottom_left.x) / num_spawner;
+            float x = bottom_left.x + (sizex / 2) + (sizex * i);
             float y = bottom_left.y + (top_right.y - bottom_left.y) * 0.9f;
-            output.Add(new Vector3(x, y));
-        }
-        return output;
-    }
-    void activateSpawners()
-    {
-        for (int i = 0; i < num_spawner; i++)
-        {
-            if (i < num_active_spawner)
-            {
-                spawners[i].SetActive(true);
-            }
-        }
-    }
-    void initSpawners()
-    {
-        List<Vector3> spawner_pos = GetSpawnerPos(bottom_left, top_right);
-        if (spawner_pos == null)
-        {
-            //disable all spawners
-            foreach (GameObject g in spawners)
-            {
-                g.SetActive(false);
-            }
-            num_spawner = 0;
-            return;
-        }
-        //스포너 초기화
-        for (int i = 0; i < num_spawner; i++)
-        {
-            if (spawners.Count >= i + 1)
-            {
-                //이미 생성된 스포너의 위치 변경
-                spawners[i].GetComponent<Transform>().position = spawner_pos[i];
-            }
-            else
-            {
-                //새 스포너 오브젝트를 생성 
-                GameObject g = new GameObject();
-                g.GetComponent<Transform>().position = spawner_pos[i];
-                g.name = "Spawner" + i;
-                g.SetActive(false);
+            spawner_arr[i].GetComponent<Transform>().position = new Vector3(x, y);
 
-                g.AddComponent<Spawner>();
-                g.GetComponent<Spawner>().nextSpawnTime = 1f;
-                g.GetComponent<Spawner>().randSeed = i;
-
-                spawners.Add(g);
-            }
+            spawner_arr[i].AddComponent<Spawner>();
+            spawner_arr[i].GetComponent<Spawner>().nextSpawnTime = spawn_rate[i];
+            //재료 선택할 때 사용하는 랜덤 객체 시드 값
+            spawner_arr[i].GetComponent<Spawner>().randSeed = i;
+            spawner_arr[i].GetComponent<Spawner>().enabled = false;
         }
-        activateSpawners();
+        ActivateSpawners();
     }
-    /*----------------------------스포너 초기화 관련----------------------------*/
-
-    /*-------------------------------이벤트 관련--------------------------------*/
     void OnDiffIncEvent()
     {
         num_active_spawner++;
-        activateSpawners();
+        ActivateSpawners();
     }
-    /*-------------------------------이벤트 관련--------------------------------*/
-
     private void Start()
     {
-        EventManager.eventManager.DiffIncEvent += OnDiffIncEvent;
-        spawners = new List<GameObject>();
         rand = new System.Random();
 
-        //임시 코드
-        bottom_left = Camera.main.ScreenToWorldPoint(new Vector3(0, 0));
-        top_right = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight));
-        //num_spawner = 5;
-        SpawnerErrorTime = 5f;
+        EventManager.eventManager.DiffIncEvent += OnDiffIncEvent;
 
-        initSpawners();
-        StartCoroutine("SpawnerErrorTimer");
-    }
-    private void Update()
-    {
-        if (SpawnerError)
+        //트리거가 생성될 영역 지정
+        //임시코드
+        bottom_left = Camera.main.ScreenToWorldPoint(new Vector3(0, Camera.main.pixelHeight*0.1f));
+        top_right = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight));
+        //spawn_rate 값 초기화
+        spawn_rate = new float[num_spawner];
+        //임시코드
+        for(int i = 0; i < num_spawner; i++)
         {
-            FasterSpawnedObject();
-            SpawnerError = false;
-            StartCoroutine("SpawnerErrorTimer");
+            spawn_rate[i] = 0.25f * (i + 1);
         }
+        InitSpawners();
+
+        StartCoroutine("FasterSpawnTimer");
     }
 }

@@ -5,149 +5,100 @@ using UnityEngine;
 
 public class TriggerManager : MonoBehaviour
 {
+    //트리거의 종류
     enum trigger_type
     {
         Eat = 0,
         Recycle
     }
-    struct trigger_set
+    //한 위치의 트리거들을 묶어 놓은 구조체
+    public struct trigger_set
     {
         public GameObject[] triggers;
     }
-    List<trigger_set> trigger_set_list;
-    Vector2 size;
+    //총 트리거 개수
+    public int num_trigger_set = 6;
+    //활성 상태인 트리거 개수
+    public int num_active_trigger_set = 3;
+    public trigger_set[] trigger_set_arr;
+    //트리거가 생성될 사각 영역의 두 점(왼쪽-아래, 오른쪽-위)
+    Vector2 bottom_left, top_right;
+    //트리거의 크기
+    public Vector2 size;
+    //트리거가 작동하게 되는 입력의 종류 배열
+    string[] eatkeyarr = { "q", "w", "e", "a", "s", "d" };
+    string[] reckeyarr = { "u", "i", "o", "j", "k", "l" };
+    //트리거가 활성화되는 순서를 담은 배열
+    int[] activation_order = {2,3,1,4,0,5};
 
-    Vector3 bottom_left, top_right;     //트리거가 생성될 영역
-    int num_trigger_sets = 6;           //트리거의 개수
-    int num_active_triggers = 3;
-    string[] eatkeyarr = { "e", "w", "q", "d", "s", "a" };
-    string[] reckeyarr = { "i", "o", "p", "k", "l", ";" };
-
-    /*----------------------------트리거 초기화 관련----------------------------*/
-    bool ValidateInput_GetTriggerPos(Vector3 bottom_left, Vector3 top_right)
+    void ActivateTriggers()
     {
-        Vector3 mcam_bottom_left = Camera.main.ScreenToWorldPoint(new Vector3(0, 0));
-        Vector3 mcam_top_right = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight));
-
-        if (bottom_left.x < top_right.x && bottom_left.x >= mcam_bottom_left.x && top_right.x <= mcam_top_right.x)
+        for(int i = 0; i < num_active_trigger_set; i++)
         {
-            if (bottom_left.y < top_right.y && bottom_left.y >= mcam_bottom_left.y && top_right.y <= mcam_top_right.y)
-                return true;
-        }
-        return false;
-    }
-    List<Vector3> GetTriggerPos(Vector3 bottom_left, Vector3 top_right)
-    {
-        //입력 타당성 검사
-        if (!ValidateInput_GetTriggerPos(bottom_left, top_right))
-        {
-            Debug.LogError("TriggerManager: invalid input for function GetTriggerPos");
-            return null;
-        }
-        //스포너 위치 계산 및 반환
-        List<Vector3> output = new List<Vector3>();
-        for (int i = 0; i < num_trigger_sets; i++)
-        {
-            float dx = (top_right.x - bottom_left.x) / num_trigger_sets;
-            float x = bottom_left.x + dx / 2 + dx * i;
-            float y = bottom_left.y + (top_right.y - bottom_left.y) * 0.2f;
-            output.Add(new Vector3(x, y));
-        }
-        return output;
-    }
-    void activateTriggerSets()
-    {
-        for (int i = 0; i < num_trigger_sets; i++)
-        {
-            if (i < num_active_triggers)
+            for (int j = 0; j < Enum.GetNames(typeof(trigger_type)).Length; j++)
             {
-                foreach (GameObject g in trigger_set_list[i].triggers)
-                {
-                    g.SetActive(true);
-                }
+                trigger_set_arr[activation_order[i]].triggers[j].GetComponent<Trigger>().enabled = true;
             }
         }
     }
-    void initTriggers()
+    //트리거 초기화
+    void InitTriggers()
     {
-        List<Vector3> trigger_pos = GetTriggerPos(bottom_left, top_right);
-        if (trigger_pos == null)
+        trigger_set_arr = new trigger_set[num_trigger_set];
+        for(int i = 0; i < num_trigger_set; i++)
         {
-            //disable all spawners
-            foreach (trigger_set ts in trigger_set_list)
+            trigger_set_arr[i] = new trigger_set();
+            //trigger_type에 정의된 트리거 종류의 수만큼 트리거 오브젝트를 생성
+            int num_trigger_type = Enum.GetNames(typeof(trigger_type)).Length;
+            trigger_set_arr[i].triggers = new GameObject[num_trigger_type];
+            for (int j = 0; j < num_trigger_type; j++)
             {
-                foreach (GameObject g in ts.triggers)
+                trigger_set_arr[i].triggers[j] = new GameObject();
+                trigger_set_arr[i].triggers[j].name = ((trigger_type)j).ToString() + "Trigger" + i;
+                float x = bottom_left.x + (size.x / 2) + (size.x * i);
+                float y = bottom_left.y + (size.y / 2);
+                trigger_set_arr[i].triggers[j].GetComponent<Transform>().position = new Vector3(x, y);
+                //초기화 중인 트리거의 종류에 따라 알맞은 트리거 컴포넌트 삽입 및 트리거 컴포넌트 초기화를 위한 변수 값 지정
+                switch (j)
                 {
-                    g.SetActive(false);
+                    case (int)trigger_type.Eat:
+                        trigger_set_arr[i].triggers[j].AddComponent<EatTrigger>();
+                        trigger_set_arr[i].triggers[j].GetComponent<Trigger>().key = eatkeyarr[i];
+                        break;
+                    case (int)trigger_type.Recycle:
+                        trigger_set_arr[i].triggers[j].AddComponent<RecycleTrigger>();
+                        trigger_set_arr[i].triggers[j].GetComponent<Trigger>().key = reckeyarr[i];
+                        break;
+                    default:
+                        Debug.LogError("Attempt to add invalid trigger type to object");
+                        break;
                 }
-            }
-            num_trigger_sets = 0;
-            return;
-        }
-        //트리거 초기화
-        for (int i = 0; i < num_trigger_sets; i++)
-        {
-            if (trigger_set_list.Count >= i + 1)
-            {
-                //이미 생성된 트리거 위치 변경
-                foreach (GameObject g in trigger_set_list[i].triggers)
-                {
-                    g.GetComponent<Transform>().position = trigger_pos[i];
-                }
-            }
-            else
-            {
-                //새 트리거 오브젝트 생성
-                trigger_set ts = new trigger_set();
-                ts.triggers = new GameObject[Enum.GetNames(typeof(trigger_type)).Length];
-                ts.triggers[(int)trigger_type.Eat] = new GameObject();
-                ts.triggers[(int)trigger_type.Eat].AddComponent<EatTrigger>();
-                ts.triggers[(int)trigger_type.Eat].name = "EatTrigger" + i;
-                ts.triggers[(int)trigger_type.Eat].GetComponent<Trigger>().key = eatkeyarr[i];
-                ts.triggers[(int)trigger_type.Eat].SetActive(false);
-
-                ts.triggers[(int)trigger_type.Recycle] = new GameObject();
-                ts.triggers[(int)trigger_type.Recycle].AddComponent<RecycleTrigger>();
-                ts.triggers[(int)trigger_type.Recycle].name = "RecycleTrigger" + i;
-                ts.triggers[(int)trigger_type.Recycle].GetComponent<Trigger>().key = reckeyarr[i];
-                ts.triggers[(int)trigger_type.Recycle].SetActive(false);
-
-                //공통 변수 초기화
-                foreach (GameObject g in ts.triggers)
-                {
-                    g.GetComponent<Transform>().position = trigger_pos[i];
-                    g.GetComponent<Trigger>().triggeredBy = LayerMask.GetMask("Ingredients");
-                    g.GetComponent<Trigger>().size = size;
-                }
-                trigger_set_list.Add(ts);
+                //2로 나누는 이유: Trigger쪽에서 OverlapBox가 박스의 각 변의 길이의 반을 요구
+                trigger_set_arr[i].triggers[j].GetComponent<Trigger>().triggeredBy = LayerMask.GetMask("Ingredients");
+                trigger_set_arr[i].triggers[j].GetComponent<Trigger>().size = size/2;
+                trigger_set_arr[i].triggers[j].GetComponent<Trigger>().enabled = false;
             }
         }
-        activateTriggerSets();
+        ActivateTriggers();
     }
-    /*----------------------------트리거 초기화 관련----------------------------*/
-
-    /*-------------------------------이벤트 관련--------------------------------*/
+    //난이도 상승 이벤트 발생시 실행
     void OnDiffIncEvent()
     {
-        num_active_triggers++;
-        activateTriggerSets();
+        num_active_trigger_set++;
+        ActivateTriggers();
     }
-    /*-------------------------------이벤트 관련--------------------------------*/
-
     private void Start()
     {
+        //난이도 상승 이벤트에 subscribe
         EventManager.eventManager.DiffIncEvent += OnDiffIncEvent;
-        trigger_set_list = new List<trigger_set>();
-
+        //트리거가 생성될 영역 지정
         //임시코드
-        bottom_left = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
-        top_right = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight, 0));
-
-        float x = top_right.x - bottom_left.x;
-        x /= ((num_trigger_sets) * 2);
-        size = new Vector2(x, 1);
-        //num_trigger_sets = 5;
-
-        initTriggers();
+        bottom_left = Camera.main.ScreenToWorldPoint(new Vector3(0, Camera.main.pixelHeight*0.1f));
+        top_right = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth,Camera.main.pixelHeight));
+        //트리거 생성 영역을 트리거들의 영역이 겹치지 않고 완벽하게 채우도록 하는 크기 계산
+        float dx = top_right.x - bottom_left.x;
+        size.x = (dx / (num_trigger_set));
+        size.y = 1;
+        InitTriggers();
     }
 }
