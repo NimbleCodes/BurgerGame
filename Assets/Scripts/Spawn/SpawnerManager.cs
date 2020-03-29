@@ -5,33 +5,39 @@ using UnityEngine;
 public class SpawnerManager : MonoBehaviour
 {
     List<GameObject> spawners;
-    Vector3 bottom_left, top_right; //스포너가 생성될 영역
-    int num_spawner;                //생성될 스포너의 개수
+    Vector3 bottom_left, top_right;     //스포너가 생성될 영역
+    int num_spawner = 6;                //생성될 스포너의 개수
+    int num_active_spawner = 3;
 
     /*-----------------------------스포너 오류 관련-----------------------------*/
     bool SpawnerError = false;
     float SpawnerErrorTime;
-    IEnumerator SpawnerErrorTimer(){
+    IEnumerator SpawnerErrorTimer()
+    {
         yield return new WaitForSeconds(SpawnerErrorTime);
         SpawnerError = true;
     }
     System.Random rand;
-    int ChooseRandomSpawner(){
-        return rand.Next(0,spawners.Count);
+    int ChooseRandomSpawner()
+    {
+        return rand.Next(0, spawners.Count);
     }
-    void FasterSpawnedObject(){
+    void FasterSpawnedObject()
+    {
         int chosen_one = ChooseRandomSpawner();
         spawners[chosen_one].GetComponent<Spawner>().SpawnerErrorOccured = true;
     }
     /*-----------------------------스포너 오류 관련-----------------------------*/
 
     /*----------------------------스포너 초기화 관련----------------------------*/
-    bool ValidateInput_GetSpawnerPos(Vector3 bottom_left, Vector3 top_right){
-        Vector3 mcam_bottom_left = Camera.main.ScreenToWorldPoint(new Vector3(0,0));
+    bool ValidateInput_GetSpawnerPos(Vector3 bottom_left, Vector3 top_right)
+    {
+        Vector3 mcam_bottom_left = Camera.main.ScreenToWorldPoint(new Vector3(0, 0));
         Vector3 mcam_top_right = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight));
 
-        if(bottom_left.x < top_right.x && bottom_left.x >= mcam_bottom_left.x && top_right.x <= mcam_top_right.x){
-            if(bottom_left.y < top_right.y && bottom_left.y >= mcam_bottom_left.y && top_right.y <= mcam_top_right.y)
+        if (bottom_left.x < top_right.x && bottom_left.x >= mcam_bottom_left.x && top_right.x <= mcam_top_right.x)
+        {
+            if (bottom_left.y < top_right.y && bottom_left.y >= mcam_bottom_left.y && top_right.y <= mcam_top_right.y)
                 return true;
         }
         return false;
@@ -39,58 +45,77 @@ public class SpawnerManager : MonoBehaviour
     List<Vector3> GetSpawnerPos(Vector3 bottom_left, Vector3 top_right)
     {
         //입력 타당성 검사
-        if(!ValidateInput_GetSpawnerPos(bottom_left, top_right)){
+        if (!ValidateInput_GetSpawnerPos(bottom_left, top_right))
+        {
             Debug.LogError("SpawnerManager: invalid input for function GetSpawnerPos");
             return null;
         }
         //스포너 위치 계산 및 반환
         List<Vector3> output = new List<Vector3>();
-        for(int i = 0; i < num_spawner; i++){
-            float deltaX = top_right.x - bottom_left.x;
-            float dx = deltaX / (num_spawner+1);
-            float y = bottom_left.y + (top_right.y - bottom_left.y) * 0.9f;  //선택된 영역의 90%에 해당되는 y값
-            output.Add(new Vector3(bottom_left.x + dx * (i+1), y));
+        for (int i = 0; i < num_spawner; i++)
+        {
+            float dx = (top_right.x - bottom_left.x) / num_spawner;
+            float x = bottom_left.x + dx / 2 + dx * i;
+            float y = bottom_left.y + (top_right.y - bottom_left.y) * 0.9f;
+            output.Add(new Vector3(x, y));
         }
         return output;
+    }
+    void activateSpawners()
+    {
+        for (int i = 0; i < num_spawner; i++)
+        {
+            if (i < num_active_spawner)
+            {
+                spawners[i].SetActive(true);
+            }
+        }
     }
     void initSpawners()
     {
         List<Vector3> spawner_pos = GetSpawnerPos(bottom_left, top_right);
-        if(spawner_pos == null){
+        if (spawner_pos == null)
+        {
             //disable all spawners
-            foreach(GameObject g in spawners){
+            foreach (GameObject g in spawners)
+            {
                 g.SetActive(false);
             }
             num_spawner = 0;
             return;
         }
         //스포너 초기화
-        for(int i = 0; i < num_spawner; i++){
-            if(spawners.Count >= i+1){
+        for (int i = 0; i < num_spawner; i++)
+        {
+            if (spawners.Count >= i + 1)
+            {
                 //이미 생성된 스포너의 위치 변경
                 spawners[i].GetComponent<Transform>().position = spawner_pos[i];
             }
-            else{
+            else
+            {
                 //새 스포너 오브젝트를 생성 
                 GameObject g = new GameObject();
                 g.GetComponent<Transform>().position = spawner_pos[i];
                 g.name = "Spawner" + i;
-                
+                g.SetActive(false);
+
                 g.AddComponent<Spawner>();
                 g.GetComponent<Spawner>().nextSpawnTime = 1f;
                 g.GetComponent<Spawner>().randSeed = i;
-                
+
                 spawners.Add(g);
             }
         }
+        activateSpawners();
     }
     /*----------------------------스포너 초기화 관련----------------------------*/
 
     /*-------------------------------이벤트 관련--------------------------------*/
     void OnDiffIncEvent()
     {
-        if(num_spawner < 5) num_spawner++;
-        initSpawners();
+        num_active_spawner++;
+        activateSpawners();
     }
     /*-------------------------------이벤트 관련--------------------------------*/
 
@@ -101,17 +126,18 @@ public class SpawnerManager : MonoBehaviour
         rand = new System.Random();
 
         //임시 코드
-        bottom_left = Camera.main.ScreenToWorldPoint(new Vector3(0,0));
-        top_right = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth,Camera.main.pixelHeight));
-        num_spawner = 3;
+        bottom_left = Camera.main.ScreenToWorldPoint(new Vector3(0, 0));
+        top_right = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight));
+        //num_spawner = 5;
         SpawnerErrorTime = 5f;
 
         initSpawners();
         StartCoroutine("SpawnerErrorTimer");
     }
-
-    private void Update() {
-        if(SpawnerError){
+    private void Update()
+    {
+        if (SpawnerError)
+        {
             FasterSpawnedObject();
             SpawnerError = false;
             StartCoroutine("SpawnerErrorTimer");
