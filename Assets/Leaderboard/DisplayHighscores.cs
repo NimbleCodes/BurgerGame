@@ -12,6 +12,7 @@ public class DisplayHighscores : MonoBehaviour
     {
         for(int i=0;i < highscoreText.Length; i++){
         	highscoreText[i].text = ".Fetching..";
+			highscoreScore[i].text = ".Fetching..";
 		}
 
 		highscoreManager = GetComponent<Data_manager>();
@@ -21,8 +22,8 @@ public class DisplayHighscores : MonoBehaviour
     public void OnHighscoresDownloaded(HighScore[] highscoreList){
     	for(int i=0;i < highscoreText.Length; i++){
         	if (highscoreList.Length > i){
-        		highscoreText[i].text += highscoreList[i].username; 
-        		highscoreScore[i].text += highscoreList[i].score;
+        		highscoreText[i].text = highscoreList[i].username; 
+        		highscoreScore[i].text = ""+highscoreList[i].score;
         	}
 		}
     }
