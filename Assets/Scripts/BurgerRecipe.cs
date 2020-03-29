@@ -64,8 +64,15 @@ public class BurgerRecipe : MonoBehaviour
     }
 
     private void Start() {
-        
+        EventManager.eventManager.IngrEatenEvent += OnIngrEaten;
     }
+
+    //overlapbox 에서 재료를 받으면 발생되는 이벤트
+    void OnIngrEaten(string ingr_info)
+    {
+        findIngreCorrect(ingr_info);
+    }
+
     // Update is called once per frame
     void Update()
     {

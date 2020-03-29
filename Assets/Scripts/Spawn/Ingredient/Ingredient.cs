@@ -33,7 +33,7 @@ public class Ingredient : MonoBehaviour, ISpawnedObject
 
     /*---------------------------이벤트 관련----------------------------*/
     public void Eaten(){
-
+        
     }
     public void Recycled(){
 
