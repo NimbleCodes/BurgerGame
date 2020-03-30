@@ -1,0 +1,54 @@
+{
+  "BurgerMenu": [
+    {
+      "BurgerName": "DoubleCheeseBurger",
+      "BurgerRecipe": [
+        "lettuce",
+        "cheese",
+        "beef",
+        "buns"
+      ]
+    },
+
+    {
+      "BurgerName": "CheeseBurger",
+      "BurgerRecipe": [
+        "lettuce",
+        "cheese",
+        "beef",
+        "buns"
+      ]
+    },
+
+    {
+      "BurgerName": "ChickenBurger",
+      "BurgerRecipe": [
+        "lettuce",
+        "chicken",
+        "buns"
+      ]
+    },
+
+    {
+      "BurgerName": "TomatoChickenBurger",
+      "BurgerRecipe":[
+        "lettuce",
+        "chicken",
+        "tomato",
+        "buns"
+      ]
+    },
+
+    {
+      "BurgerName": "Big Bag",
+      "BurgerRecipe":[
+        "lettuce",
+        "beef",
+        "bread",
+        "beef",
+        "tomato",
+        "buns"
+      ]
+    }
+  ]
+}

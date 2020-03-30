@@ -1,0 +1,27 @@
+{
+  "DialogueArr": [
+    {
+      "Dialogue": [
+        "hello",
+        "my",
+        "name",
+        "is",
+        "..."
+      ]
+    },
+    {
+      "Dialogue": [
+        "how",
+        "are",
+        "you"
+      ]
+    },
+    {
+      "Dialogue": [
+        "I'm",
+        "fine",
+        "thank you"
+      ]
+    }
+  ]
+}

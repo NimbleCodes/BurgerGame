@@ -1,0 +1,20 @@
+{
+  "IngreArr": [
+    {
+      "ingreClass": "meat",
+      "ingreName": "beef"
+    },
+    {
+      "ingreClass": "meat",
+      "ingreName": "pork"
+    },
+    {
+      "ingreClass": "vege",
+      "ingreName": "lettuce"
+    },
+    {
+      "ingreClass": "vege",
+      "ingreName": "tomato"
+    }
+  ]
+}
