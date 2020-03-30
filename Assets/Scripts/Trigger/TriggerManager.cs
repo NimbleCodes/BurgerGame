@@ -22,7 +22,7 @@ public class TriggerManager : MonoBehaviour
     public int num_active_trigger_set = 3;
     public trigger_set[] trigger_set_arr;
     //트리거가 생성될 사각 영역의 두 점(왼쪽-아래, 오른쪽-위)
-    Vector2 bottom_left, top_right;
+    public Vector2 bottom_left, top_right;
     //트리거의 크기
     public Vector2 size;
     //트리거가 작동하게 되는 입력의 종류 배열
@@ -91,10 +91,12 @@ public class TriggerManager : MonoBehaviour
     {
         //난이도 상승 이벤트에 subscribe
         EventManager.eventManager.DiffIncEvent += OnDiffIncEvent;
+        /*
         //트리거가 생성될 영역 지정
         //임시코드
         bottom_left = Camera.main.ScreenToWorldPoint(new Vector3(0, Camera.main.pixelHeight*0.1f));
         top_right = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth,Camera.main.pixelHeight));
+        */
         //트리거 생성 영역을 트리거들의 영역이 겹치지 않고 완벽하게 채우도록 하는 크기 계산
         float dx = top_right.x - bottom_left.x;
         size.x = (dx / (num_trigger_set));

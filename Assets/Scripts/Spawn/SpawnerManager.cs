@@ -7,7 +7,7 @@ public class SpawnerManager : MonoBehaviour
 {
     GameObject[] spawner_arr;
     //스포너가 생성될 사각 영역의 두 점(왼쪽-아래, 오른쪽-위)
-    Vector2 bottom_left, top_right;
+    public Vector2 bottom_left, top_right;
     //스포너가 활성호하되는 순서
     int[] activation_order = { 2, 3, 1, 4, 0, 5 };
     int num_spawner = 6;
@@ -72,11 +72,12 @@ public class SpawnerManager : MonoBehaviour
         rand = new System.Random();
 
         EventManager.eventManager.DiffIncEvent += OnDiffIncEvent;
-
+        /*
         //트리거가 생성될 영역 지정
         //임시코드
         bottom_left = Camera.main.ScreenToWorldPoint(new Vector3(0, Camera.main.pixelHeight*0.1f));
         top_right = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight));
+        */
         //spawn_rate 값 초기화
         spawn_rate = new float[num_spawner];
         //임시코드
