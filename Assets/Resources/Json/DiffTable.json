@@ -1,0 +1,19 @@
+{
+  "StageDiffVals": [
+      {
+        "NumActiveSpawner": 3
+      },
+
+      {
+        "NumActiveSpawner": 4
+      },
+
+      {
+        "NumActiveSpawner": 5
+      },
+
+      {
+        "NumActiveSpawner": 6
+      }
+  ]
+}
