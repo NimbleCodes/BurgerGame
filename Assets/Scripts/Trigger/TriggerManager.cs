@@ -82,9 +82,9 @@ public class TriggerManager : MonoBehaviour
         ActivateTriggers();
     }
     //난이도 상승 이벤트 발생시 실행
-    void OnDiffIncEvent()
+    void OnDiffIncEvent(int stage_num)
     {
-        num_active_trigger_set++;
+        num_active_trigger_set = DiffInc.diffInc.DiffTable.StageDiffVals[stage_num].NumActiveSpawner;
         ActivateTriggers();
     }
     private void Start()

@@ -62,9 +62,9 @@ public class SpawnerManager : MonoBehaviour
         }
         ActivateSpawners();
     }
-    void OnDiffIncEvent()
+    void OnDiffIncEvent(int stage_num)
     {
-        num_active_spawner++;
+        num_active_spawner = DiffInc.diffInc.DiffTable.StageDiffVals[stage_num].NumActiveSpawner;
         ActivateSpawners();
     }
     private void Start()

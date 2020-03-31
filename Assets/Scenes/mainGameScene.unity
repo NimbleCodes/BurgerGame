@@ -1134,6 +1134,7 @@ GameObject:
   - component: {fileID: 633769493}
   - component: {fileID: 633769492}
   - component: {fileID: 633769491}
+  - component: {fileID: 633769494}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -1225,6 +1226,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolInfo: []
+--- !u!114 &633769494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633769487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab5c94f474d75f44e827c32b94326ea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DiffTable:
+    StageDiffVals: []
 --- !u!1 &812844291
 GameObject:
   m_ObjectHideFlags: 0
