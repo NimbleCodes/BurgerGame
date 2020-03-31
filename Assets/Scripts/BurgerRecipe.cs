@@ -17,7 +17,7 @@ public class BurgerRecipe : MonoBehaviour
         public burgerMenu[] BurgerMenu;
     }
     Menu menu;
-
+    public bool burgercompleted = false;
     class recipeCell{
 
         public recipeCell(){
@@ -141,7 +141,8 @@ public class BurgerRecipe : MonoBehaviour
 
     //버거가 모두 완성되었음을 알리는 함수
     public void burgerComplete(){
-
+        burgercompleted = true;
+        DisplayScore.displaysocre.OnBurgerCompleteEvent(burgercompleted);
     }
 
     //버거가 실패했음을 알리는 함수
