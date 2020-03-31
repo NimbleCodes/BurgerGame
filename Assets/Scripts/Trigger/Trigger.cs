@@ -20,7 +20,6 @@ public class Trigger : MonoBehaviour
         if (size == null)
             size = new Vector2(1, 0.5f);
     }
-
     private void Update()
     {
         if (Input.GetKeyDown(key) & !coolDown & !click & !triggOn)
@@ -35,7 +34,6 @@ public class Trigger : MonoBehaviour
         {
             click = false;
         }
-
         if (triggOn)
         {
             Collider2D[] inTrigger = Physics2D.OverlapBoxAll(transform.position, size, 0, triggeredBy);
@@ -53,7 +51,6 @@ public class Trigger : MonoBehaviour
     {
         g.SetActive(false);
     }
-
     private IEnumerator triggerOnTimer()
     {
         yield return new WaitForSeconds(triggerOnTime);

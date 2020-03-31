@@ -17,7 +17,6 @@ public class BurgerRecipe : MonoBehaviour
         public burgerMenu[] BurgerMenu;
     }
     Menu menu;
-
     class recipeCell{
 
         public recipeCell(){
@@ -56,15 +55,23 @@ public class BurgerRecipe : MonoBehaviour
     private void Awake() {
         
         loadMenuFromJson();
-        Debug.Log("Count : " + getRecipeCount());
+        //Debug.Log("Count : " + getRecipeCount());
         recipeTable = new recipeCell[getRecipeCount()];
         for(int i=0; i<getRecipeCount(); i++){
             recipeTable[i] = new recipeCell();
         }
     }
-
     private void Start() {
         EventManager.eventManager.IngrEatenEvent += OnIngrEaten;
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        //Test
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            goNextRecipe();
+        }
     }
 
     //overlapbox 에서 재료를 받으면 발생되는 이벤트
@@ -72,30 +79,14 @@ public class BurgerRecipe : MonoBehaviour
     {
         findIngreCorrect(ingr_info);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //Test
-        if(Input.GetKeyDown(KeyCode.Space)){
-            goNextRecipe();
-
-        }
-        
-    }
-
-
     //int num에 맞는 recipe를 받는다.(Random 값으로 받게 하기 위함이다.)
     public string[] getRecipe(int num){
         return menu.BurgerMenu[num].BurgerRecipe;
     }
-
     //레시피의 개수를 받는다. 후에 Random 값의 최고치를 알기 위해 사용된다.
     public int getRecipeCount(){
         return menu.BurgerMenu.Length;
     }
-
-
     //들어온 재료가 curRecipe의 순서와 알맞은지 확인하는 function
     public void findIngreCorrect(string ingreName){
         //틀렸을 때
@@ -118,7 +109,6 @@ public class BurgerRecipe : MonoBehaviour
             goNextRecipe();
         }
     }
-
     //다음 레시피로 넘어가기(랜덤)
     public void goNextRecipe(){
         List<int> tempList = new List<int>();
@@ -138,24 +128,18 @@ public class BurgerRecipe : MonoBehaviour
         Debug.Log("Name : " + menu.BurgerMenu[tempList[randNum]].BurgerName);
         
     }
-
     //버거가 모두 완성되었음을 알리는 함수
     public void burgerComplete(){
-
+        EventManager.eventManager.Invoke_BurgerCompleteEvent(true);
     }
-
     //버거가 실패했음을 알리는 함수
     public void burgerFail(){
-
+        EventManager.eventManager.Invoke_BurgerCompleteEvent(false);
     }
-
     //알맞은 재료를 먹었다고 알리는 함수
     public void correctIngre(){
         
-    }
-
-    
-
+    }  
     //레시피 Json 받아오는 function
     void loadMenuFromJson()
     {

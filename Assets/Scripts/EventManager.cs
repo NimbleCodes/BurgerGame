@@ -9,7 +9,7 @@ public class EventManager : MonoBehaviour
     {
         eventManager = this;
     }
-
+    
     public event Action GameOverEvent;                      //게임 오버
     public event Action<bool, string> GamePausedEvent;      //게임 일시정지
     //bool 값은 true이면 멈추고 false이면 재시작. string 값은 호출한 코드의 이름
