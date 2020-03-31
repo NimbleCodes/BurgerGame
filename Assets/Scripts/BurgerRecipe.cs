@@ -63,6 +63,8 @@ public class BurgerRecipe : MonoBehaviour
     }
     private void Start() {
         EventManager.eventManager.IngrEatenEvent += OnIngrEaten;
+
+        goNextRecipe();
     }
     // Update is called once per frame
     void Update()

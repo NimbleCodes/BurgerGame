@@ -16,7 +16,7 @@ public class ScrapCollector : MonoBehaviour
         Gizmos.color = Color.yellow;
         Vector3 center = transform.position;
         BoxCollider2D temp = GetComponent<BoxCollider2D>();
-        Vector2 size = new Vector2(temp.bounds.size.x, temp.bounds.size.y);
+        Vector2 size = new Vector2(temp.bounds.extents.x, temp.bounds.extents.y);
 
         Vector3 upperLeft = center + new Vector3(-size.x, size.y, 0);
         Vector3 upperRight = center + new Vector3(size.x, size.y, 0);

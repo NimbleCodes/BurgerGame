@@ -23,9 +23,7 @@ public class Rails : MonoBehaviour
         Vector3 top_right = new Vector3(top_right_cell_center.x + tilesizex / 2, top_right_cell_center.y + tilesizey / 2);
 
         t = FindObjectOfType<TriggerManager>();
-        Debug.Log(t.gameObject.name);
         s = FindObjectOfType<SpawnerManager>();
-        Debug.Log(s.gameObject.name);
 
         t.bottom_left = bottom_left;
         t.top_right = top_right;
