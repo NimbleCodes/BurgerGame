@@ -7,6 +7,7 @@ public class Spawner : MonoBehaviour
     //Testing
     public bool SpawnerErrorOccured = false;
     float faster = 10f;
+    public float spawnerSpeed = 5f;
 
     public string objTag;
     public float nextSpawnTime = 1f;
@@ -85,6 +86,7 @@ public class Spawner : MonoBehaviour
         GameObject spawnedObj = ObjectManager.objectManager.getGameObject(objTag);
         spawnedObj.transform.position = gameObject.transform.position;
         spawnedObj.SetActive(true);
+        spawnedObj.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, -spawnerSpeed), ForceMode2D.Impulse);
         if (SpawnerErrorOccured){
             spawnedObj.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,-faster),ForceMode2D.Impulse);
             SpawnerErrorOccured = false;

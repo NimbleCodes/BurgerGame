@@ -1,19 +1,23 @@
 {
   "StageDiffVals": [
-      {
-        "NumActiveSpawner": 3
-      },
+    {
+      "NumActiveSpawner": 3,
+      "SpawnerSpeed" :  5
+    },
 
-      {
-        "NumActiveSpawner": 4
-      },
+    {
+      "NumActiveSpawner": 4,
+      "SpawnerSpeed" :  5
+    },
 
-      {
-        "NumActiveSpawner": 5
-      },
+    {
+      "NumActiveSpawner": 5,
+      "SpawnerSpeed" :  10
+    },
 
-      {
-        "NumActiveSpawner": 6
-      }
+    {
+      "NumActiveSpawner": 6,
+      "SpawnerSpeed" :  10
+    }
   ]
 }

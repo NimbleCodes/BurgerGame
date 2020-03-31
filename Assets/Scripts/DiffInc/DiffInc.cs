@@ -22,6 +22,7 @@ public class DiffInc : MonoBehaviour
     public struct diffRow
     {
         public int NumActiveSpawner;
+        public float SpawnerSpeed;
     }
     [System.Serializable]
     public struct diffTable

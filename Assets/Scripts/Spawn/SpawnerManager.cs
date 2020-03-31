@@ -65,6 +65,11 @@ public class SpawnerManager : MonoBehaviour
     void OnDiffIncEvent(int stage_num)
     {
         num_active_spawner = DiffInc.diffInc.DiffTable.StageDiffVals[stage_num].NumActiveSpawner;
+        for(int i = 0; i < num_active_spawner; i++)
+        {
+            spawner_arr[activation_order[i]].GetComponent<Spawner>().spawnerSpeed =
+                DiffInc.diffInc.DiffTable.StageDiffVals[stage_num].SpawnerSpeed;
+        }
         ActivateSpawners();
     }
     private void Start()
@@ -83,7 +88,7 @@ public class SpawnerManager : MonoBehaviour
         //임시코드
         for(int i = 0; i < num_spawner; i++)
         {
-            spawn_rate[i] = 0.25f * (i + 1);
+            spawn_rate[i] = 1 * (i + 1);
         }
         InitSpawners();
 
