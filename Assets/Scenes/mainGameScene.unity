@@ -1154,11 +1154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf466786330f0c48b22e0c5df8f8d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  num_trigger_set: 6
-  num_active_trigger_set: 3
-  bottom_left: {x: 0, y: 0}
-  top_right: {x: 0, y: 0}
-  size: {x: 0, y: 0}
+  bottomLeft: {x: 0, y: 0}
+  topRight: {x: 0, y: 0}
 --- !u!114 &633769489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1171,9 +1168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a7c0f0ad5abcbd41acd5e172a3a2bbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bottom_left: {x: 0, y: 0}
-  top_right: {x: 0, y: 0}
-  faster_spawn_time: 5
+  bottomLeft: {x: 0, y: 0}
+  topRight: {x: 0, y: 0}
 --- !u!4 &633769490
 Transform:
   m_ObjectHideFlags: 0

@@ -64,7 +64,7 @@ public class Tutorial : MonoBehaviour
 
     private void Start()
     {
-        dialogueJsonPath = "/Scripts/Tutorial/TutorialDialogue.json";
+        dialogueJsonPath = "/Resources/Json/TutorialDialogue.json";
         loadDialogueFromJson(dialogueJsonPath);
         EventManager.eventManager.BpReachedEvent += OnBpReached;
     }
@@ -72,12 +72,6 @@ public class Tutorial : MonoBehaviour
     bool click = false;
     private void Update()
     {
-        //임시코드
-        if (playTutorial)
-        {
-            EventManager.eventManager.Invoke_BpReachedEvent(0);
-            playTutorial = false;
-        }
         if(!click & Input.GetKeyDown(KeyCode.Alpha1))
         {
             cont = true;
