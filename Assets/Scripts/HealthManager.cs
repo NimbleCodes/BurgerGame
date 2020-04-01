@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 
 public class HealthManager : MonoBehaviour
@@ -21,7 +22,11 @@ public class HealthManager : MonoBehaviour
     //현재 흘러가는 시간 
     float activeTime = 0;
     //True 이면 HP가 감소하기 시작한다.
+    float correctBurger = 20;
+    float wrongBurger = 5;
     bool decrStart = false;
+    bool areusure = true;
+    public Action N_Action;
     public static HealthManager Instance;
     //싱글턴, score 관리에서 health관리를 위함
     
@@ -30,7 +35,8 @@ public class HealthManager : MonoBehaviour
     void Start()
     {
         healthBar = GetComponent<Slider>();
-        //EventManager.eventManager.BurgerCompleteEvent += addHealth;
+        EventManager.eventManager.BurgerCompleteEvent += OnBurgerComplete;
+        EventManager.eventManager.GameOverEvent += PopLeaderboard;
     }
     
     void Update()
@@ -50,7 +56,7 @@ public class HealthManager : MonoBehaviour
             addHealth(20);
         }
         if(Input.GetKeyDown(KeyCode.D)){
-            minusHealth(20);
+            minusHealth(10);
         }
         if(Input.GetKeyDown(KeyCode.F)){
             minusTime(10);
@@ -70,14 +76,14 @@ public class HealthManager : MonoBehaviour
         decrStart = false;
     }
     //hp만큼 체력을 회복한다. 
-    public void addHealth(float hp){
-        curHealth += hp;
-        activeTime -= hp*hpToTime;
+    public void addHealth(float correctBurger){
+            curHealth += correctBurger;
+            activeTime -= correctBurger*hpToTime;
     }
     //hp만큼 체력을 감소한다.
-    public void minusHealth(float hp){
-        curHealth -= hp;
-        activeTime += hp*hpToTime;
+    public void minusHealth(float wrongBurger){
+            curHealth -= wrongBurger;
+            activeTime += wrongBurger*hpToTime;
     }
     //decrTime을 감소시킨다.(hp가 다는 속도가 빨라지며, decrTime 은 decrLimit 이하로 내려가지 않는다.)
     public void minusTime(float time){
@@ -119,12 +125,25 @@ public class HealthManager : MonoBehaviour
         }
     }
     //체력이 모두 고갈되었는가를 bool로 return하는 함수.
-    public bool isGameOver(){
+    public void isGameOver(){
         if(curHealth <= 0){
-            return true;
-        }else{
-            return false;
+            EventManager.eventManager.Invoke_GameOverEvent();
         }
+    }
+    public void OnBurgerComplete(bool correct)
+    {
+        if(correct)
+            addHealth(correctBurger);
+        else{
+            minusHealth(wrongBurger);
+        }
+
+    }
+    public void PopLeaderboard()
+    {
+        Action N_Action = () => Debug.Log("GameOver");
+        LeaderboardControll.Instance.ShowLeaderboard(N_Action);
+        NickNamePanel.Instance.ShowNickPanel(N_Action);
     }
     #endregion
 
