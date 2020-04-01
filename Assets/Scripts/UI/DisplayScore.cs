@@ -5,10 +5,9 @@ using TMPro;
 
 public class DisplayScore : MonoBehaviour
 {
-    int score = 0;
-    public int correctBurger = 10;
-    public int wrongBurger = -5;
-
+    float score = 0;
+    public float correctBurger = 10;
+    public float wrongBurger = -5;
     private void Start()
     {
         EventManager.eventManager.BurgerCompleteEvent += OnBurgerCompleteEvent;
@@ -17,10 +16,14 @@ public class DisplayScore : MonoBehaviour
     void OnBurgerCompleteEvent(bool success)
     {
         if (success)
+        {
             score += correctBurger;
+            HealthManager.Instance.addHealth(correctBurger);
+        }
         else
         {
             score = Mathf.Clamp(score+wrongBurger, 0, score);
+            HealthManager.Instance.minusHealth(wrongBurger);
         }
         gameObject.GetComponent<TextMeshProUGUI>().text = "Score: " + score.ToString();
     }
