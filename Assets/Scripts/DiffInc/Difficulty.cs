@@ -2,27 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-public class DiffInc : MonoBehaviour
+public class Difficulty : MonoBehaviour
 {
-    public static DiffInc diffInc;
-    int maxNumDiff = 3;
+    public static Difficulty difficulty;
+    int maxNumDiff = 4;
 
     private void Awake()
     {
-        diffInc = this;
+        difficulty = this;
 
         DiffTable = new diffTable();
         DiffTable.StageDiffVals = new diffRow[maxNumDiff];
         LoadDiffTableFromJson();
-
-        Debug.Log(DiffTable.StageDiffVals[0].NumActiveSpawner);
     }
 
     [System.Serializable]
     public struct diffRow
     {
         public int NumActiveSpawner;
+        //Spawner
         public float SpawnerSpeed;
+        public float FasterSpawnerSpeed;
+        public float[] SpawnRate;
+        //Trigger
+        public float TriggerOnTime;
+        public float CoolDownTime;
+        public string[] EatKey;
+        public string[] RecycleKey;
     }
     [System.Serializable]
     public struct diffTable

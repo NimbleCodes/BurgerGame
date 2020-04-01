@@ -1,28 +1,41 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
-public class Trigger : MonoBehaviour
+public class Trigger: MonoBehaviour
 {
-    public string key = "q";
-    public Vector2 size;
-    public float triggerOnTime = .25f;
-    public float coolDownTime = .5f;
-
-    public LayerMask triggeredBy;
-
-    bool coolDown = false;
     bool click = false;
+    bool coolDown = false;
     bool triggOn = false;
+    LayerMask triggeredBy;
+    Vector2 size;
 
+    public struct triggerVars
+    {
+        public string key;
+        public float triggerOnTime;
+        public float coolDownTime;
+        public triggerVars(string _key, float _triggerOnTime, float _coolDownTime)
+        {
+            key = _key;
+            triggerOnTime = _triggerOnTime;
+            coolDownTime = _coolDownTime;
+        }
+    }
+    triggerVars vars;
+
+    private void Awake()
+    {
+        triggeredBy = LayerMask.GetMask("Default");
+        size = new Vector2(1, 0.5f);
+        vars = new triggerVars("q", .25f, .5f);
+    }
     private void Start()
     {
-        if (size == null)
-            size = new Vector2(1, 0.5f);
+        
     }
     private void Update()
     {
-        if (Input.GetKeyDown(key) & !coolDown & !click & !triggOn)
+        if (Input.GetKeyDown(vars.key) & !coolDown & !click & !triggOn)
         {
             triggOn = true;
             click = true;
@@ -30,7 +43,7 @@ public class Trigger : MonoBehaviour
             StartCoroutine("triggerOnTimer");
             StartCoroutine("coolDownTimer");
         }
-        if (Input.GetKeyUp(key) && click)
+        if (Input.GetKeyUp(vars.key) && click)
         {
             click = false;
         }
@@ -39,12 +52,25 @@ public class Trigger : MonoBehaviour
             Collider2D[] inTrigger = Physics2D.OverlapBoxAll(transform.position, size, 0, triggeredBy);
             if (inTrigger.Length > 0)
             {
-                foreach(Collider2D c in inTrigger)
+                foreach (Collider2D c in inTrigger)
                 {
                     Action(c.gameObject);
                 }
             }
         }
+    }
+
+    public void setSize(Vector2 _size)
+    {
+        size = _size;
+    }
+    public void setTrigLayerMask(string _triggeredBy)
+    {
+        triggeredBy = LayerMask.GetMask(_triggeredBy);
+    }
+    public void ChangeTriggerVariables(triggerVars vals)
+    {
+        vars = vals;
     }
 
     public virtual void Action(GameObject g)
@@ -53,12 +79,27 @@ public class Trigger : MonoBehaviour
     }
     private IEnumerator triggerOnTimer()
     {
-        yield return new WaitForSeconds(triggerOnTime);
+        yield return new WaitForSeconds(vars.triggerOnTime);
         triggOn = false;
     }
     private IEnumerator coolDownTimer()
     {
-        yield return new WaitForSeconds(coolDownTime);
+        yield return new WaitForSeconds(vars.coolDownTime);
         coolDown = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Vector3 center = transform.position;
+        Vector3 upperLeft = center + new Vector3(-size.x, size.y, 0);
+        Vector3 upperRight = center + new Vector3(size.x, size.y, 0);
+        Vector3 lowerLeft = center + new Vector3(-size.x, -size.y, 0);
+        Vector3 lowerRight = center + new Vector3(size.x, -size.y, 0);
+
+        Gizmos.DrawLine(upperLeft, upperRight);
+        Gizmos.DrawLine(upperRight, lowerRight);
+        Gizmos.DrawLine(lowerRight, lowerLeft);
+        Gizmos.DrawLine(lowerLeft, upperLeft);
     }
 }

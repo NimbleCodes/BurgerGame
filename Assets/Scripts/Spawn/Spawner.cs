@@ -1,126 +1,65 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
 public class Spawner : MonoBehaviour
 {
-    //Testing
-    public bool SpawnerErrorOccured = false;
-    float faster = 10f;
-    public float spawnerSpeed = 5f;
-
-    public string objTag;
-    public float nextSpawnTime = 1f;
-    bool spawnTimerOn = false;
-
-    public int randSeed = -1;
     System.Random rand;
+    bool spawnFaster = false;
 
-    /*------------------------------오브젝트 생성-------------------------------*/
-    int ingrHistorySize = 5;
-    Queue<string> ingrHistory;
-    List<tuple> occurList;
-    public class tuple
+    public struct spawnerVars
     {
-        public string ingrName;
-        public int occur;
-        public tuple(string name)
+        public float nextSpawnTime;
+        public float spawnerSpeed;
+        public float fasterSpawnerSpeed;
+        public spawnerVars(float _nextSpawnTime, float _spawnerSpeed, float _fasterSpawnerSpeed)
         {
-            ingrName = name;
-            occur = 0;
+            nextSpawnTime = _nextSpawnTime;
+            spawnerSpeed = _spawnerSpeed;
+            fasterSpawnerSpeed = _fasterSpawnerSpeed;
         }
     }
+    spawnerVars vars;
 
-    int findIgnoredIngr()
+    private void Awake()
     {
-        for(int i = 0; i < occurList.Count; i++)
-        {
-            if (occurList[i].occur == 0)
-                return i;
-        }
-        return -1;
+        //랜덤 오브젝트 초기화
+        rand = new System.Random();
+        //디폴트 값으로 스포너 초기화
+        vars = new spawnerVars(1f, 10f, 20f);
     }
-    void chooseIngr()
-    {
-        int ignored;
-        if (ingrHistory.Count < ingrHistorySize || (ignored = findIgnoredIngr()) == -1) {
-            int ingrIndex = rand.Next(0, ObjectManager.objectManager.poolInfo.Count);
-            objTag = ObjectManager.objectManager.poolInfo[ingrIndex].ingreName;
-        }
-        else
-        {
-            objTag = occurList[ignored].ingrName;
-            //DEBUG
-            /*
-            string total = gameObject.name + ": ";
-            foreach (string str in ingrHistory)
-                total += (str + " ");
-            Debug.Log(total);
-            Debug.Log(objTag + " ignored!");
-            */
-        }
-    }
-    private void spawnObject()
-    {
-        chooseIngr();
-        if(ingrHistory.Count < ingrHistorySize)
-        {
-            ingrHistory.Enqueue(objTag);
-        }
-        else
-        {
-            string remove = ingrHistory.Dequeue();
-            ingrHistory.Enqueue(objTag);
-            for (int i = 0; i < occurList.Count; i++)
-            {
-                if (occurList[i].ingrName == remove)
-                    occurList[i].occur -= 1;
-            }
-        }
-        for (int i = 0; i < occurList.Count; i++)
-        {
-            if (occurList[i].ingrName == objTag)
-                occurList[i].occur += 1;
-        }
-
-        GameObject spawnedObj = ObjectManager.objectManager.getGameObject(objTag);
-        spawnedObj.transform.position = gameObject.transform.position;
-        spawnedObj.SetActive(true);
-        spawnedObj.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, -spawnerSpeed), ForceMode2D.Impulse);
-        if (SpawnerErrorOccured){
-            spawnedObj.GetComponent<Rigidbody2D>().AddForce(new Vector2(0,-faster),ForceMode2D.Impulse);
-            SpawnerErrorOccured = false;
-        }
-        spawnedObj.GetComponent<ISpawnedObject>().OnSpawn();
-    }
-    IEnumerator objectSpawnTimer()
-    {
-        yield return new WaitForSeconds(nextSpawnTime);
-        spawnObject();
-        spawnTimerOn = false;
-    }
-    /*------------------------------오브젝트 생성-------------------------------*/
-    
     private void Start()
     {
-        ingrHistory = new Queue<string>();
-        occurList = new List<tuple>();
-        for(int i = 0; i < ObjectManager.objectManager.poolInfo.Count; i++)
-        {
-            occurList.Add(new tuple(ObjectManager.objectManager.poolInfo[i].ingreName));
-        }
-
-        if (randSeed == -1)
-            rand = new System.Random();
-        else
-            rand = new System.Random(randSeed);
+        StartCoroutine("ObjSpawnTimer");
     }
-    private void Update()
+
+    public void ChangeSpawnerVariables(spawnerVars vals)
     {
-        if (!spawnTimerOn)
-        {
-            spawnTimerOn = true;
-            StartCoroutine("objectSpawnTimer");
-        }
+        vars = vals;
+    }
+    public void SpawnObjFasterOnce()
+    {
+        spawnFaster = true;
+    }
+
+    IEnumerator ObjSpawnTimer()
+    {
+        yield return new WaitForSeconds(vars.nextSpawnTime);
+        SpawnObjectAtCurPos();
+        StartCoroutine("ObjSpawnTimer");
+    }
+    void SpawnObjectAtCurPos()
+    {
+        string objToSpawnTag = ChooseObjToSpawn();
+        GameObject objToSpawn = ObjectManager.objectManager.getGameObject(objToSpawnTag);
+        objToSpawn.transform.position = gameObject.transform.position;
+        objToSpawn.SetActive(true);
+        float spawnVelocity = -(spawnFaster ? vars.fasterSpawnerSpeed : vars.spawnerSpeed);
+        objToSpawn.GetComponent<Rigidbody2D>().velocity = new Vector2(0,spawnVelocity);
+        objToSpawn.GetComponent<Ingredient>().OnSpawn();
+    }
+    string ChooseObjToSpawn()
+    {
+        int nextObjToSpawnIndex = rand.Next(0, ObjectManager.objectManager.poolInfo.Count);
+        return ObjectManager.objectManager.poolInfo[nextObjToSpawnIndex].ingreName;
     }
 }

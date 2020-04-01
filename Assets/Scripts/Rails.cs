@@ -25,10 +25,10 @@ public class Rails : MonoBehaviour
         t = FindObjectOfType<TriggerManager>();
         s = FindObjectOfType<SpawnerManager>();
 
-        t.bottom_left = bottom_left;
-        t.top_right = top_right;
+        t.bottomLeft = bottom_left;
+        t.topRight = top_right;
 
-        s.bottom_left = bottom_left;
-        s.top_right = top_right;
+        s.bottomLeft = bottom_left;
+        s.topRight = top_right;
     }
 }

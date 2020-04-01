@@ -30,7 +30,7 @@ public class HealthManager : MonoBehaviour
     void Start()
     {
         healthBar = GetComponent<Slider>();
-        EventManager.eventManager.BurgerCompleteEvent += addHealth;
+        //EventManager.eventManager.BurgerCompleteEvent += addHealth;
     }
     
     void Update()
