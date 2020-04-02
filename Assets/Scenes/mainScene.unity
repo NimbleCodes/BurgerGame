@@ -163,7 +163,7 @@ Transform:
   m_Children:
   - {fileID: 1053323427}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &41654136 stripped
 MonoBehaviour:
@@ -382,7 +382,7 @@ RectTransform:
   - {fileID: 1722063203}
   - {fileID: 4113230247306840960}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -492,7 +492,7 @@ Transform:
   m_Children:
   - {fileID: 1661527690}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &536336510
 MonoBehaviour:
@@ -807,6 +807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   incDiff: 0
+  pause: 0
 --- !u!4 &547143932
 Transform:
   m_ObjectHideFlags: 0
@@ -819,7 +820,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &547143933
 MonoBehaviour:
@@ -962,7 +963,7 @@ Transform:
   m_Children:
   - {fileID: 540584934}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1034121683 stripped
 MonoBehaviour:
@@ -1468,7 +1469,7 @@ PrefabInstance:
     - target: {fileID: 6964061776016674337, guid: fd4a1d4d2e4131b4f9b97d5b2b2d3e5d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6964061776016674337, guid: fd4a1d4d2e4131b4f9b97d5b2b2d3e5d,
         type: 3}
@@ -1683,6 +1684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 594c195e4f2346b4e9c610a0de8fbf1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slidercontroll: {fileID: 1561375653}
 --- !u!114 &1561375656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2339,7 +2341,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1987723678
 PrefabInstance:
@@ -3023,6 +3025,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 76.2
       objectReference: {fileID: 0}
+    - target: {fileID: 7651754198247952161, guid: db6553f4d2afdef4d8888a05cef9f3d9,
+        type: 3}
+      propertyPath: SceneName
+      value: MainMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 7722559001198262816, guid: db6553f4d2afdef4d8888a05cef9f3d9,
         type: 3}
       propertyPath: m_FontData.m_FontSize
@@ -3092,6 +3099,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FontData.m_MaxSize
       value: 62
+      objectReference: {fileID: 0}
+    - target: {fileID: 8687254169926755350, guid: db6553f4d2afdef4d8888a05cef9f3d9,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickBackButton
       objectReference: {fileID: 0}
     - target: {fileID: 8748419906619027873, guid: db6553f4d2afdef4d8888a05cef9f3d9,
         type: 3}

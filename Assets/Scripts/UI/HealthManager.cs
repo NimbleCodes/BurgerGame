@@ -28,6 +28,8 @@ public class HealthManager : MonoBehaviour
     bool areusure = true;
     public Action N_Action;
     public static HealthManager Instance;
+    [SerializeField]
+    public GameObject slidercontroll;
     //싱글턴, score 관리에서 health관리를 위함
     
     Slider healthBar;
@@ -129,6 +131,7 @@ public class HealthManager : MonoBehaviour
     public void isGameOver(){
         if(curHealth <= 0){
             EventManager.eventManager.Invoke_GameOverEvent();
+            slidercontroll.SetActive(false);
         }
     }
     public void OnBurgerComplete(bool correct)
@@ -146,7 +149,7 @@ public class HealthManager : MonoBehaviour
     {
         Action N_Action = () => Debug.Log("GameOver");
         LeaderboardControll.Instance.ShowLeaderboard(N_Action);
-        //NickNamePanel.Instance.ShowNickPanel(N_Action);
+        NickNamePanel.Instance.ShowNickPanel(N_Action);
     }
     #endregion
 
