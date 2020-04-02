@@ -44,7 +44,7 @@ public class HealthManager : MonoBehaviour
 
         //hp 증감의 쉬운 계산을 위해 이용된다.
         hpToTime = decrTime/maxHealth;
-
+        Debug.Log(curHealth);
 
         #region ForTest(erasable)
         if(Input.GetKeyDown(KeyCode.A)&&!decrStart){
@@ -62,6 +62,7 @@ public class HealthManager : MonoBehaviour
             minusTime(10);
         }
         decrHealth();
+        isGameOver();
         #endregion
     }
 
@@ -139,6 +140,8 @@ public class HealthManager : MonoBehaviour
         }
 
     }
+
+    //게임오버시 레더보드, 닉네임입력창 팝업.
     public void PopLeaderboard()
     {
         Action N_Action = () => Debug.Log("GameOver");
