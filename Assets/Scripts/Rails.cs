@@ -10,14 +10,14 @@ public class Rails : MonoBehaviour
     SpawnerManager s;
 
     public Vector3Int cellDimen;
-    Tilemap tileMap;
+    Grid grid;
     private void Awake()
     {
-        tileMap = gameObject.GetComponent<Tilemap>();
-        Vector3 bottom_left_cell_center = tileMap.layoutGrid.GetCellCenterWorld(new Vector3Int(0,0,0));
-        Vector3 top_right_cell_center = tileMap.layoutGrid.GetCellCenterWorld(new Vector3Int(cellDimen.x, cellDimen.y, 0));
-        float tilesizex = tileMap.layoutGrid.cellSize.x;
-        float tilesizey = tileMap.layoutGrid.cellSize.y;
+        grid = gameObject.GetComponent<Grid>();
+        Vector3 bottom_left_cell_center = grid.GetCellCenterWorld(new Vector3Int(0,0,0));
+        Vector3 top_right_cell_center = grid.GetCellCenterWorld(new Vector3Int(cellDimen.x, cellDimen.y, 0));
+        float tilesizex = grid.cellSize.x;
+        float tilesizey = grid.cellSize.y;
 
         Vector3 bottom_left = new Vector3(bottom_left_cell_center.x - tilesizex / 2, bottom_left_cell_center.y - tilesizey / 2);
         Vector3 top_right = new Vector3(top_right_cell_center.x + tilesizex / 2, top_right_cell_center.y + tilesizey / 2);

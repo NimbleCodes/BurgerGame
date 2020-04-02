@@ -13,6 +13,7 @@ public class TriggerManager : MonoBehaviour
         public GameObject[] triggers;
     }
     int numTriggerSet = 6;
+    [HideInInspector]
     public Vector2 bottomLeft, topRight;
     triggerSet[] triggerSetArr;
 

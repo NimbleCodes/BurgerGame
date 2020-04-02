@@ -4,6 +4,7 @@ using System.Collections;
 public class SpawnerManager : MonoBehaviour
 {
     GameObject[] spawnerArr;
+    [HideInInspector]
     public Vector2 bottomLeft, topRight;
     int numSpawner = 6;
 
