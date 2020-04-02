@@ -16,6 +16,9 @@ public class TriggerManager : MonoBehaviour
     [HideInInspector]
     public Vector2 bottomLeft, topRight;
     triggerSet[] triggerSetArr;
+    [Range(0, 1)]
+    public float posByScreenPerc;
+    public float ySize;
 
     private void Awake()
     {
@@ -45,13 +48,13 @@ public class TriggerManager : MonoBehaviour
             //trigger_type에 정의된 트리거 종류의 수만큼 트리거 오브젝트를 생성
             int numTriggerType = Enum.GetNames(typeof(triggerType)).Length;
             triggerSetArr[i].triggers = new GameObject[numTriggerType];
-            Vector2 size = new Vector2((topRight.x - bottomLeft.x)/numTriggerSet,1);
+            Vector2 size = new Vector2((topRight.x - bottomLeft.x)/numTriggerSet,ySize);
             for (int j = 0; j < numTriggerType; j++)
             {
                 triggerSetArr[i].triggers[j] = new GameObject();
                 triggerSetArr[i].triggers[j].name = ((triggerType)j).ToString() + "Trigger" + i;
                 float x = bottomLeft.x + (size.x / 2) + (size.x * i);
-                float y = bottomLeft.y + (size.y / 2);
+                float y = bottomLeft.y + (size.y / 2) + ((topRight.y - bottomLeft.y) * posByScreenPerc);
                 triggerSetArr[i].triggers[j].GetComponent<Transform>().position = new Vector3(x, y);
                 //초기화 중인 트리거의 종류에 따라 알맞은 트리거 컴포넌트 삽입 및 트리거 컴포넌트 초기화를 위한 변수 값 지정
                 switch (j)

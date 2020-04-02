@@ -12,7 +12,7 @@
         1,
         1
       ],
-      "TriggerOnTime": 0.25,
+      "TriggerOnTime": 0.125,
       "CoolDownTime": 0.5,
       "EatKey": [
         "q",
@@ -44,7 +44,7 @@
         1,
         1
       ],
-      "TriggerOnTime": 0.25,
+      "TriggerOnTime": 0.125,
       "CoolDownTime": 0.5,
       "EatKey": [
         "q",
@@ -76,7 +76,7 @@
         1,
         1
       ],
-      "TriggerOnTime": 0.25,
+      "TriggerOnTime": 0.125,
       "CoolDownTime": 0.5,
       "EatKey": [
         "q",
@@ -108,7 +108,7 @@
         1,
         1
       ],
-      "TriggerOnTime": 0.25,
+      "TriggerOnTime": 0.125,
       "CoolDownTime": 0.5,
       "EatKey": [
         "q",

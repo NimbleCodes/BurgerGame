@@ -94,9 +94,12 @@ public class Trigger: MonoBehaviour
         EatTrigger temp;
         if (gameObject.TryGetComponent<EatTrigger>(out temp))
         {
-            Gizmos.color = Color.red;
+            Gizmos.color = Color.yellow;
             if (coolDown)
+                Gizmos.color = Color.red;
+            if(triggOn)
                 Gizmos.color = Color.green;
+
             Vector3 center = transform.position;
             Vector3 upperLeft = center + new Vector3(-size.x, size.y, 0);
             Vector3 upperRight = center + new Vector3(size.x, size.y, 0);
