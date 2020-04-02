@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Spawner : MonoBehaviour
 {
-    System.Random rand;
     bool spawnFaster = false;
 
     public struct spawnerVars
@@ -22,8 +21,6 @@ public class Spawner : MonoBehaviour
 
     private void Awake()
     {
-        //랜덤 오브젝트 초기화
-        rand = new System.Random();
         //디폴트 값으로 스포너 초기화
         vars = new spawnerVars(1f, 10f, 20f);
     }
@@ -59,7 +56,10 @@ public class Spawner : MonoBehaviour
     }
     string ChooseObjToSpawn()
     {
-        int nextObjToSpawnIndex = rand.Next(0, ObjectManager.objectManager.poolInfo.Count);
+        GameManager.randMutex.WaitOne();
+        int nextObjToSpawnIndex = GameManager.rand.Next(0, ObjectManager.objectManager.poolInfo.Count);
+        GameManager.randMutex.ReleaseMutex();
+
         return ObjectManager.objectManager.poolInfo[nextObjToSpawnIndex].ingreName;
     }
 }

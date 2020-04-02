@@ -1,12 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Threading;
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public bool incDiff = false;    //임시 코드
     int curStage = 0;
+    public static GameManager gm;
 
+    public static System.Random rand;
+    public static Mutex randMutex;
+
+    private void Awake()
+    {
+        gm = this;
+        randMutex = new Mutex();
+        rand = new System.Random(Guid.NewGuid().GetHashCode());
+    }
     private void Start() {
         EventManager.eventManager.GamePausedEvent += OnGamePausedEvent;
     }

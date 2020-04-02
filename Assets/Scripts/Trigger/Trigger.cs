@@ -88,7 +88,7 @@ public class Trigger: MonoBehaviour
         coolDown = false;
     }
 
-    //임시코드
+    //임시코드 - 테스트 환경용
     private void OnDrawGizmos()
     {
         EatTrigger temp;
