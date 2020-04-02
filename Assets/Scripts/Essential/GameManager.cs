@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start() {
         EventManager.eventManager.GamePausedEvent += OnGamePausedEvent;
+        EventManager.eventManager.GameOverEvent += OnGameOverEvent;
     }
     private void Update()
     {
@@ -53,5 +54,9 @@ public class GameManager : MonoBehaviour
             prevWho = who;
             paused = true;
         }
+    }
+    void OnGameOverEvent()
+    {
+        EventManager.eventManager.Invoke_GamePausedEvent(true, "GameManager");
     }
 }
