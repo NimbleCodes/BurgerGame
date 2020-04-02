@@ -607,6 +607,8 @@ GameObject:
   - component: {fileID: 547143933}
   - component: {fileID: 547143929}
   - component: {fileID: 547143928}
+  - component: {fileID: 547143934}
+  - component: {fileID: 547143935}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -724,6 +726,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DiffTable:
     StageDiffVals: []
+--- !u!114 &547143934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547143925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07390f092f9e9b4428a53601c5e9c7fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &547143935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547143925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f68bdfa83c5a114d91bba157761ed1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playTutorial: 0
 --- !u!1 &1030089523
 GameObject:
   m_ObjectHideFlags: 0
