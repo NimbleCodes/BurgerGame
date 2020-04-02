@@ -139,6 +139,8 @@ public class HealthManager : MonoBehaviour
         }
 
     }
+
+    //게임오버시 레더보드, 닉네임입력창 팝업.
     public void PopLeaderboard()
     {
         Action N_Action = () => Debug.Log("GameOver");
