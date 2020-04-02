@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6950034658225697529}
   - component: {fileID: -2766600818141588162}
   - component: {fileID: -6069590586392381838}
-  - component: {fileID: 3357110556561845157}
   m_Layer: 8
   m_Name: IngrePrefab
   m_TagString: Untagged
@@ -126,7 +125,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -147,15 +146,3 @@ MonoBehaviour:
   ingreClass: 
   ingreName: 
   ingreSprite: {fileID: 0}
---- !u!114 &3357110556561845157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5616222178321217736}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ea5991d0df12ec488f8e222458707cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

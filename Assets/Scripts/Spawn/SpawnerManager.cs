@@ -7,6 +7,8 @@ public class SpawnerManager : MonoBehaviour
     [HideInInspector]
     public Vector2 bottomLeft, topRight;
     int numSpawner = 6;
+    [Range(0, 1)]
+    public float posByScreenPerc;
 
     private void Awake()
     {
@@ -32,7 +34,7 @@ public class SpawnerManager : MonoBehaviour
             spawnerArr[i].name = "Spawner" + i;
             float sizeX = (topRight.x - bottomLeft.x) / numSpawner;
             float x = bottomLeft.x + (sizeX / 2) + (sizeX * i);
-            float y = bottomLeft.y + (topRight.y - bottomLeft.y) * 0.9f;
+            float y = bottomLeft.y + (topRight.y - bottomLeft.y) * posByScreenPerc;
             spawnerArr[i].GetComponent<Transform>().position = new Vector3(x, y);
             spawnerArr[i].AddComponent<Spawner>();
             spawnerArr[i].GetComponent<Spawner>().enabled = false;
