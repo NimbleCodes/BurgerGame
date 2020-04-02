@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     public static System.Random rand;
     public static Mutex randMutex;
-
+    public bool pause;
     private void Awake()
     {
         gm = this;
@@ -28,6 +28,10 @@ public class GameManager : MonoBehaviour
             curStage++;
             EventManager.eventManager.Invoke_DiffIncEvent(curStage);
             incDiff = false;
+        }
+        if(pause)
+        {
+        	pauseGame();
         }
     }
 

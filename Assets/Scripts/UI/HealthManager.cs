@@ -146,7 +146,7 @@ public class HealthManager : MonoBehaviour
     {
         Action N_Action = () => Debug.Log("GameOver");
         LeaderboardControll.Instance.ShowLeaderboard(N_Action);
-        NickNamePanel.Instance.ShowNickPanel(N_Action);
+        //NickNamePanel.Instance.ShowNickPanel(N_Action);
     }
     #endregion
 
