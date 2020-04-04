@@ -2,19 +2,15 @@
   "IngreArr": [
     {
       "ingreClass": "meat",
-      "ingreName": "beef"
+      "ingreName": "Beef 1"
     },
     {
       "ingreClass": "meat",
-      "ingreName": "pork"
+      "ingreName": "Soylent"
     },
     {
       "ingreClass": "vege",
-      "ingreName": "lettuce"
-    },
-    {
-      "ingreClass": "vege",
-      "ingreName": "tomato"
+      "ingreName": "Lettuce 1"
     }
   ]
 }

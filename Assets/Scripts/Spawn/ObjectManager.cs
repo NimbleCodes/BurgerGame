@@ -42,12 +42,15 @@ public class ObjectManager : MonoBehaviour
         IngreTable = JsonUtility.FromJson<ingreTable>(ingreJson);    
     }
     /*------------------------------재료 관련-----------------------------*/
-    
+
     /*--------------------------오브젝트 풀 사용--------------------------*/
+    [HideInInspector]
+    public bool firstSpawn = false;
     public GameObject getGameObject(string tag)
     {
         if (objPools.ContainsKey(tag))
         {
+            firstSpawn = true;
             GameObject temp = objPools[tag].Dequeue();
             objPools[tag].Enqueue(temp);
             return temp;

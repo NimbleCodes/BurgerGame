@@ -2,43 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using BreakPoints;
 
 public class BPWatcher : MonoBehaviour
 {
-    public abstract class BreakPoint
-    {
-        int BPNum = -1;
-        public BreakPoint(int bpn)
-        {
-            BPNum = bpn;
-        }
-        protected abstract bool BPCondition();
-        public bool BPReached()
-        {
-            return BPCondition();
-        }
-        public int getBPNum()
-        {
-            return BPNum;
-        }
-    }
-    public class BPbyPos : BreakPoint
-    {
-        GameObject objToWatch;
-        Vector3 position;
-        public BPbyPos(int BPNum, GameObject t, Vector3 pos) : base(BPNum)
-        {
-            objToWatch = t;
-            position = pos;
-        }
-        protected override bool BPCondition()
-        {
-            if (objToWatch.GetComponent<Transform>().position == position)
-                return true;
-            return false;
-        }
-    }
     List<BreakPoint> breakpoints;
+    bool watch = true;
+    int curBP = 0;
 
     private void Awake()
     {
@@ -46,17 +16,38 @@ public class BPWatcher : MonoBehaviour
     }
     private void Start()
     {
-        //임시코드
-        breakpoints.Add(new BPbyPos(0, FindObjectOfType<ObjectManager>().gameObject, new Vector3(0, 0, 0)));
-        StartCoroutine("myCoroutine");
+        EventManager.eventManager.GamePausedEvent += stopWatching;
+        breakpoints.Add(new BreakPointFirstIngrSpawned(0));
+        breakpoints.Add(new BreakPointFirstIngrEaten(1));
+        breakpoints.Add(new BreakPointFirstIngrDestroyed(2));
     }
-
-    IEnumerator myCoroutine()
+    private void Update()
     {
-        yield return new WaitForSeconds(3);
-        if (breakpoints[0].BPReached())
+        if (watch)
         {
-            EventManager.eventManager.Invoke_BpReachedEvent(breakpoints[0].getBPNum());
+            foreach (BreakPoint bp in breakpoints)
+            {
+                if (bp.BPReached() && curBP == bp.getBPNum())
+                {
+                    StartCoroutine(InvokeWithDelay(bp.getBPdelay(), bp.getBPNum()));
+                    breakpoints.Remove(bp);
+                    break;
+                }
+            }
+            if(breakpoints.Count <= 0)
+            {
+                gameObject.GetComponent<BPWatcher>().enabled = false;
+            }
         }
+    }
+    void stopWatching(bool pause, string who)
+    {
+        watch = !pause;
+    }
+    IEnumerator InvokeWithDelay(float delay, int bpnum)
+    {
+        yield return new WaitForSeconds(delay);
+        EventManager.eventManager.Invoke_BpReachedEvent(bpnum);
+        curBP = bpnum+1;
     }
 }
