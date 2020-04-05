@@ -6,6 +6,7 @@ using System;
 
 public class Tutorial : MonoBehaviour
 {
+    public GameObject dialoguePopUp;
     public bool playTutorial = false;
 
     /*----------json loading----------*/
@@ -34,18 +35,24 @@ public class Tutorial : MonoBehaviour
     bool printingDia = false;
     IEnumerator printDialogueCoroutine(int ind)
     {
+        dialoguePopUp.GetComponent<DialoguePopUp>().showDialoguePopUp();
+        printingDia = true;
         while (arr.DialogueArr[ind].Dialogue.Length > diaNum)
         {
             if (cont)
             {
-                Debug.Log(arr.DialogueArr[ind].Dialogue[diaNum]);
+                //Debug.Log(arr.DialogueArr[ind].Dialogue[diaNum]);
+                dialoguePopUp.GetComponent<DialoguePopUp>().setTextField(arr.DialogueArr[ind].Dialogue[diaNum]);
                 diaNum++;
                 cont = false;
             }
             yield return null;
         }
         diaNum = 0;
+        cont = true;
+        click = false;
         printingDia = false;
+        dialoguePopUp.GetComponent<DialoguePopUp>().hideDialoguePopUp();
         EventManager.eventManager.Invoke_GamePausedEvent(false,"Tutorial");
     }
     void printDialogue(int ind)
@@ -59,7 +66,6 @@ public class Tutorial : MonoBehaviour
     {
         //pause game
         EventManager.eventManager.Invoke_GamePausedEvent(true,"Tutorial");
-        printingDia = true;
         //print dialogue
         printDialogue(bpnum);
     }
@@ -76,12 +82,12 @@ public class Tutorial : MonoBehaviour
     {
         if (printingDia)
         {
-            if (!click & Input.GetKeyDown(KeyCode.Mouse0))
+            if (!click & Input.GetMouseButtonDown(0))
             {
                 cont = true;
                 click = true;
             }
-            if (click & Input.GetKeyUp(KeyCode.Mouse0))
+            if ((click & Input.GetMouseButtonUp(0)))
             {
                 click = false;
             }
