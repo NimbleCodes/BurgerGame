@@ -865,7 +865,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1019403943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2352,7 +2352,7 @@ PrefabInstance:
     - target: {fileID: 463405153347167042, guid: db6553f4d2afdef4d8888a05cef9f3d9,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 475993149746126138, guid: db6553f4d2afdef4d8888a05cef9f3d9,
         type: 3}
@@ -3226,6 +3226,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2067421166}
   m_CullTransparentMesh: 0
+--- !u!1 &2098643095
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2098643097}
+  - component: {fileID: 2098643096}
+  m_Layer: 0
+  m_Name: showEaten
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2098643096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098643095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e36a2c715950fe488eed3940a128eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ingre: Lettuce 1
+--- !u!4 &2098643097
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098643095}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8, y: 5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2120343774 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1582671241715552747, guid: db6553f4d2afdef4d8888a05cef9f3d9,
@@ -3358,7 +3402,7 @@ PrefabInstance:
     - target: {fileID: 1121237350520788254, guid: 3a2ef913bbd2bd240a35ad67e805c8db,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a2ef913bbd2bd240a35ad67e805c8db, type: 3}

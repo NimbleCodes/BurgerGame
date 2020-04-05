@@ -3,7 +3,7 @@
     {
       "BurgerName": "DoubleCheeseBurger",
       "BurgerRecipe": [
-        "lettuce 1",
+        "Lettuce 1",
         "cheese",
         "beef 1",
         "buns"
@@ -13,7 +13,7 @@
     {
       "BurgerName": "CheeseBurger",
       "BurgerRecipe": [
-        "lettuce 1",
+        "Lettuce 1",
         "cheese",
         "beef 1",
         "buns"
@@ -23,7 +23,7 @@
     {
       "BurgerName": "ChickenBurger",
       "BurgerRecipe": [
-        "lettuce 1",
+        "Lettuce 1",
         "chicken",
         "buns"
       ]
@@ -32,7 +32,7 @@
     {
       "BurgerName": "TomatoChickenBurger",
       "BurgerRecipe":[
-        "lettuce 1",
+        "Lettuce 1",
         "chicken",
         "tomato",
         "buns"
@@ -42,7 +42,7 @@
     {
       "BurgerName": "Big Bag",
       "BurgerRecipe":[
-        "lettuce 1",
+        "Lettuce 1",
         "beef",
         "bread",
         "beef",

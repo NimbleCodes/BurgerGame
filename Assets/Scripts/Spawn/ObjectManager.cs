@@ -83,7 +83,7 @@ public class ObjectManager : MonoBehaviour
         foreach(var cell in IngreTable.IngreArr){
             Queue<GameObject> tempQueue = new Queue<GameObject>();
             poolInfo.Add(cell);
-            for(int i=0; i<5; i++){
+            for(int i=0; i<8; i++){
                 GameObject tempObj = Instantiate((GameObject)Resources.Load("Prefab/IngrePrefab"));
                 tempObj.name = cell.ingreName + i;
                 tempObj.GetComponent<Ingredient>().initIngre(cell.ingreClass,cell.ingreName);
