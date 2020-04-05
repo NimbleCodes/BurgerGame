@@ -51,7 +51,6 @@ public class BurgerRecipe : MonoBehaviour
     bool[] correctionTable;
     //curRecipe의 index
     int RecipeIndex = 0;
-
     private void Awake() {
         
         loadMenuFromJson();
@@ -138,9 +137,13 @@ public class BurgerRecipe : MonoBehaviour
     public void burgerFail(){
         EventManager.eventManager.Invoke_BurgerCompleteEvent(false);
     }
-    //알맞은 재료를 먹었다고 알리는 함수
+    //알맞은 재료를 먹을시 오른쪽 상단에 먹은 재료를 표시
     public void correctIngre(){
         
+    }
+    //현재 레시피를 받아 맞는 이름의 스프라이트를 스폰해 눈으로 레시피 확인시켜준다
+    public void showCurrentRecipie(){
+    	
     }  
     //레시피 Json 받아오는 function
     void loadMenuFromJson()
