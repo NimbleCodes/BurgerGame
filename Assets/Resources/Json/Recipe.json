@@ -3,51 +3,51 @@
     {
       "BurgerName": "DoubleCheeseBurger",
       "BurgerRecipe": [
-        "Lettuce 1",
-        "cheese",
-        "beef 1",
-        "buns"
+        "Lettuce",
+        "Cheese",
+        "Beef",
+        "Buns"
       ]
     },
 
     {
       "BurgerName": "CheeseBurger",
       "BurgerRecipe": [
-        "Lettuce 1",
-        "cheese",
-        "beef 1",
-        "buns"
+        "Lettuce",
+        "Cheese",
+        "Beef",
+        "Buns"
       ]
     },
 
     {
       "BurgerName": "ChickenBurger",
       "BurgerRecipe": [
-        "Lettuce 1",
-        "chicken",
-        "buns"
+        "Lettuce",
+        "Chicken",
+        "Buns"
       ]
     },
 
     {
       "BurgerName": "TomatoChickenBurger",
       "BurgerRecipe":[
-        "Lettuce 1",
-        "chicken",
-        "tomato",
-        "buns"
+        "Lettuce",
+        "Chicken",
+        "Tomato",
+        "Buns"
       ]
     },
 
     {
       "BurgerName": "Big Bag",
       "BurgerRecipe":[
-        "Lettuce 1",
-        "beef",
-        "bread",
-        "beef",
-        "tomato",
-        "buns"
+        "Lettuce",
+        "Beef",
+        "Bread",
+        "Beef",
+        "Tomato",
+        "Buns"
       ]
     }
   ]

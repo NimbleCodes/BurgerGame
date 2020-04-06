@@ -51,19 +51,23 @@ public class BurgerRecipe : MonoBehaviour
     bool[] correctionTable;
     //curRecipe의 index
     int RecipeIndex = 0;
+    public static BurgerRecipe burgerRec;
     private void Awake() {
         
         loadMenuFromJson();
+        burgerRec = this;
+        
         //Debug.Log("Count : " + getRecipeCount());
         recipeTable = new recipeCell[getRecipeCount()];
         for(int i=0; i<getRecipeCount(); i++){
             recipeTable[i] = new recipeCell();
         }
+        goNextRecipe();
     }
     private void Start() {
         EventManager.eventManager.IngrObtainedEvent += OnIngrEaten;
 
-        goNextRecipe();
+        
     }
     // Update is called once per frame
     void Update()
@@ -144,7 +148,13 @@ public class BurgerRecipe : MonoBehaviour
     //현재 레시피를 받아 맞는 이름의 스프라이트를 스폰해 눈으로 레시피 확인시켜준다
     public void showCurrentRecipie(){
     	
-    }  
+    } 
+    public void currrecTotop(ref string[] giveRecipie){
+        giveRecipie = new string[curRecipe.Length];
+        for (int i = 0; i < giveRecipie.Length; i++){
+            giveRecipie[i] = curRecipe[i];
+        }
+    } 
     //레시피 Json 받아오는 function
     void loadMenuFromJson()
     {
