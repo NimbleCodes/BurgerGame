@@ -1,65 +1,47 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    bool spawnFaster = false;
-
-    public struct spawnerVars
+    string[] spawnableObjTypes;
+    bool _active;
+    public bool active
     {
-        public float nextSpawnTime;
-        public float spawnerSpeed;
-        public float fasterSpawnerSpeed;
-        public spawnerVars(float _nextSpawnTime, float _spawnerSpeed, float _fasterSpawnerSpeed)
-        {
-            nextSpawnTime = _nextSpawnTime;
-            spawnerSpeed = _spawnerSpeed;
-            fasterSpawnerSpeed = _fasterSpawnerSpeed;
+        set {
+            if (value & !_active)
+                StartCoroutine("SpawnCoroutine");
+            _active = value;
         }
+        get { return _active; }
     }
-    spawnerVars vars;
+    public float nextSpawnTime;
+    public float spawnedObjSpeed;
+
+    string ChooseObjToSpawn()
+    {
+        return spawnableObjTypes[GameManager.gameManager.getRandNum(spawnableObjTypes.Length)];
+    }
+    void SpawnObj(string objName, Vector3 position)
+    {
+        GameObject temp = ObjectManager.objectManager.getGameObject(objName);
+        temp.transform.position = position;
+        temp.SetActive(true);
+    }
+    IEnumerator SpawnCoroutine()
+    {
+        yield return new WaitForSeconds(nextSpawnTime);
+        string nameObjToSpawn = ChooseObjToSpawn();
+        SpawnObj(nameObjToSpawn, gameObject.GetComponent<Transform>().position);
+        if (active)
+            StartCoroutine("SpawnCoroutine");
+    }
 
     private void Awake()
     {
-        //디폴트 값으로 스포너 초기화
-        vars = new spawnerVars(1f, 10f, 20f);
+        _active = false;
     }
     private void Start()
     {
-        StartCoroutine("ObjSpawnTimer");
-    }
-
-    public void ChangeSpawnerVariables(spawnerVars vals)
-    {
-        vars = vals;
-    }
-    public void SpawnObjFasterOnce()
-    {
-        spawnFaster = true;
-    }
-
-    IEnumerator ObjSpawnTimer()
-    {
-        yield return new WaitForSeconds(vars.nextSpawnTime);
-        SpawnObjectAtCurPos();
-        StartCoroutine("ObjSpawnTimer");
-    }
-    void SpawnObjectAtCurPos()
-    {
-        string objToSpawnTag = ChooseObjToSpawn();
-        GameObject objToSpawn = ObjectManager.objectManager.getGameObject(objToSpawnTag);
-        objToSpawn.transform.position = gameObject.transform.position;
-        objToSpawn.SetActive(true);
-        float spawnVelocity = -(spawnFaster ? vars.fasterSpawnerSpeed : vars.spawnerSpeed);
-        objToSpawn.GetComponent<Rigidbody2D>().velocity = new Vector2(0,spawnVelocity);
-        objToSpawn.GetComponent<Ingredient>().OnSpawn();
-    }
-    string ChooseObjToSpawn()
-    {
-        GameManager.randMutex.WaitOne();
-        int nextObjToSpawnIndex = GameManager.rand.Next(0, ObjectManager.objectManager.poolInfo.Count);
-        GameManager.randMutex.ReleaseMutex();
-
-        return ObjectManager.objectManager.poolInfo[nextObjToSpawnIndex].ingreName;
+        ObjectManager.objectManager.GetSpawnableObjTypes(ref spawnableObjTypes);
     }
 }

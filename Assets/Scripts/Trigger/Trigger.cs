@@ -1,103 +1,78 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
-public class Trigger: MonoBehaviour
+public abstract class Trigger : MonoBehaviour
 {
-    bool click = false;
-    bool coolDown = false;
-    bool triggOn = false;
-    LayerMask triggeredBy;
-    Vector2 size;
+    public bool active;
+    public float triggOnTime = 0.25f;
+    bool triggOn;
+    public float coolDownTime = 0.5f;
+    bool coolDown;
+    bool click;
 
-    public struct triggerVars
+    public string key;
+    public LayerMask triggeredBy;
+    public Vector2 size;
+
+    IEnumerator TriggOnTimer()
     {
-        public string key;
-        public float triggerOnTime;
-        public float coolDownTime;
-        public triggerVars(string _key, float _triggerOnTime, float _coolDownTime)
-        {
-            key = _key;
-            triggerOnTime = _triggerOnTime;
-            coolDownTime = _coolDownTime;
-        }
+        yield return new WaitForSeconds(triggOnTime);
+        triggOn = false;
+        coolDown = true;
+        StartCoroutine("CoolDownTimer");
     }
-    triggerVars vars;
+    IEnumerator CoolDownTimer()
+    {
+        yield return new WaitForSeconds(coolDownTime);
+        coolDown = false;
+    }
 
     private void Awake()
     {
-        triggeredBy = LayerMask.GetMask("Default");
-        size = new Vector2(1, 0.5f);
-        vars = new triggerVars("q", .25f, .5f);
-    }
-    private void Start()
-    {
-        
+        triggOn = false;
+        coolDown = false;
+        click = false;
     }
     private void Update()
     {
-        if (Input.GetKeyDown(vars.key) & !coolDown & !click & !triggOn)
+        if (active)
         {
-            triggOn = true;
-            click = true;
-            coolDown = true;
-            StartCoroutine("triggerOnTimer");
-            StartCoroutine("coolDownTimer");
-        }
-        if (Input.GetKeyUp(vars.key) && click)
-        {
-            click = false;
-        }
-        if (triggOn)
-        {
-            Collider2D[] inTrigger = Physics2D.OverlapBoxAll(transform.position, size, 0, triggeredBy);
-            if (inTrigger.Length > 0)
+            if(!click & !coolDown & Input.GetKeyDown(key))
             {
-                foreach (Collider2D c in inTrigger)
+                click = true;
+                triggOn = true;
+                StartCoroutine("TriggOnTimer");
+            }
+            if(click & Input.GetKeyUp(key))
+            {
+                click = false;
+            }
+
+            if (triggOn)
+            {
+                Collider2D[] objInTrigger = Physics2D.OverlapBoxAll(gameObject.transform.position, size, 0, triggeredBy);
+                if (objInTrigger.Length > 0)
                 {
-                    Action(c.gameObject);
+                    foreach (Collider2D c in objInTrigger)
+                    {
+                        Action(c.gameObject);
+                    }
                 }
             }
         }
     }
+    protected abstract void Action(GameObject g);
 
-    public void setSize(Vector2 _size)
-    {
-        size = _size;
-    }
-    public void setTrigLayerMask(string _triggeredBy)
-    {
-        triggeredBy = LayerMask.GetMask(_triggeredBy);
-    }
-    public void ChangeTriggerVariables(triggerVars vals)
-    {
-        vars = vals;
-    }
-
-    public virtual void Action(GameObject g)
-    {
-        g.SetActive(false);
-    }
-    private IEnumerator triggerOnTimer()
-    {
-        yield return new WaitForSeconds(vars.triggerOnTime);
-        triggOn = false;
-    }
-    private IEnumerator coolDownTimer()
-    {
-        yield return new WaitForSeconds(vars.coolDownTime);
-        coolDown = false;
-    }
-
-    //임시코드 - 테스트 환경용
+    //Test code
     private void OnDrawGizmos()
     {
-        EatTrigger temp;
-        if (gameObject.TryGetComponent<EatTrigger>(out temp))
+        ObtainTrigger temp;
+        if (gameObject.TryGetComponent<ObtainTrigger>(out temp))
         {
             Gizmos.color = Color.yellow;
             if (coolDown)
                 Gizmos.color = Color.red;
-            if(triggOn)
+            if (triggOn)
                 Gizmos.color = Color.green;
 
             Vector3 center = transform.position;

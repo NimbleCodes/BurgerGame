@@ -1,66 +1,25 @@
-﻿using System.Threading;
-using System;
+﻿using System;
+using System.Threading;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public bool incDiff = false;    //임시 코드
-    int curStage = 0;
-    public static GameManager gm;
+    public static GameManager gameManager;
 
-    public static System.Random rand;
-    public static Mutex randMutex;
-    public bool pause;
+    System.Random rand;
+    Mutex randMut;
+    public int getRandNum(int max)
+    {
+        randMut.WaitOne();
+        int ret = rand.Next(max);
+        randMut.ReleaseMutex();
+        return ret;
+    }
+
     private void Awake()
     {
-        gm = this;
-        randMutex = new Mutex();
+        gameManager = this;
         rand = new System.Random(Guid.NewGuid().GetHashCode());
-    }
-    private void Start() {
-        EventManager.eventManager.GamePausedEvent += OnGamePausedEvent;
-        EventManager.eventManager.GameOverEvent += OnGameOverEvent;
-    }
-    private void Update()
-    {
-        //임시 코드
-        if (incDiff)
-        {
-            curStage++;
-            EventManager.eventManager.Invoke_DiffIncEvent(curStage);
-            incDiff = false;
-        }
-        if(pause)
-        {
-        	pauseGame();
-        }
-    }
-
-    void pauseGame()
-    {
-        Time.timeScale = 0;
-    }
-    void resumeGame()
-    {
-        Time.timeScale = 1;
-    }
-    string prevWho = "";
-    bool paused = false;
-    void OnGamePausedEvent(bool action, string who){
-        if (paused & !action & who.Equals(prevWho))
-        {
-            resumeGame();
-            paused = false;
-        }
-        else if (!paused & action)
-        {
-            pauseGame();
-            prevWho = who;
-            paused = true;
-        }
-    }
-    void OnGameOverEvent()
-    {
-        EventManager.eventManager.Invoke_GamePausedEvent(true, "GameManager");
+        randMut = new Mutex();
     }
 }

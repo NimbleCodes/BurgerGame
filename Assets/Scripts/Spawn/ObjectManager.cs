@@ -1,100 +1,79 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 using System.IO;
+using UnityEngine;
 
 public class ObjectManager : MonoBehaviour
 {
-    //Singleton
     public static ObjectManager objectManager;
-    //오브젝트 풀
+    
     Dictionary<string, Queue<GameObject>> objPools;
+    int poolSize = 10;
 
-    /*------------------------------재료 관련-----------------------------*/
-    [System.Serializable]
-    public class Pool
+    [Serializable]
+    public struct Ingr
     {
-        public string tag;
-        public GameObject prefab;
-        public int size;
+        public string ingrClass;
+        public string ingrName;
     }
-    public List<IngreArr> poolInfo;
+    [Serializable]
+    struct IngrArr
+    {
+        public Ingr[] ingrArr;
+    }
+    string burgerIngrJson;
+    IngrArr burgerIngrArr;
+    void loadBurgerIngreFromJson()
+    {
+        burgerIngrJson = File.ReadAllText(Application.dataPath + "/Resources/Json/Ingredients.json");
+        burgerIngrArr = JsonUtility.FromJson<IngrArr>(burgerIngrJson);
+    }
 
-    [System.Serializable]
-    public class IngreArr{
-        //재료의 분류 (고기, 야채, 소스 등등)
-        public string ingreClass;
-        //재료의 이름
-        public string ingreName;
-        //재료의 Sprite 경로
-    }
-    [System.Serializable]
-    class ingreTable{
-        public IngreArr[] IngreArr;
-    }
-    //Json을 String으로 받아온다.
-    string ingreJson;
-    //Ingredient 정보를 쉽게 받아오기 위한 Table
-    ingreTable IngreTable;
-    //Json 파일에서 버거재료 데이터 받아오기
-    void getJson(){
-        ingreJson = File.ReadAllText(Application.dataPath + "/Resources/Json/ingredient.json");
-        IngreTable = JsonUtility.FromJson<ingreTable>(ingreJson);    
-    }
-    /*------------------------------재료 관련-----------------------------*/
+    private void Awake()
+    {
+        objectManager = this;
 
-    /*--------------------------오브젝트 풀 사용--------------------------*/
-    [HideInInspector]
-    public bool firstSpawn = false;
+        objPools = new Dictionary<string, Queue<GameObject>>();
+
+        loadBurgerIngreFromJson();
+        foreach(Ingr ingr in burgerIngrArr.ingrArr)
+        {
+            GameObject refGroupObj = new GameObject(ingr.ingrName + "IngrGroup");
+            Queue<GameObject> ingrQueue = new Queue<GameObject>();
+            for(int i = 0; i < poolSize; i++)
+            {
+                GameObject temp = Instantiate((GameObject)Resources.Load("Prefab/ingrPrefab"));
+                temp.GetComponent<Ingredient>().ingrName = ingr.ingrName;
+                temp.GetComponent<Ingredient>().ingrClass = ingr.ingrClass;
+                temp.AddComponent<BoxCollider2D>();
+                temp.transform.parent = refGroupObj.transform;
+                temp.name = ingr.ingrName + "_" + i;
+                temp.SetActive(false);
+                ingrQueue.Enqueue(temp);
+            }
+            objPools.Add(ingr.ingrName, ingrQueue);
+        }
+    }
+
     public GameObject getGameObject(string tag)
     {
         if (objPools.ContainsKey(tag))
         {
-            firstSpawn = true;
             GameObject temp = objPools[tag].Dequeue();
             objPools[tag].Enqueue(temp);
             return temp;
         }
         else
         {
-            Debug.Log("ObjectManager: Invalid tag value from spawner");
             Debug.Log(tag);
+            Debug.Log("ObjectManager: Invalid tag value from spawner");
             return null;
         }
     }
-    /*--------------------------오브젝트 풀 사용--------------------------*/
-
-    /*----------------------------이벤트 관련-----------------------------
-    //난이도 상승 이벤트
-    void OnDiffIncEvent()
+    public void GetSpawnableObjTypes(ref string[] output)
     {
-        //increase difficulty
-        foreach (GameObject g in objPools["lettuce"])
-            g.GetComponent<GravityTest>().speed = -20;
-    }
-    /*----------------------------이벤트 관련-----------------------------*/
-
-    private void Awake()
-    {
-        objectManager = this;
-        getJson();
-        //오브젝트 풀 초기화
-        objPools = new Dictionary<string, Queue<GameObject>>();
-        foreach(var cell in IngreTable.IngreArr){
-            Queue<GameObject> tempQueue = new Queue<GameObject>();
-            poolInfo.Add(cell);
-            for(int i=0; i<8; i++){
-                GameObject tempObj = Instantiate((GameObject)Resources.Load("Prefab/IngrePrefab"));
-                tempObj.name = cell.ingreName + i;
-                tempObj.GetComponent<Ingredient>().initIngre(cell.ingreClass,cell.ingreName);
-                tempObj.SetActive(false);
-                tempQueue.Enqueue(tempObj);
-            }
-            objPools.Add(cell.ingreName, tempQueue);
-        }
-    }
-    
-    private void Start(){
-        //EventManager.eventManager.DiffIncEvent += OnDiffIncEvent;
+        output = new string[burgerIngrArr.ingrArr.Length];
+        for (int i = 0; i < output.Length; i++)
+            output[i] = burgerIngrArr.ingrArr[i].ingrName;
     }
 }

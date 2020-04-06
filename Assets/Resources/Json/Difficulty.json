@@ -1,0 +1,14 @@
+{
+  "stageDiffVals": [
+    {
+      "numActiveSpawner": 4,
+      "spawnedObjSpeed": [10,10,10,10,10,10],
+      "nextSpawnTime": [1,1,1,1,1,1]
+    },
+    {
+      "NumActiveSpawner": 5,
+      "SpawnedObjSpeed": [ 10, 10, 10, 10, 10, 10 ],
+      "NextSpawnTime": [ 1, 1, 1, 1, 1, 1 ]
+    }
+  ]
+}

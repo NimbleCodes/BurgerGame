@@ -1,54 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Ingredient : MonoBehaviour, ISpawnedObject
+public class Ingredient : MonoBehaviour
 {
-    //재료의 분류 (고기, 야채, 소스 등등)
-    public string ingreClass;
-    //재료의 이름
-    public string ingreName;
-    //재료의 Sprite 경로
-    public SpriteRenderer ingreSprite;
+    string _ingrName;
+    string _ingrClass;
 
-    /*---------------------------초기화 관련----------------------------*/
-    public string getName()
+    public string ingrName
     {
-        return ingreName;
+        get { return _ingrName; }
+        set
+        {
+            _ingrName = value;
+            string spritePath = "Sprites/Ingredients/" + _ingrName;
+            gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(spritePath);
+        }
     }
-    public void setName(string val)
+    public string ingrClass
     {
-        ingreName = val;
-    }
-    public void setSprite(Sprite _sprite){
-        ingreSprite.sprite = _sprite;
-    }
-    //ingredient 정보 초기화
-    public void initIngre(string _class, string _name){
-        ingreClass = _class;
-        ingreName = _name;
-        ingreSprite.sprite = Resources.Load<Sprite>("Sprites/" + ingreName);
-    }
-    /*---------------------------초기화 관련----------------------------*/
-
-    /*---------------------------이벤트 관련----------------------------*/
-    public void Eaten(){
-        
-    }
-    public void Recycled(){
-
-    }
-    public void Destroyed(){
-
-    }
-    public void OnSpawn()
-    {
-        //do nothing
-    }
-    /*---------------------------이벤트 관련----------------------------*/
-
-    
-    private void Awake() {
-        ingreSprite = GetComponent<SpriteRenderer>();
+        get { return _ingrClass; }
+        set { _ingrClass = value; }
     }
 }

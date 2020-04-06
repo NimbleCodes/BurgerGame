@@ -1,0 +1,16 @@
+{
+  "ingrArr": [
+    {
+      "ingrClass": "Meat",
+      "ingrName": "Beef"
+    },
+    {
+      "ingrClass": "Meat",
+      "ingrName": "Soylent"
+    },
+    {
+      "ingrClass": "Vege",
+      "ingrName": "Lettuce"
+    }
+  ]
+}

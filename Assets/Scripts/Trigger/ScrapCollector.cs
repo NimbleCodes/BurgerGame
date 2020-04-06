@@ -7,10 +7,8 @@ public class ScrapCollector : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         other.gameObject.SetActive(false);
-        other.gameObject.GetComponent<Ingredient>().Destroyed();
         EventManager.eventManager.Invoke_IngrDestroyedEvent();
     }
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
