@@ -39,6 +39,13 @@ class EventManager : MonoBehaviour
             BurgerCompleteEvent(cor);
     }
 
+    public event Action<int> BreakpointReachedEvent;
+    public void Invoke_BreakpointReachedEvent(int bpNum)
+    {
+        if (BreakpointReachedEvent != null)
+            BreakpointReachedEvent(bpNum);
+    }
+
     private void Awake()
     {
         eventManager = this;
