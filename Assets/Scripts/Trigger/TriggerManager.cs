@@ -83,8 +83,8 @@ public class TriggerManager : MonoBehaviour
         {
             for(int j = 0; j < Enum.GetNames(typeof(triggerType)).Length; j++)
             {
-                triggerSetArr[i].triggers[j].GetComponent<Trigger>().active = true;
-                triggerSetArr[i].triggers[j].GetComponent<Trigger>().key = triggerKeys[j, i];
+                triggerSetArr[Difficulty.difficulty.activationOrder[i]].triggers[j].GetComponent<Trigger>().active = true;
+                triggerSetArr[Difficulty.difficulty.activationOrder[i]].triggers[j].GetComponent<Trigger>().key = triggerKeys[j, Difficulty.difficulty.activationOrder[i]];
             }
         }
     }

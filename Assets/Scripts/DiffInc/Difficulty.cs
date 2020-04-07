@@ -29,6 +29,8 @@ public class Difficulty : MonoBehaviour
     }
     //현재 난이도
     public int curDiff = 0;
+    //스포너 트리거 activate 순서
+    public int[] activationOrder = { 1,2,3,4,0,5 };
 
     private void Awake()
     {
