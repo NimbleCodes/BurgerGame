@@ -3,7 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - T_Panel1
+  - T_image1
+  - T_Panel2
+  - T_Panel3
+  - T_Panel4
+  - T_Panel5
+  - T_Panel6
+  - T_image2
+  - T_image3
+  - T_image4
+  - T_image5
+  - T_image6
   layers:
   - Default
   - TransparentFX

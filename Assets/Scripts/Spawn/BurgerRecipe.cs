@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.IO;
 
 public class BurgerRecipe : MonoBehaviour
@@ -51,7 +52,9 @@ public class BurgerRecipe : MonoBehaviour
     bool[] correctionTable;
     //curRecipe의 index
     int RecipeIndex = 0;
+    Image panel;
     public static BurgerRecipe burgerRec;
+    RecipieonTop recipieonTop;
     private void Awake() {
         
         loadMenuFromJson();
@@ -143,12 +146,10 @@ public class BurgerRecipe : MonoBehaviour
     }
     //알맞은 재료를 먹을시 오른쪽 상단에 먹은 재료를 표시
     public void correctIngre(){
-        
+        panel = GameObject.FindGameObjectWithTag("T_Panel"+(RecipeIndex+1)).GetComponent<Image>();
+        panel.color = UnityEngine.Color.green;
     }
     //현재 레시피를 받아 맞는 이름의 스프라이트를 스폰해 눈으로 레시피 확인시켜준다
-    public void showCurrentRecipie(){
-    	
-    } 
     public void currrecTotop(ref string[] giveRecipie){
         giveRecipie = new string[curRecipe.Length];
         for (int i = 0; i < giveRecipie.Length; i++){
