@@ -12,6 +12,8 @@ class BpWatcher : MonoBehaviour
         yield return new WaitForSeconds(delay);
         EventManager.eventManager.Invoke_BreakpointReachedEvent(bpNum);
         timerStart = false;
+        if (breakpoints.Count > 0)
+            breakpoints.Peek().active = true;
     }
 
     private void Awake()
@@ -19,6 +21,8 @@ class BpWatcher : MonoBehaviour
         breakpoints = new Queue<Breakpoint>();
         //add breakpoints here
         breakpoints.Enqueue(new Breakpoint_WaitOneSecond(0));
+        breakpoints.Enqueue(new Breakpoint_WaitOneSecond(1));
+        breakpoints.Enqueue(new Breakpoint_WaitOneSecond(2));
         if (breakpoints.Count > 0)
             breakpoints.Peek().active = true;
     }
@@ -40,6 +44,8 @@ class BpWatcher : MonoBehaviour
                     else
                     {
                         EventManager.eventManager.Invoke_BreakpointReachedEvent(curBp.getBpNum());
+                        if (breakpoints.Count > 0)
+                            breakpoints.Peek().active = true;
                     }
                 }
             }

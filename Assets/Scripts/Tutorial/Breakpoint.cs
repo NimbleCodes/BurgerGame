@@ -41,7 +41,7 @@ class Breakpoint_WaitOneSecond : Breakpoint
 {
     public Breakpoint_WaitOneSecond(int _bpNum) : base(_bpNum, 1f)
     {
-
+        //wow such emptiness
     }
     protected override bool BpReached()
     {

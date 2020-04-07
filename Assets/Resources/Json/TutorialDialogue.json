@@ -1,0 +1,25 @@
+{
+  "dialogueGroup": [
+    {
+      "dialogue": [
+        "hello world1",
+        "hello world1",
+        "hello world1"
+      ]
+    },
+    {
+      "dialogue": [
+        "hello world2",
+        "hello world2",
+        "hello world2"
+      ]
+    },
+    {
+      "dialogue": [
+        "hello world3",
+        "hello world3",
+        "hello world3"
+      ]
+    }
+  ]
+}

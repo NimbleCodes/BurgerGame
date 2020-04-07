@@ -12,6 +12,27 @@ class EventManager : MonoBehaviour
             GameOverEvent();
     }
 
+    //게임 일시정지 이벤트
+    string prevWho = null;
+    public event Action GamePausedEvent;
+    public void Invoke_GamePausedEvent(string who)
+    {
+        if (prevWho == null)
+        {
+            prevWho = who;
+            GamePausedEvent();
+        }
+    }
+    public event Action GameResumeEvent;
+    public void Invoke_GameResumeEvent(string who)
+    {
+        if (who == prevWho)
+        {
+            prevWho = null;
+            GameResumeEvent();
+        }
+    }
+
     public event Action<string> IngrObtainedEvent;
     public event Action IngrDestroyedEvent;
     public void Invoke_IngrObtainedEvent(string what)
