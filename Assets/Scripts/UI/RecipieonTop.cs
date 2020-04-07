@@ -8,10 +8,7 @@ public class RecipieonTop : MonoBehaviour
     public Image myImage;
     public Image myPanel;
     public string[] RecipietoShow;
-    public RecipieonTop recipieonTop;
-    public void Awake(){
-        recipieonTop = this;
-    }
+
     public void putImageonTop(){//find image object as a tag, then put sprite following string[]
             
             BurgerRecipe.burgerRec.currrecTotop(ref RecipietoShow);
