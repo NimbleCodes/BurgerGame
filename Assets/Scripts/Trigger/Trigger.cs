@@ -6,14 +6,16 @@ public abstract class Trigger : MonoBehaviour
     public bool active;
     public float triggOnTime = 0.25f;
     bool triggOn;
-    public float coolDownTime = 0.5f;
+    public float coolDownTime = 0.25f;
     bool coolDown;
+    //버튼 꾹 누르기 방지
     bool click;
 
     public string key;
     public LayerMask triggeredBy;
     public Vector2 size;
 
+    //눌렀을때 트리거가 켜져있는 시간을 나타내는 코루틴
     IEnumerator TriggOnTimer()
     {
         yield return new WaitForSeconds(triggOnTime);
@@ -21,6 +23,7 @@ public abstract class Trigger : MonoBehaviour
         coolDown = true;
         StartCoroutine("CoolDownTimer");
     }
+    //트리거가 꺼진 후 다시 누를 수 있을때까지 필요한 시간
     IEnumerator CoolDownTimer()
     {
         yield return new WaitForSeconds(coolDownTime);
@@ -63,7 +66,7 @@ public abstract class Trigger : MonoBehaviour
     }
     protected abstract void Action(GameObject g);
 
-    //Test code
+    //Test code 나중에 삭제 할 것
     private void OnDrawGizmos()
     {
         ObtainTrigger temp;

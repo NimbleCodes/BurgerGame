@@ -8,6 +8,7 @@ public class Ingredient : MonoBehaviour
     public string ingrName
     {
         get { return _ingrName; }
+        //ingrName을 설정하면 이미지를 가지고 온다
         set
         {
             _ingrName = value;

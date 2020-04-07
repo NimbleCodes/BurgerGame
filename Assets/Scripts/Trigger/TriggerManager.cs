@@ -3,31 +3,37 @@ using UnityEngine;
 
 public class TriggerManager : MonoBehaviour
 {
+    //트리거 종류
     enum triggerType
     {
         Obtain = 0,
         Return
     }
+    //트리거의 종류를 위치별로 묶은 구조체
     public struct triggerSet
     {
         public GameObject[] triggers;
     }
     triggerSet[] triggerSetArr;
+    //트리거의 세로 길이
     public float ySize = 0.5f;
 
     const float coolDownTime = .5f;
     const float triggOnTime = .5f;
 
+    //트리거가 생성될 영역
     public Vector2 bottomLeft, topRight;
     public float yPosByScreenPerc, xPosByScreenPerc;
     int numTriggerSet;
 
+    //트리거의 키를 변화하고 싶을 때 triggerKeys를 변경하고 refresh호출
     public string[,] triggerKeys;
     public string[,] defaultTriggerKeys = { 
         {"q", "w", "e", "a", "s", "d"},
         {"i", "o", "p", "k", "l", ";"}
     };
 
+    //트리거 초기화
     void InitTriggers()
     {
         triggerSetArr = new triggerSet[numTriggerSet];
