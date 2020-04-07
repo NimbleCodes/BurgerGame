@@ -902,7 +902,7 @@ MonoBehaviour:
   ySize: 0.5
   bottomLeft: {x: 0, y: 0}
   topRight: {x: 0, y: 0}
-  yPosByScreenPerc: 0.25
+  yPosByScreenPerc: 0.2
   xPosByScreenPerc: 0
 --- !u!114 &547143929
 MonoBehaviour:
@@ -989,7 +989,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imageObj: {fileID: 0}
   myImage: {fileID: 0}
+  myPanel: {fileID: 0}
   RecipietoShow: []
+  recipieonTop: {fileID: 0}
 --- !u!114 &615257642 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8101990791749644215, guid: db6553f4d2afdef4d8888a05cef9f3d9,

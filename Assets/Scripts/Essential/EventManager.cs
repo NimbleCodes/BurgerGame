@@ -25,6 +25,8 @@ class EventManager : MonoBehaviour
             IngrDestroyedEvent();
     }
 
+    //난이도 상승시 호출
+    //스포너 및 트리거의 변경 가능한 값들 다시 할당
     public event Action RefreshEvent;
     public void Invoke_RefreshEvent()
     {
@@ -39,6 +41,7 @@ class EventManager : MonoBehaviour
             BurgerCompleteEvent(cor);
     }
 
+    //튜토리얼 관련 이벤트
     public event Action<int> BreakpointReachedEvent;
     public void Invoke_BreakpointReachedEvent(int bpNum)
     {

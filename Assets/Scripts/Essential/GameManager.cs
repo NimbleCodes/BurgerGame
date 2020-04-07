@@ -6,8 +6,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
 
+    //랜덤 객체 한개 생성 -> 다른 객체에서 랜덤성이 필요하면 가져다 쓴다
     System.Random rand;
     Mutex randMut;
+    //System.Random은 Thread safe하지 않으므로 뮤텍스로 보호
     public int getRandNum(int max)
     {
         randMut.WaitOne();
