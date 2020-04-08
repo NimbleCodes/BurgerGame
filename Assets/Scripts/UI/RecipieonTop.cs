@@ -12,7 +12,6 @@ public class RecipieonTop : MonoBehaviour
     public void putImageonTop(){//find image object as a tag, then put sprite following string[]
             
             BurgerRecipe.burgerRec.currrecTotop(ref RecipietoShow);
-            Debug.Log(RecipietoShow[0]);
             for(int i=0; i < 6; i++){
                 imageObj = GameObject.FindGameObjectWithTag("T_image"+(i+1));//태그로서 이미지 오브젝트를 찾아옴
                 myImage = imageObj.GetComponent<Image>();
