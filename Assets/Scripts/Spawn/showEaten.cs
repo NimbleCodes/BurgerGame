@@ -5,9 +5,14 @@ using UnityEngine;
 public class showEaten : MonoBehaviour
 {
     public string ingre = "Lettuce";//for test
+
+    public static showEaten ShowObtain;
+    public void Awake(){
+        ShowObtain = this;
+    }
     //이벤트 매니저에 함수추가
    public void Start(){
-       EventManager.eventManager.IngrObtainedEvent += showEatenToUser;
+       //EventManager.eventManager.IngrObtainedEvent += showEatenToUser;
    }
    public void Update(){//for test
        if(Input.GetKeyDown(KeyCode.H)){
@@ -20,6 +25,6 @@ public class showEaten : MonoBehaviour
         objToSpawn.GetComponent<Transform>().position = new Vector3(8f,4f);
         objToSpawn.SetActive(true);
         //objToSpawn.GetComponent<Rigidbody2D>().AddForce(Vector2.down*100f);
-       objToSpawn.GetComponent<Rigidbody2D>().gravityScale=1f;
+        objToSpawn.GetComponent<Rigidbody2D>().gravityScale=1f;
    }
 }
