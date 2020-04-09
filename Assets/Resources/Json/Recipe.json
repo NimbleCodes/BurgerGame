@@ -9,7 +9,13 @@
         "Buns"
       ]
     },
-
+    {
+      "BurgerName": "TestBurger",
+      "BurgerRecipe": [
+        "Lettuce",
+        "Beef"
+      ]
+    },
     {
       "BurgerName": "CheeseBurger",
       "BurgerRecipe": [
@@ -31,7 +37,7 @@
 
     {
       "BurgerName": "TomatoChickenBurger",
-      "BurgerRecipe":[
+      "BurgerRecipe": [
         "Lettuce",
         "Chicken",
         "Tomato",
@@ -41,7 +47,7 @@
 
     {
       "BurgerName": "Big Bag",
-      "BurgerRecipe":[
+      "BurgerRecipe": [
         "Lettuce",
         "Beef",
         "Bread",

@@ -1081,7 +1081,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &490266770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1389,8 +1389,8 @@ GameObject:
   - component: {fileID: 547143927}
   - component: {fileID: 547143926}
   - component: {fileID: 547143931}
-  - component: {fileID: 547143933}
   - component: {fileID: 547143934}
+  - component: {fileID: 547143933}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -1507,10 +1507,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 547143925}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a4d270cc3133e0468668d6987abf85e, type: 3}
+  m_Script: {fileID: 11500000, guid: 5dadc34defb2f8242b3863b6db675b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveNum: 3
 --- !u!114 &547143934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1518,7 +1517,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547143925}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 296efb147cb54944fb7f2a8cbcb92358, type: 3}
   m_Name: 
@@ -5822,7 +5821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2098643096
 MonoBehaviour:
   m_ObjectHideFlags: 0
