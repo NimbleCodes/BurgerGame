@@ -3,12 +3,12 @@
     {
       "numActiveSpawner": 4,
       "spawnedObjSpeed": [10,10,10,10,10,10],
-      "nextSpawnTime": [1,1,1,1,1,1]
+      "nextSpawnTime": [1,1.1,1.2,1.3,1.4,1.5]
     },
     {
       "NumActiveSpawner": 5,
       "SpawnedObjSpeed": [ 10, 10, 10, 10, 10, 10 ],
-      "NextSpawnTime": [ 1, 1, 1, 1, 1, 1 ]
+      "nextSpawnTime": [ 1, 1.1, 1.2, 1.3, 1.4, 1.5 ]
     }
   ]
 }
