@@ -1,0 +1,21 @@
+{
+    "BurgerMenu":[
+        {
+            "BurgerName":"DoubleSheese",
+            "BurgerRecipe":[
+                "Lettuce",
+                "Soylent",
+                "Beef",
+                "Soylent"
+            ]
+        },
+        {
+            "BurgerName":"Cheese",
+            "BurgerRecipe":[
+                "Lettuce",
+                "Soylent",
+                "Beef"
+            ]
+        }
+    ]
+}

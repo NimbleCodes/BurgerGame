@@ -161,7 +161,7 @@ public class BurgerRecipe : MonoBehaviour
     //레시피 Json 받아오는 function
     void loadMenuFromJson()
     {
-        string menuJson = File.ReadAllText(Application.dataPath + "/Resources/Json/Recipe.json");
+        string menuJson = File.ReadAllText(Application.dataPath + "/Resources/Json/Recipe_test.json");
         menu = JsonUtility.FromJson<Menu>(menuJson);
     }
 }
