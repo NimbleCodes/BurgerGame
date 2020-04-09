@@ -22,6 +22,7 @@ class TutorialManager : MonoBehaviour
         dialogueTable = JsonUtility.FromJson<DialogueTable>(DialogueTableStr);
     }
 
+    public GameObject TutorialPopUp;
     bool cont = true;
     int diaIndex = 0;
     IEnumerator PrintDialogue(int bpNum)
@@ -30,13 +31,21 @@ class TutorialManager : MonoBehaviour
         {
             if (cont)
             {
-                Debug.Log(dialogueTable.dialogueGroup[bpNum].dialogue[diaIndex++]);
+                if (TutorialPopUp == null)
+                    Debug.Log(dialogueTable.dialogueGroup[bpNum].dialogue[diaIndex++]);
+                else
+                {
+                    TutorialPopUp.GetComponent<DialoguePopUp>().showDialoguePopUp();
+                    TutorialPopUp.GetComponent<DialoguePopUp>().setTextField(dialogueTable.dialogueGroup[bpNum].dialogue[diaIndex++]);
+                }
                 cont = false;
             }
             yield return null;
         }
         cont = true;
         diaIndex = 0;
+        if (TutorialPopUp != null)
+            TutorialPopUp.GetComponent<DialoguePopUp>().hideDialoguePopUp();
         EventManager.eventManager.Invoke_GameResumeEvent("TutorialManager");
     }
     void OnBpReachedEvent(int bpnum)
