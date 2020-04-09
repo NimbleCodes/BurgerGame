@@ -16,6 +16,16 @@ TagManager:
   - T_image4
   - T_image5
   - T_image6
+  - showEat0
+  - showEat1
+  - showEat2
+  - showEat3
+  - showEat4
+  - showEat5
+  - showEat6
+  - showEat7
+  - showEat8
+  - showEat9
   layers:
   - Default
   - TransparentFX

@@ -24,7 +24,7 @@ public class showEaten : MonoBehaviour
    }
 
    public void InitiateObj(){//오브젝트 초기화
-       arrIndex = 0;
+       arrIndex = 1;
        for(int i =0;i<10;i++){
            ingr = GameObject.FindGameObjectWithTag("showEat"+i);
            spriteR = ingr.GetComponent<SpriteRenderer>();
@@ -32,6 +32,13 @@ public class showEaten : MonoBehaviour
            ingr.GetComponent<Transform>().position = new Vector3(8f,5f);
            spriteR.enabled = false;
        }
+        ingr = GameObject.FindGameObjectWithTag("showEat0");
+        spriteR = ingr.GetComponent<SpriteRenderer>();
+        spriteR.sprite= Resources.Load<Sprite>("Sprites/Ingredients/BelowBun");
+        spriteR.enabled = true;
+        ingr.GetComponent<BoxCollider2D>().size = new Vector3(2f,0.2f);
+        ingr.GetComponent<Rigidbody2D>().gravityScale = 1f;
+
    }
    //먹은 ingre_name을 받아 맞는 sprite를 호출
    public void showEatenToUser(string ingre_info){
