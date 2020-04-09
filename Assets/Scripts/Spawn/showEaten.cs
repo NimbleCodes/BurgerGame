@@ -30,6 +30,7 @@ public class showEaten : MonoBehaviour
            spriteR = ingr.GetComponent<SpriteRenderer>();
            ingr.GetComponent<Rigidbody2D>().gravityScale = 0f;
            ingr.GetComponent<Transform>().position = new Vector3(8f,5f);
+           ingr.GetComponent<Collider2D>().enabled = false;
            spriteR.enabled = false;
        }
         ingr = GameObject.FindGameObjectWithTag("showEat0");
@@ -38,6 +39,7 @@ public class showEaten : MonoBehaviour
         spriteR.enabled = true;
         ingr.GetComponent<BoxCollider2D>().size = new Vector3(2f,0.2f);
         ingr.GetComponent<Rigidbody2D>().gravityScale = 1f;
+        ingr.GetComponent<Collider2D>().enabled = true;
 
    }
    //먹은 ingre_name을 받아 맞는 sprite를 호출
@@ -48,6 +50,7 @@ public class showEaten : MonoBehaviour
         spriteR.enabled = true;
         ingr.GetComponent<BoxCollider2D>().size = new Vector3(2f,0.2f);
         ingr.GetComponent<Rigidbody2D>().gravityScale = 1f;
+        ingr.GetComponent<Collider2D>().enabled = true;
         arrIndex++;
    }
 }
