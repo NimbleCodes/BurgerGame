@@ -43,7 +43,7 @@ public class HealthManager : MonoBehaviour
     
     void Update()
     {
-
+        //test
         //hp 증감의 쉬운 계산을 위해 이용된다.
         hpToTime = decrTime/maxHealth;
         //Debug.Log(curHealth);

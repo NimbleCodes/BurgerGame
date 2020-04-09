@@ -100,12 +100,13 @@ public class BurgerRecipe : MonoBehaviour
         //틀렸을 때
         if(curRecipe[RecipeIndex] != ingreName){
             burgerFail();
+            showEaten.ShowObtain.InitiateObj();
             RecipeIndex = 0;
             //틀렸으므로 다음 레시피로 넘기기
             goNextRecipe();
         }
         //알맞은 재료를 먹었을 때
-        if(curRecipe[RecipeIndex] == ingreName && RecipeIndex < curRecipe.Length-1){
+        else if(curRecipe[RecipeIndex] == ingreName && RecipeIndex < curRecipe.Length-1){
             correctIngre();
             showEaten.ShowObtain.showEatenToUser(ingreName);
             RecipeIndex += 1;
