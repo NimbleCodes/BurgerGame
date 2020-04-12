@@ -32,6 +32,23 @@ public class ObjectManager : MonoBehaviour
         burgerIngrArr = JsonUtility.FromJson<IngrArr>(burgerIngrJson);
     }
 
+    //재료 초기화
+    List<GameObject> curActiveObjects;
+    public void removeFromCurActiveList(GameObject g)
+    {
+        curActiveObjects.Remove(g);
+    }
+    void disableAllActive(bool cor)
+    {
+        if (cor)
+        {
+            foreach (GameObject g in curActiveObjects)
+            {
+                g.SetActive(false);
+            }
+        }
+    }
+
     private void Awake()
     {
         //싱글턴
@@ -60,6 +77,12 @@ public class ObjectManager : MonoBehaviour
             }
             objPools.Add(ingr.ingrName, ingrQueue);
         }
+
+        curActiveObjects = new List<GameObject>();
+    }
+    private void Start()
+    {
+        EventManager.eventManager.BurgerCompleteEvent += disableAllActive;
     }
     //오브젝트 풀에서 오브젝트를 가지고 온다
     public GameObject getGameObject(string tag)
@@ -67,6 +90,7 @@ public class ObjectManager : MonoBehaviour
         if (objPools.ContainsKey(tag))
         {
             GameObject temp = objPools[tag].Dequeue();
+            curActiveObjects.Add(temp);
             objPools[tag].Enqueue(temp);
             return temp;
         }
