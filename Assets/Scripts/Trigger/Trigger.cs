@@ -40,6 +40,7 @@ public abstract class Trigger : MonoBehaviour
     {
         if (active)
         {
+            
             if(!click & !coolDown & Input.GetKeyDown(key))
             {
                 click = true;

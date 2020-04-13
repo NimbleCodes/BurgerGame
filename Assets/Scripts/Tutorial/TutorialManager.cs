@@ -23,29 +23,47 @@ class TutorialManager : MonoBehaviour
     }
 
     public GameObject TutorialPopUp;
-    bool cont = true;
+    bool cont = false;
+    bool fin = false;
     int diaIndex = 0;
+    int printing = 0;
     IEnumerator PrintDialogue(int bpNum)
     {
-        while(dialogueTable.dialogueGroup[bpNum].dialogue.Length > diaIndex)
+        TutorialPopUp.GetComponent<DialoguePopUp>().showDialoguePopUp();
+        while (dialogueTable.dialogueGroup[bpNum].dialogue.Length > diaIndex)
         {
-            if (cont)
+            if (!fin)
             {
-                if (TutorialPopUp == null)
-                    Debug.Log(dialogueTable.dialogueGroup[bpNum].dialogue[diaIndex++]);
+                if (cont)
+                {
+                    TutorialPopUp.GetComponent<DialoguePopUp>().setTextField(dialogueTable.dialogueGroup[bpNum].dialogue[diaIndex]);
+                    cont = false;
+                    fin = true;
+                }
                 else
                 {
-                    TutorialPopUp.GetComponent<DialoguePopUp>().showDialoguePopUp();
-                    TutorialPopUp.GetComponent<DialoguePopUp>().setTextField(dialogueTable.dialogueGroup[bpNum].dialogue[diaIndex++]);
+                    TutorialPopUp.GetComponent<DialoguePopUp>().setTextField(dialogueTable.dialogueGroup[bpNum].dialogue[diaIndex].Substring(0, printing++));
+                    if (printing >= dialogueTable.dialogueGroup[bpNum].dialogue[diaIndex].Length+1)
+                        fin = true;
                 }
-                cont = false;
+            }
+            else
+            {
+                if (cont)
+                {
+                    diaIndex++;
+                    printing = 0;
+                    cont = false;
+                    fin = false;
+                }
             }
             yield return null;
         }
-        cont = true;
+        cont = false;
+        fin = false;
+        printing = 0;
         diaIndex = 0;
-        if (TutorialPopUp != null)
-            TutorialPopUp.GetComponent<DialoguePopUp>().hideDialoguePopUp();
+        TutorialPopUp.GetComponent<DialoguePopUp>().hideDialoguePopUp();
         EventManager.eventManager.Invoke_GameResumeEvent("TutorialManager");
     }
     void OnBpReachedEvent(int bpnum)
