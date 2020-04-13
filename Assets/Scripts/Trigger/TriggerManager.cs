@@ -1,6 +1,9 @@
 ﻿using System;
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 public class TriggerManager : MonoBehaviour
 {
     //트리거 종류
@@ -32,6 +35,25 @@ public class TriggerManager : MonoBehaviour
         {"q", "w", "e", "a", "s", "d"},
         {"i", "o", "p", "k", "l", ";"}
     };
+    public TextMeshProUGUI[] Eat_TMap;
+    public TextMeshProUGUI[] Throw_TMap;
+
+    //UI에 버튼매핑 보여주기
+    void InitButtonMap(){
+        
+        for(int b = 0; b < 1; b++){
+            for(int n = 0; n < 6; n++)
+            {
+                Eat_TMap[n].text = triggerKeys[b,n].ToUpper();
+            }
+        }
+        for(int b = 1; b < 2; b++){
+            for(int n = 0; n < 6; n++){
+                Throw_TMap[n].text = triggerKeys[b,n].ToUpper();
+            }
+        }
+
+    }
 
     //트리거 초기화
     void InitTriggers()
@@ -88,6 +110,7 @@ public class TriggerManager : MonoBehaviour
             }
         }
     }
+    
 
     private void Start()
     {
@@ -107,8 +130,9 @@ public class TriggerManager : MonoBehaviour
                 triggerKeys[i, j] = defaultTriggerKeys[i, j];
             }
         }
-
+        Debug.Log(defaultTriggerKeys[1,0]);
         InitTriggers();
         RefreshTriggers();
+        InitButtonMap();
     }
 }
