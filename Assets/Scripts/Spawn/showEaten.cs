@@ -38,6 +38,7 @@ public class showEaten : MonoBehaviour
         spriteR.sprite= Resources.Load<Sprite>("Sprites/Ingredients/BelowBun");
         spriteR.enabled = true;
         ingr.GetComponent<BoxCollider2D>().size = new Vector3(2f,0.2f);
+        ingr.GetComponent<Transform>().position = new Vector3(8f,2.2f);
         ingr.GetComponent<Rigidbody2D>().gravityScale = 1f;
         ingr.GetComponent<Collider2D>().enabled = true;
 
