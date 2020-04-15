@@ -19,6 +19,10 @@ public class BurgerRecipeRe : MonoBehaviour
     }
     Menu menu;
     Image panel;
+
+    float Correctingre = 3;
+    float ingreLost = 1;
+    float ScoreCounter;
     void LoadMenuFromJson()
     {
         string menuJson = File.ReadAllText(Application.dataPath + "/Resources/Json/Recipe_test.json");
@@ -48,11 +52,14 @@ public class BurgerRecipeRe : MonoBehaviour
             //end of recipe
             if(curBurgerOrderInd == menu.BurgerMenu[curBurgerOrder].BurgerRecipe.Length)
             {
+                ScoreCounter += 5;
+                DisplayScore.Instance.AddScore(ScoreCounter);
                 EventManager.eventManager.Invoke_BurgerCompleteEvent(true);
                 GoNextRecipe();
                 showEaten.ShowObtain.InitiateObj();
                 curBurgerOrderInd = 0;
                 curIngrInventory.Clear();
+                ScoreCounter = 0;
             }
             else
             {
@@ -60,10 +67,14 @@ public class BurgerRecipeRe : MonoBehaviour
                 showEaten.ShowObtain.showEatenToUser(ingr_info);
                 //리스트에 삽입
                 curIngrInventory.Add(ingr_info);
+                //체력에 점수합산
+                HealthManager.Instance.addHealth(Correctingre);
+                ScoreCounter += 5;
             }
         }
         else
         {
+            ScoreCounter =0;
             EventManager.eventManager.Invoke_BurgerCompleteEvent(false);
             GoNextRecipe();
             showEaten.ShowObtain.InitiateObj();//보여주기 오브젝트 초기화

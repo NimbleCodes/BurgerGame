@@ -32,9 +32,10 @@ public class TriggerManager : MonoBehaviour
     //트리거의 키를 변화하고 싶을 때 triggerKeys를 변경하고 refresh호출
     public string[,] triggerKeys;
     public string[,] defaultTriggerKeys = { 
-        {"q", "w", "e", "a", "s", "d"},
-        {"i", "o", "p", "k", "l", ";"}
+        {"q", "w", "e", "i", "o", "p"},
+        {"a", "s", "d", "k", "l", ";"}
     };
+    
     public TextMeshProUGUI[] Eat_TMap;
     public TextMeshProUGUI[] Throw_TMap;
 

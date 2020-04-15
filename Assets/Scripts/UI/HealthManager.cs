@@ -23,7 +23,7 @@ public class HealthManager : MonoBehaviour
     float activeTime = 0;
     //True 이면 HP가 감소하기 시작한다.
     float correctBurger = 20;
-    float wrongBurger = 5;
+    float lostIngre = 1;
     bool decrStart = false;
     bool areusure = true;
     public Action N_Action;
@@ -34,11 +34,15 @@ public class HealthManager : MonoBehaviour
     
     Slider healthBar;
     #endregion
+    void Awake(){
+        Instance = this;
+    }
     void Start()
     {
         healthBar = GetComponent<Slider>();
         EventManager.eventManager.BurgerCompleteEvent += OnBurgerComplete;
         EventManager.eventManager.GameOverEvent += PopLeaderboard;
+        EventManager.eventManager.IngrDestroyedEvent += minusHealth;
     }
     
     void Update()
@@ -48,7 +52,7 @@ public class HealthManager : MonoBehaviour
         hpToTime = decrTime/maxHealth;
         //Debug.Log(curHealth);
 
-        #region ForTest(erasable)
+        /*#region ForTest(erasable)
         if(Input.GetKeyDown(KeyCode.A)&&!decrStart){
             startDecr();
         }else if(Input.GetKeyDown(KeyCode.A)&&decrStart){
@@ -63,9 +67,10 @@ public class HealthManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.F)){
             minusTime(10);
         }
+        #endregion*/
         decrHealth();
         isGameOver();
-        #endregion
+        
     }
 
  
@@ -84,9 +89,9 @@ public class HealthManager : MonoBehaviour
             activeTime -= correctBurger*hpToTime;
     }
     //hp만큼 체력을 감소한다.
-    public void minusHealth(float wrongBurger){
-            curHealth -= wrongBurger;
-            activeTime += wrongBurger*hpToTime;
+    public void minusHealth(){
+            curHealth -= lostIngre;
+            activeTime += lostIngre*hpToTime;
     }
     //decrTime을 감소시킨다.(hp가 다는 속도가 빨라지며, decrTime 은 decrLimit 이하로 내려가지 않는다.)
     public void minusTime(float time){
@@ -139,7 +144,7 @@ public class HealthManager : MonoBehaviour
         if(correct)
             addHealth(correctBurger);
         else{
-            minusHealth(wrongBurger);
+            //Do Nothing
         }
 
     }
