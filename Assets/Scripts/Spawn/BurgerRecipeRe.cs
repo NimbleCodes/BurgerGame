@@ -55,11 +55,14 @@ public class BurgerRecipeRe : MonoBehaviour
                 //점수합산
                 ScoreCounter += 1;
                 DisplayScore.Instance.AddScore(ScoreCounter);
-                EventManager.eventManager.Invoke_BurgerCompleteEvent(true);
+                //showEaten.ShowObtain.InitiateObj();
+                //EventManager.eventManager.Invoke_BurgerCompleteEvent(true);
                 GoNextRecipe();
                 curBurgerOrderInd = 0;
                 curIngrInventory.Clear();
                 ScoreCounter = 0;
+                //먹었다고 표시
+                showEaten.ShowObtain.showEatenToUser(ingr_info);
             }
             else
             {

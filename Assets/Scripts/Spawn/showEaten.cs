@@ -32,10 +32,12 @@ public class showEaten : MonoBehaviour
            ingr = GameObject.FindGameObjectWithTag("showEat"+i);
            spriteR = ingr.GetComponent<SpriteRenderer>();
            ingr.GetComponent<Rigidbody2D>().gravityScale = 0f;
+           ingr.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
            ingr.GetComponent<Transform>().position = new Vector3(8f,5f);
            ingr.GetComponent<BoxCollider2D>().enabled = false;
            spriteR.enabled = false;
        }
+       Debug.Log("fuck");
         ingr = GameObject.FindGameObjectWithTag("showEat0");
         spriteR = ingr.GetComponent<SpriteRenderer>();
         spriteR.sprite= Resources.Load<Sprite>("Sprites/Ingredients/BelowBun");
@@ -51,6 +53,7 @@ public class showEaten : MonoBehaviour
        if(ingre_info == Bun){
             ShowBun.showBun.getIndexCount(arrIndex);
             ShowBun.showBun.SetActiveBun(complete);
+            arrIndex = 0;
        }else{
             arrIndex++;
             ingr = GameObject.FindGameObjectWithTag("showEat"+arrIndex);
@@ -60,6 +63,7 @@ public class showEaten : MonoBehaviour
             ingr.GetComponent<BoxCollider2D>().size = new Vector3(2f,0.2f);
             ingr.GetComponent<Rigidbody2D>().gravityScale = 1f;
             ingr.GetComponent<BoxCollider2D>().enabled = true;
+            
             
        }
    }

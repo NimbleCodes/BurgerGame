@@ -16,19 +16,20 @@ public class ShowBun : MonoBehaviour
     }
     void Start()
     {
+        TopBun = GameObject.FindGameObjectWithTag("ShowBun");
+        sprite = TopBun.GetComponent<SpriteRenderer>();
         InitiateBun();
-        
     }
 
     public void InitiateBun(){
-        TopBun = GameObject.FindGameObjectWithTag("ShowBun");
-        sprite = TopBun.GetComponent<SpriteRenderer>();
         sprite.sprite = Resources.Load<Sprite>("Sprites/Ingredients/Bun");
         sprite.enabled = false;
         TopBun.GetComponent<BoxCollider2D>().size = new Vector2(2f,0.2f);
         TopBun.GetComponent<Rigidbody2D>().gravityScale = 0f;
         TopBun.GetComponent<Transform>().position = new Vector2(8f,5f);
+        TopBun.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         TopBun.GetComponent<BoxCollider2D>().enabled = false;
+        
         
     }
 
@@ -40,14 +41,17 @@ public class ShowBun : MonoBehaviour
         TopBun.GetComponent<Rigidbody2D>().gravityScale = 1f;
         TopBun.GetComponent<Transform>().position = new Vector2(8f,5f);
         TopBun.GetComponent<BoxCollider2D>().enabled = true;
-        //ObjectManager.objectManager.disableAllActive(complete);
+        
+        //ObjectManager.objectManager.disableAllActive(true);
     }
 
     //Bun이 밑에 재료의 collider와 만났을때 다시 시작
     void OnCollisionEnter2D(Collision2D col){
-        if(col.gameObject.tag == ("showEat" + getCount)){
+        
             showEaten.ShowObtain.InitiateObj();
-        }
+            InitiateBun();
+            EventManager.eventManager.Invoke_BurgerCompleteEvent(true);
+
     }
 
     //showEat 태그의 넘버링 받아오기
