@@ -32,13 +32,14 @@ public class ShowBun : MonoBehaviour
         
     }
 
+    //윗빵 먹었을때 Active 함수 (여기에 애니매이션 넣으면 됨.)
     public void SetActiveBun(bool complete){
         sprite.sprite = Resources.Load<Sprite>("Sprites/Ingredients/Bun");
-        sprite.enabled = complete;
+        sprite.enabled = true;
         TopBun.GetComponent<BoxCollider2D>().size = new Vector2(2f,0.2f);
         TopBun.GetComponent<Rigidbody2D>().gravityScale = 1f;
         TopBun.GetComponent<Transform>().position = new Vector2(8f,5f);
-        TopBun.GetComponent<BoxCollider2D>().enabled = complete;
+        TopBun.GetComponent<BoxCollider2D>().enabled = true;
         //ObjectManager.objectManager.disableAllActive(complete);
     }
 
