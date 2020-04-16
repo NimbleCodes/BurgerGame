@@ -26,6 +26,7 @@ TagManager:
   - showEat7
   - showEat8
   - showEat9
+  - ShowBun
   layers:
   - Default
   - TransparentFX

@@ -9,6 +9,9 @@ public class showEaten : MonoBehaviour
     public static showEaten ShowObtain;
     public GameObject ingr;//오브젝트 저장
     public SpriteRenderer spriteR;
+    public int TagCount=0;
+    public string Bun = "Bun";
+    public bool complete = true;
     public void Awake(){
         ShowObtain = this;
     }
@@ -30,7 +33,7 @@ public class showEaten : MonoBehaviour
            spriteR = ingr.GetComponent<SpriteRenderer>();
            ingr.GetComponent<Rigidbody2D>().gravityScale = 0f;
            ingr.GetComponent<Transform>().position = new Vector3(8f,5f);
-           ingr.GetComponent<Collider2D>().enabled = false;
+           ingr.GetComponent<BoxCollider2D>().enabled = false;
            spriteR.enabled = false;
        }
         ingr = GameObject.FindGameObjectWithTag("showEat0");
@@ -40,18 +43,24 @@ public class showEaten : MonoBehaviour
         ingr.GetComponent<BoxCollider2D>().size = new Vector3(2f,0.2f);
         ingr.GetComponent<Transform>().position = new Vector3(8f,2.2f);
         ingr.GetComponent<Rigidbody2D>().gravityScale = 1f;
-        ingr.GetComponent<Collider2D>().enabled = true;
+        ingr.GetComponent<BoxCollider2D>().enabled = true;
 
    }
    //먹은 ingre_name을 받아 맞는 sprite를 호출
    public void showEatenToUser(string ingre_info){
-        ingr = GameObject.FindGameObjectWithTag("showEat"+arrIndex);
-        spriteR = ingr.GetComponent<SpriteRenderer>();
-        spriteR.sprite= Resources.Load<Sprite>("Sprites/Ingredients/" + ingre_info);
-        spriteR.enabled = true;
-        ingr.GetComponent<BoxCollider2D>().size = new Vector3(2f,0.2f);
-        ingr.GetComponent<Rigidbody2D>().gravityScale = 1f;
-        ingr.GetComponent<Collider2D>().enabled = true;
-        arrIndex++;
+       if(ingre_info == Bun){
+            ShowBun.showBun.getIndexCount(arrIndex);
+            ShowBun.showBun.SetActiveBun(complete);
+       }else{
+            arrIndex++;
+            ingr = GameObject.FindGameObjectWithTag("showEat"+arrIndex);
+            spriteR = ingr.GetComponent<SpriteRenderer>();
+            spriteR.sprite= Resources.Load<Sprite>("Sprites/Ingredients/" + ingre_info);
+            spriteR.enabled = true;
+            ingr.GetComponent<BoxCollider2D>().size = new Vector3(2f,0.2f);
+            ingr.GetComponent<Rigidbody2D>().gravityScale = 1f;
+            ingr.GetComponent<BoxCollider2D>().enabled = true;
+            
+       }
    }
 }

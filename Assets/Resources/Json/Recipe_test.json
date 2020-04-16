@@ -6,7 +6,8 @@
                 "Lettuce",
                 "Soylent",
                 "Beef",
-                "Soylent"
+                "Soylent",
+                "Bun"
             ]
         },
         {
@@ -14,7 +15,8 @@
             "BurgerRecipe":[
                 "Lettuce",
                 "Soylent",
-                "Beef"
+                "Beef",
+                "Bun"
             ]
         }
     ]

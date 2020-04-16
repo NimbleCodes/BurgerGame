@@ -11,6 +11,10 @@
     {
       "ingrClass": "Vege",
       "ingrName": "Lettuce"
-    }
+    },
+    {
+      "ingrClass": "Bun",
+      "ingrName": "Bun"
+    } 
   ]
 }

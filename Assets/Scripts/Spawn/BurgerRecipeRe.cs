@@ -53,11 +53,10 @@ public class BurgerRecipeRe : MonoBehaviour
             if(curBurgerOrderInd == menu.BurgerMenu[curBurgerOrder].BurgerRecipe.Length)
             {
                 //점수합산
-                ScoreCounter += 5;
+                ScoreCounter += 1;
                 DisplayScore.Instance.AddScore(ScoreCounter);
                 EventManager.eventManager.Invoke_BurgerCompleteEvent(true);
                 GoNextRecipe();
-                showEaten.ShowObtain.InitiateObj();
                 curBurgerOrderInd = 0;
                 curIngrInventory.Clear();
                 ScoreCounter = 0;
@@ -70,7 +69,6 @@ public class BurgerRecipeRe : MonoBehaviour
                 curIngrInventory.Add(ingr_info);
                 //체력 추가
                 HealthManager.Instance.addHealth(Correctingre);
-                ScoreCounter += 5;
             }
         }
         else

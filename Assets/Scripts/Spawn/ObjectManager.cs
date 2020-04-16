@@ -38,7 +38,7 @@ public class ObjectManager : MonoBehaviour
     {
         curActiveObjects.Remove(g);
     }
-    void disableAllActive(bool cor)
+    public void disableAllActive(bool cor)
     {
         if (cor)
         {
