@@ -64,7 +64,7 @@ public class showEaten : MonoBehaviour
         }
         else
         {
-            arrIndex++;
+            
             ingr = GameObject.FindGameObjectWithTag("showEat" + arrIndex);
             spriteR = ingr.GetComponent<SpriteRenderer>();
             spriteR.sprite = Resources.Load<Sprite>("Sprites/Ingredients/" + ingre_info);
@@ -72,7 +72,7 @@ public class showEaten : MonoBehaviour
             ingr.GetComponent<BoxCollider2D>().size = new Vector3(2f, 0.2f);
             ingr.GetComponent<Rigidbody2D>().gravityScale = 1f;
             ingr.GetComponent<BoxCollider2D>().enabled = true;
-
+            arrIndex++;
 
         }
     }

@@ -55,8 +55,6 @@ public class BurgerRecipeRe : MonoBehaviour
                 //점수합산
                 ScoreCounter += 1;
                 DisplayScore.Instance.AddScore(ScoreCounter);
-                //showEaten.ShowObtain.InitiateObj();
-                //EventManager.eventManager.Invoke_BurgerCompleteEvent(true);
                 GoNextRecipe();
                 curBurgerOrderInd = 0;
                 curIngrInventory.Clear();
@@ -98,9 +96,6 @@ public class BurgerRecipeRe : MonoBehaviour
 
     public void currrecTotop(ref string[] giveRecipie){
         giveRecipie = menu.BurgerMenu[curBurgerOrder].BurgerRecipe;
-        /*for (int i = 0; i < giveRecipie.Length; i++){
-            giveRecipie[i] = menu.BurgerMenu[curBurgerOrder].BurgerRecipe[i];
-        }*/
     } 
     public void correctIngre(){
         panel = GameObject.FindGameObjectWithTag("T_Panel"+(curBurgerOrderInd)).GetComponent<Image>();
