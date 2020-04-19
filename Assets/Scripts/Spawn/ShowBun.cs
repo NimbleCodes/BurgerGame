@@ -21,7 +21,6 @@ public class ShowBun : MonoBehaviour
         InitiateBun();
     }
 
-    //Object 초기화
     public void InitiateBun(){
         sprite.sprite = Resources.Load<Sprite>("Sprites/Ingredients/Bun");
         sprite.enabled = false;
