@@ -48,6 +48,21 @@ public class ObjectManager : MonoBehaviour
             }
         }
     }
+    void OnGamePaused()
+    {
+        foreach(GameObject g in curActiveObjects)
+        {
+            g.GetComponent<Rigidbody2D>().gravityScale = 0;
+            g.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        }
+    }
+    void OnGameResume()
+    {
+        foreach (GameObject g in curActiveObjects)
+        {
+            g.GetComponent<Rigidbody2D>().gravityScale = 1;
+        }
+    }
 
     private void Awake()
     {
@@ -83,7 +98,10 @@ public class ObjectManager : MonoBehaviour
     private void Start()
     {
         EventManager.eventManager.BurgerCompleteEvent += disableAllActive;
+        EventManager.eventManager.GamePausedEvent += OnGamePaused;
+        EventManager.eventManager.GameResumeEvent += OnGameResume;
     }
+
     //오브젝트 풀에서 오브젝트를 가지고 온다
     public GameObject getGameObject(string tag)
     {

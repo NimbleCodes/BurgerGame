@@ -37,8 +37,6 @@ public class BurgerRecipeRe : MonoBehaviour
     void GoNextRecipe()
     {
         curBurgerOrder = ChooseRecipe();
-
-        Debug.Log("Recipe Changed");
     }
 
     List<string> curIngrInventory;
@@ -55,8 +53,6 @@ public class BurgerRecipeRe : MonoBehaviour
                 //점수합산
                 ScoreCounter += 1;
                 DisplayScore.Instance.AddScore(ScoreCounter);
-                //showEaten.ShowObtain.InitiateObj();
-                //EventManager.eventManager.Invoke_BurgerCompleteEvent(true);
                 GoNextRecipe();
                 curBurgerOrderInd = 0;
                 curIngrInventory.Clear();
