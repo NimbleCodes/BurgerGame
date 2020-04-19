@@ -37,8 +37,6 @@ public class BurgerRecipeRe : MonoBehaviour
     void GoNextRecipe()
     {
         curBurgerOrder = ChooseRecipe();
-
-        Debug.Log("Recipe Changed");
     }
 
     List<string> curIngrInventory;

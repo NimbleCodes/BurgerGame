@@ -42,17 +42,14 @@ public class ShowBun : MonoBehaviour
         TopBun.GetComponent<Rigidbody2D>().gravityScale = 1f;
         TopBun.GetComponent<Transform>().position = new Vector2(8f,5f);
         TopBun.GetComponent<BoxCollider2D>().enabled = true;
-        
-        //ObjectManager.objectManager.disableAllActive(true);
     }
 
     //Bun이 밑에 재료의 collider와 만났을때 다시 시작
     void OnCollisionEnter2D(Collision2D col){
-        
-            showEaten.ShowObtain.InitiateObj();
-            InitiateBun();
-            EventManager.eventManager.Invoke_BurgerCompleteEvent(true);
-
+        showEaten.ShowObtain.InitiateObj();
+        InitiateBun();
+        EventManager.eventManager.Invoke_GameResumeEvent("InventoryUI");
+        EventManager.eventManager.Invoke_BurgerCompleteEvent(true);
     }
 
     //showEat 태그의 넘버링 받아오기
