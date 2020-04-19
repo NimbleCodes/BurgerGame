@@ -2178,7 +2178,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 547143925}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dadc34defb2f8242b3863b6db675b7c, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f1fe0a6c1855304eb328de86a01e882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &547143934
@@ -9039,9 +9039,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingre: Lettuce
   arrIndex: 0
-  ingr: {fileID: 0}
+  ingr: []
   spriteR: {fileID: 0}
-  TagCount: 0
   Bun: Bun
   complete: 1
 --- !u!4 &2098643097
