@@ -43,10 +43,19 @@ public class SpawnerManager : MonoBehaviour
             spawnerArr[Difficulty.difficulty.activationOrder[i]].GetComponent<Spawner>().enabled = true;
         }
     }
+    void DisableAllSpawners()
+    {
+        foreach(GameObject g in spawnerArr)
+        {
+            g.GetComponent<Spawner>().active = false;
+        }
+    }
 
     private void Start()
     {
         EventManager.eventManager.RefreshEvent += RefreshSpawners;
+        EventManager.eventManager.GamePausedEvent += DisableAllSpawners;
+        EventManager.eventManager.GameResumeEvent += RefreshSpawners;
 
         numSpawner = Difficulty.difficulty.maxNumSpawner;
         spawnerArr = new GameObject[numSpawner];

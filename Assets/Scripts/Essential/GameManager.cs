@@ -18,24 +18,10 @@ public class GameManager : MonoBehaviour
         return ret;
     }
 
-    void OnGamePaused()
-    {
-        Time.timeScale = 0;
-    }
-    void OnGameResumed()
-    {
-        Time.timeScale = 1;
-    }
-
     private void Awake()
     {
         gameManager = this;
         rand = new System.Random(Guid.NewGuid().GetHashCode());
         randMut = new Mutex();
-    }
-    private void Start()
-    {
-        EventManager.eventManager.GamePausedEvent += OnGamePaused;
-        EventManager.eventManager.GameResumeEvent += OnGameResumed;
     }
 }

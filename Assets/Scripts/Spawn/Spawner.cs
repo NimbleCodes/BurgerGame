@@ -9,12 +9,16 @@ public class Spawner : MonoBehaviour
     {
         //active가 false -> true가 되면 스포닝 코루틴 시작
         set {
-            if (value & !_active)
+            if (value & !_active & !coroutineRunning)
+            {
+                coroutineRunning = true;
                 StartCoroutine("SpawnCoroutine");
+            }
             _active = value;
         }
         get { return _active; }
     }
+    bool coroutineRunning = false;
     //스포닝 사이 시간
     public float nextSpawnTime;
     //현재는 안쓰는 중 >> 리지드 바디 중력 기능 사용중
@@ -36,10 +40,14 @@ public class Spawner : MonoBehaviour
     IEnumerator SpawnCoroutine()
     {
         yield return new WaitForSeconds(nextSpawnTime);
-        string nameObjToSpawn = ChooseObjToSpawn();
-        SpawnObj(nameObjToSpawn, gameObject.GetComponent<Transform>().position);
         if (active)
+        {
+            string nameObjToSpawn = ChooseObjToSpawn();
+            SpawnObj(nameObjToSpawn, gameObject.GetComponent<Transform>().position);
             StartCoroutine("SpawnCoroutine");
+        }
+        else
+            coroutineRunning = false;
     }
 
     private void Awake()

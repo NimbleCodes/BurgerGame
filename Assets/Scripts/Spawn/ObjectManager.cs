@@ -7,7 +7,7 @@ public class ObjectManager : MonoBehaviour
 {
     //싱글턴
     public static ObjectManager objectManager;
-    
+
     Dictionary<string, Queue<GameObject>> objPools;
     //각 오브젝트를 몇개 생성 할 것인가
     int poolSize = 10;
@@ -48,6 +48,21 @@ public class ObjectManager : MonoBehaviour
             }
         }
     }
+    void OnGamePaused()
+    {
+        foreach (GameObject g in curActiveObjects)
+        {
+            g.GetComponent<Rigidbody2D>().gravityScale = 0;
+            g.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        }
+    }
+    void OnGameResume()
+    {
+        foreach (GameObject g in curActiveObjects)
+        {
+            g.GetComponent<Rigidbody2D>().gravityScale = 1;
+        }
+    }
 
     private void Awake()
     {
@@ -57,12 +72,12 @@ public class ObjectManager : MonoBehaviour
         objPools = new Dictionary<string, Queue<GameObject>>();
         //Json파일에서 재료의 종류 받아옴
         loadBurgerIngreFromJson();
-        foreach(Ingr ingr in burgerIngrArr.ingrArr)
+        foreach (Ingr ingr in burgerIngrArr.ingrArr)
         {
             GameObject refGroupObj = new GameObject(ingr.ingrName + "IngrGroup");
             Queue<GameObject> ingrQueue = new Queue<GameObject>();
             //오브젝트 풀 초기화
-            for(int i = 0; i < poolSize; i++)
+            for (int i = 0; i < poolSize; i++)
             {
                 GameObject temp = Instantiate((GameObject)Resources.Load("Prefab/ingrPrefab"));
                 //이름 지정과 동시에 스프라이트를 가지고 옴. Ingredient 클래스 참조
@@ -83,7 +98,10 @@ public class ObjectManager : MonoBehaviour
     private void Start()
     {
         EventManager.eventManager.BurgerCompleteEvent += disableAllActive;
+        EventManager.eventManager.GamePausedEvent += OnGamePaused;
+        EventManager.eventManager.GameResumeEvent += OnGameResume;
     }
+
     //오브젝트 풀에서 오브젝트를 가지고 온다
     public GameObject getGameObject(string tag)
     {
