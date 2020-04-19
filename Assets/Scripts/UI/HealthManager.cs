@@ -50,24 +50,6 @@ public class HealthManager : MonoBehaviour
         //test
         //hp 증감의 쉬운 계산을 위해 이용된다.
         hpToTime = decrTime/maxHealth;
-        //Debug.Log(curHealth);
-
-        /*#region ForTest(erasable)
-        if(Input.GetKeyDown(KeyCode.A)&&!decrStart){
-            startDecr();
-        }else if(Input.GetKeyDown(KeyCode.A)&&decrStart){
-            stopDecr();
-        }
-        if(Input.GetKeyDown(KeyCode.S)){
-            addHealth(20);
-        }
-        if(Input.GetKeyDown(KeyCode.D)){
-            minusHealth(10);
-        }
-        if(Input.GetKeyDown(KeyCode.F)){
-            minusTime(10);
-        }
-        #endregion*/
         decrHealth();
         isGameOver();
         
