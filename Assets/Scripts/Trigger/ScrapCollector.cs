@@ -7,6 +7,7 @@ public class ScrapCollector : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         other.gameObject.SetActive(false);
+        ObjectManager.objectManager.removeFromCurActiveList(other.gameObject);
         EventManager.eventManager.Invoke_IngrDestroyedEvent();
     }
     private void OnDrawGizmos()

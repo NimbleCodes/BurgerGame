@@ -2040,6 +2040,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 547143932}
+  - component: {fileID: 547143930}
   - component: {fileID: 547143929}
   - component: {fileID: 547143928}
   - component: {fileID: 547143927}
@@ -2047,7 +2048,6 @@ GameObject:
   - component: {fileID: 547143931}
   - component: {fileID: 547143934}
   - component: {fileID: 547143933}
-  - component: {fileID: 547143930}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -2135,7 +2135,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 547143925}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87d3ae9fe2d6da34297ee653ecd5afd4, type: 3}
+  m_Script: {fileID: 11500000, guid: 202349508c9872a4ba5d70c94ecaa13a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &547143931

@@ -13,11 +13,7 @@ public class Ingredient : MonoBehaviour
         {
             _ingrName = value;
             string spritePath = "Sprites/Ingredients/" + _ingrName;
-            gameObject.AddComponent<SpriteRenderer>();
             gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(spritePath);
-            gameObject.AddComponent<BoxCollider2D>();
-            gameObject.AddComponent<Rigidbody2D>();
-            gameObject.layer = LayerMask.NameToLayer("Ingredients");
         }
     }
     public string ingrClass
