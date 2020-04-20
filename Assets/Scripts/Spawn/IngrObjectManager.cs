@@ -35,6 +35,7 @@ public class IngrObjectManager : ObjectManager
             {
                 GameObject newObj = new GameObject(i.ingrName + j.ToString());
                 newObj.transform.parent = refParent.transform;
+                ApplyToAllObj(newObj);
                 newObj.AddComponent<Ingredient>();
                 newObj.GetComponent<Ingredient>().ingrName = i.ingrName;
                 newObj.SetActive(false);

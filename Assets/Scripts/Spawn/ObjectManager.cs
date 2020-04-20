@@ -26,12 +26,16 @@ public abstract class ObjectManager : MonoBehaviour
     {
         if (cor)
         {
-            for(int i = 0; i < curActiveObj.Count; i++)
+            foreach (GameObject g in curActiveObj)
             {
-                GameObject temp = curActiveObj[0];
-                temp.SetActive(false);
+                g.SetActive(false);
             }
+            curActiveObj.Clear();
         }
+    }
+    protected virtual void ApplyToAllObj(GameObject g)
+    {
+        g.AddComponent<TrackActive>();
     }
 
     //REACT TO EVENTS
@@ -75,15 +79,6 @@ public abstract class ObjectManager : MonoBehaviour
         spawnableObjNames = new List<string>();
         curActiveObj = new List<GameObject>();
         InitObjPools();
-        foreach(string str in spawnableObjNames)
-        {
-            for(int i = 0; i < poolSize; i++)
-            {
-                GameObject temp = objPools[str].Dequeue();
-                temp.AddComponent<TrackActive>();
-                objPools[str].Enqueue(temp);
-            }
-        }
     }
     private void Start()
     {
