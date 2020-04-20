@@ -28,8 +28,7 @@ public abstract class ObjectManager : MonoBehaviour
         {
             for(int i = 0; i < curActiveObj.Count; i++)
             {
-                GameObject temp = curActiveObj[0];
-                temp.SetActive(false);
+                curActiveObj[i].SetActive(false);
             }
         }
     }
