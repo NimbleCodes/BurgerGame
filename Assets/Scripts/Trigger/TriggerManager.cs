@@ -131,6 +131,7 @@ public class TriggerManager : MonoBehaviour
                 triggerKeys[i, j] = defaultTriggerKeys[i, j];
             }
         }
+        Debug.Log(defaultTriggerKeys[1,0]);
         InitTriggers();
         RefreshTriggers();
         InitButtonMap();
