@@ -35,7 +35,32 @@ public class TriggerManager : MonoBehaviour
         {"q", "w", "e", "i", "o", "p"},
         {"a", "s", "d", "k", "l", ";"}
     };
-    
+    /* 트리거 변환법칙
+        - 첫번째 좌우반전
+        - 두번째 상하반전
+        - 세번째 정상키 + 키늘림
+    */
+    public string[,,] keyPatterns = {
+        {
+            {"i", "o", "p", "q", "w", "e"},
+            {";", "l", ";", "a", "s", "d"}
+        },
+        {   
+            {"a", "s", "d", "k", "l", ";"},
+            {"q", "w", "e", "i", "o", "p"},
+        },
+        {
+            {";", "l", ";", "a", "s", "d"},
+            {"i", "o", "p", "q", "w", "e"}
+        }
+    };
+    public string[,] startTriggerKeys = {
+        {" ", "w", "e", "i", "o", " "},
+        {" ", "s", "d", "k", "l", " "}
+    };
+    public string[,] level0;  //
+    public string[,] level1;
+    public string[,] level2;
     public TextMeshProUGUI[] Eat_TMap;
     public TextMeshProUGUI[] Throw_TMap;
 
@@ -128,7 +153,7 @@ public class TriggerManager : MonoBehaviour
         {
             for (int j = 0; j < Difficulty.difficulty.maxNumSpawner; j++)
             {
-                triggerKeys[i, j] = defaultTriggerKeys[i, j];
+                triggerKeys[i, j] = startTriggerKeys[i, j];
             }
         }
         InitTriggers();
