@@ -7,8 +7,10 @@ public class DisplayScore : MonoBehaviour
 {
     public float score = 0;
     public static DisplayScore Instance;//싱글턴
+    TriggerManager temp;
     void Awake(){
         Instance = this;
+        temp = FindObjectOfType<TriggerManager>();
     }
     private void Start()
     {
@@ -19,6 +21,7 @@ public class DisplayScore : MonoBehaviour
     {
         if (success){
             gameObject.GetComponent<TextMeshProUGUI>().text = "Burgers: \n\n" + score.ToString();
+            temp.changeTriggerkeys_radom();
         }
     }
 
