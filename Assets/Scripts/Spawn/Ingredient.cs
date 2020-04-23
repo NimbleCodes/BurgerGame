@@ -12,9 +12,10 @@ public class Ingredient : MonoBehaviour
         set
         {
             _ingrName = value;
-            string spritePath = "Sprites/Ingredients/" + _ingrName;
+            string spritePath = "Sprites/ingre_rail/" + _ingrName;
             gameObject.AddComponent<SpriteRenderer>();
             gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(spritePath);
+            gameObject.GetComponent<Transform>().localScale = new Vector3(3,3);
             gameObject.AddComponent<BoxCollider2D>();
             gameObject.AddComponent<Rigidbody2D>();
             gameObject.layer = LayerMask.NameToLayer("Ingredients");

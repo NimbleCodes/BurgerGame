@@ -18,7 +18,7 @@ public class RecipieonTop : MonoBehaviour
                 myPanel = GameObject.FindGameObjectWithTag("T_Panel"+(i+1)).GetComponent<Image>();//태그로서 패널 찾아옴
                 myPanel.color = UnityEngine.Color.black;//패널 색상 초기화
                 if(i < RecipietoShow.Length){//보여줄 레시비 갯수 만큼만 이미지를 보여주고 나머지는 비활성화
-                    myImage.sprite = Resources.Load<Sprite>("Sprites/Ingredients/" + RecipietoShow[i]);
+                    myImage.sprite = Resources.Load<Sprite>("Sprites/ingre_rail/" + RecipietoShow[i]);
                     myImage.enabled = true;
                 }else{
                     myImage.enabled=false;
