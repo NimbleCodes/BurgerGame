@@ -19,9 +19,12 @@ public class DisplayScore : MonoBehaviour
 
     void OnBurgerCompleteEvent(bool success)
     {
-        if (success){
+        if (success && score==5){
             gameObject.GetComponent<TextMeshProUGUI>().text = "Burgers: \n\n" + score.ToString();
-            temp.changeTriggerkeys_radom();
+            temp.changeTriggerKeys_random();
+        }
+        if(success){
+            gameObject.GetComponent<TextMeshProUGUI>().text = "Burgers: \n\n" + score.ToString();
         }
     }
 
