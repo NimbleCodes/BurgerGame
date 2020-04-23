@@ -29,44 +29,11 @@ public class TriggerManager : MonoBehaviour
     public float yPosByScreenPerc, xPosByScreenPerc;
     int numTriggerSet;
 
-    //트리거의 키를 변화하고 싶을 때 triggerKeys를 변경하고 refresh호출
-    public string[,] triggerKeys;
-    public string[,] defaultTriggerKeys = { 
-        {"q", "w", "e", "i", "o", "p"},
-        {"a", "s", "d", "k", "l", ";"}
-    };
-    /* 트리거 변환법칙
-        - 첫번째 좌우반전
-        - 두번째 상하반전
-        - 세번째 정상키 + 키늘림
-    */
-    public string[,,] keyPatterns = {
-        {
-            {"i", "o", "p", "q", "w", "e"},
-            {";", "l", ";", "a", "s", "d"}
-        },
-        {   
-            {"a", "s", "d", "k", "l", ";"},
-            {"q", "w", "e", "i", "o", "p"},
-        },
-        {
-            {";", "l", ";", "a", "s", "d"},
-            {"i", "o", "p", "q", "w", "e"}
-        }
-    };
-    public string[,] startTriggerKeys = {
-        {" ", "w", "e", "i", "o", " "},
-        {" ", "s", "d", "k", "l", " "}
-    };
-    public string[,] level0;  //
-    public string[,] level1;
-    public string[,] level2;
     public TextMeshProUGUI[] Eat_TMap;
     public TextMeshProUGUI[] Throw_TMap;
 
     //UI에 버튼매핑 보여주기
     void InitButtonMap(){
-        
         for(int b = 0; b < 1; b++){
             for(int n = 0; n < 6; n++)
             {
@@ -78,7 +45,6 @@ public class TriggerManager : MonoBehaviour
                 Throw_TMap[n].text = triggerKeys[b,n].ToUpper();
             }
         }
-
     }
 
     //트리거 초기화
@@ -136,7 +102,73 @@ public class TriggerManager : MonoBehaviour
             }
         }
     }
-    
+
+    //트리거의 키를 변화하고 싶을 때 triggerKeys를 변경하고 refresh호출
+    enum patternNames
+    {
+        Default = 0,
+        Pattern0,
+        Pattern1,
+        Pattern2
+    };
+    public string[,] triggerKeys;
+    /* 트리거 변환법칙
+        - 디폴트
+        - 첫번째 좌우반전
+        - 두번째 상하반전
+        - 세번째 정상키 + 키늘림
+    */
+    public string[,,] keyPatterns = {
+        {
+            {"q", "w", "e", "i", "o", "p"},
+            {"a", "s", "d", "k", "l", ";"}
+        },
+        {
+            {"i", "o", "p", "q", "w", "e"},
+            {";", "l", ";", "a", "s", "d"}
+        },
+        {
+            {"a", "s", "d", "k", "l", ";"},
+            {"q", "w", "e", "i", "o", "p"},
+        },
+        {
+            {";", "l", ";", "a", "s", "d"},
+            {"i", "o", "p", "q", "w", "e"}
+        }
+    };
+    public void changeTriggerKeys_index(int ind)
+    {
+        int numActive = Difficulty.difficulty.diffTable.stageDiffVals[Difficulty.difficulty.curDiff].numActiveSpawner;
+        for (int i = 0; i < Enum.GetNames(typeof(triggerType)).Length; i++)
+        {
+            for(int j = 0; j < numTriggerSet; j++)
+            {
+                bool active = false;
+                for(int k = 0; k < numActive; k++)
+                {
+                    if(Difficulty.difficulty.activationOrder[k] == j)
+                    {
+                        active = true;
+                    }
+                }
+                if (!active)
+                {
+                    triggerKeys[i, j] = " ";
+                }
+                else
+                {
+                    triggerKeys[i, j] = keyPatterns[ind, i, j];
+                }
+            }
+        }
+        RefreshTriggers();
+        InitButtonMap();
+    }
+    public void changeTriggerKeys_random()
+    {
+        int randNum = GameManager.gameManager.getRandNum(Enum.GetNames(typeof(patternNames)).Length);
+        changeTriggerKeys_index(randNum);
+    }
 
     private void Start()
     {
@@ -149,15 +181,13 @@ public class TriggerManager : MonoBehaviour
             triggerSetArr[i].triggers = new GameObject[Enum.GetNames(typeof(triggerType)).Length];
         }
         triggerKeys = new string[Enum.GetNames(typeof(triggerType)).Length, Difficulty.difficulty.maxNumSpawner];
-        for (int i = 0; i < Enum.GetNames(typeof(triggerType)).Length; i++)
-        {
-            for (int j = 0; j < Difficulty.difficulty.maxNumSpawner; j++)
-            {
-                triggerKeys[i, j] = startTriggerKeys[i, j];
-            }
-        }
         InitTriggers();
-        RefreshTriggers();
-        InitButtonMap();
+        changeTriggerKeys_index(0);
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)){
+            changeTriggerKeys_random();
+        }
     }
 }
