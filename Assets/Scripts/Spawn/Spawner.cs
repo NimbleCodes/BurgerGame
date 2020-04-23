@@ -36,6 +36,7 @@ public class Spawner : MonoBehaviour
         GameObject temp = ObjectManager.objectManager.GetGameObject(objName);
         temp.transform.position = position;
         temp.SetActive(true);
+        ObjectManager.objectManager.AddToActiveList(temp);
     }
     //일정 시간마다 오브젝트를 생성하는 코루틴
     IEnumerator SpawnCoroutine()

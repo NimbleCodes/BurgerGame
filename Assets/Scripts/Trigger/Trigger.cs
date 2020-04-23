@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public abstract class Trigger : MonoBehaviour
+public class Trigger : MonoBehaviour
 {
     public bool active;
     public float triggOnTime = 0.25f;
@@ -65,7 +65,10 @@ public abstract class Trigger : MonoBehaviour
             }
         }
     }
-    protected abstract void Action(GameObject g);
+    protected virtual void Action(GameObject g)
+    {
+        ObjectManager.objectManager.RemoveFromActiveList(g);
+    }
 
     //Test code 나중에 삭제 할 것
     private void OnDrawGizmos()

@@ -26,6 +26,7 @@ public abstract class ObjectManager : MonoBehaviour
     {
         if (cor)
         {
+            Debug.Log(curActiveObj.Count);
             for(int i = 0; i < curActiveObj.Count; i++)
             {
                 curActiveObj[i].SetActive(false);
@@ -74,15 +75,6 @@ public abstract class ObjectManager : MonoBehaviour
         spawnableObjNames = new List<string>();
         curActiveObj = new List<GameObject>();
         InitObjPools();
-        foreach(string str in spawnableObjNames)
-        {
-            for(int i = 0; i < poolSize; i++)
-            {
-                GameObject temp = objPools[str].Dequeue();
-                temp.AddComponent<TrackActive>();
-                objPools[str].Enqueue(temp);
-            }
-        }
     }
     private void Start()
     {
