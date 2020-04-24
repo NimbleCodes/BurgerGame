@@ -55,12 +55,21 @@ public class showEaten : MonoBehaviour
     //먹은 ingre_name을 받아 맞는 sprite를 호출
     public void showEatenToUser(string ingre_info)
     {
-        if (ingre_info == Bun || ingre_info == "HeadCrab")
+        if (ingre_info == Bun || ingre_info == "HeadCrap")
         {
             EventManager.eventManager.Invoke_GamePausedEvent("InventoryUI");
             ShowBun.showBun.getIndexCount(arrIndex);
             ShowBun.showBun.SetActiveBun();
             arrIndex = 0;
+        }
+        else if(ingre_info=="FaceHugger"){
+            spriteR = ingr[arrIndex].GetComponent<SpriteRenderer>();
+            spriteR.sprite = Resources.Load<Sprite>("Sprites/Ingredients/" + ingre_info);
+            spriteR.enabled = true;
+            ingr[arrIndex].GetComponent<BoxCollider2D>().size = new Vector3(2f, 0.1f);
+            ingr[arrIndex].GetComponent<Rigidbody2D>().gravityScale = 1f;
+            ingr[arrIndex].GetComponent<BoxCollider2D>().enabled = true;
+            arrIndex++;
         }
         else
         {

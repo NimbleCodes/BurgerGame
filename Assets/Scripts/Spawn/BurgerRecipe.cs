@@ -25,7 +25,7 @@ public class BurgerRecipe : MonoBehaviour
     float ScoreCounter;
     void LoadMenuFromJson()
     {
-        string menuJson = File.ReadAllText(Application.dataPath + "/Resources/Json/Recipe_test.json");
+        string menuJson = File.ReadAllText(Application.dataPath + "/Resources/Json/Recipe.json");
         menu = JsonUtility.FromJson<Menu>(menuJson);
     }
 

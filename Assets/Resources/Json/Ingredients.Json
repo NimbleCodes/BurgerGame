@@ -15,6 +15,34 @@
     {
       "ingrClass": "Bun",
       "ingrName": "Bun"
-    } 
+    },
+    {
+      "ingrClass": "Cheese",
+      "ingrName": "Cheese"
+    },
+    {
+      "ingrClass": "FaceHugger",
+      "ingrName": "FaceHugger"
+    },
+    {
+      "ingrClass": "HeadCrap",
+      "ingrName": "HeadCrap"
+    },
+    {
+      "ingrClass": "Insect",
+      "ingrName": "Insect"
+    },
+    {
+      "ingrClass": "Marker",
+      "ingrName": "Marker"
+    },
+    {
+      "ingrClass": "Porg",
+      "ingrName": "Porg"
+    },
+    {
+      "ingrClass": "Tomato",
+      "ingrName": "Tomato"
+    }
   ]
 }
