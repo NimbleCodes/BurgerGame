@@ -36,7 +36,7 @@ public class ShowBun : MonoBehaviour
     }
 
     //윗빵 먹었을때 Active 함수 
-    public void SetActiveBun(bool complete)
+    public void SetActiveBun()
     {
         sprite.sprite = Resources.Load<Sprite>("Sprites/Ingredients/Bun");
         sprite.enabled = true;
