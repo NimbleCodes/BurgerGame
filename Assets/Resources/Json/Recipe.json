@@ -1,47 +1,55 @@
 {
   "BurgerMenu": [
     {
-      "BurgerName": "DoubleCheeseBurger",
+      "BurgerName": "DoublerMarker",
       "BurgerRecipe": [
-        "Lettuce",
+        "Sauce",
+        "Onion",
+        "Marker",
         "Cheese",
-        "Beef",
-        "Buns"
+        "Marker",
+        "Bun"
       ]
     },
     {
-      "BurgerName": "TestBurger",
+      "BurgerName": "SupremeFaceHugger",
       "BurgerRecipe": [
-        "Lettuce",
-        "Beef"
-      ]
-    },
-    {
-      "BurgerName": "CheeseBurger",
-      "BurgerRecipe": [
-        "Lettuce",
-        "Cheese",
-        "Beef",
-        "Buns"
-      ]
-    },
-
-    {
-      "BurgerName": "ChickenBurger",
-      "BurgerRecipe": [
-        "Lettuce",
-        "Chicken",
-        "Buns"
-      ]
-    },
-
-    {
-      "BurgerName": "TomatoChickenBurger",
-      "BurgerRecipe": [
-        "Lettuce",
-        "Chicken",
+        "FaceHugger",
         "Tomato",
-        "Buns"
+        "Beef",
+        "Mushroom",
+        "Bun"
+      ]
+    },
+    {
+      "BurgerName": "TenderPorg",
+      "BurgerRecipe": [
+        "Lettuce",
+        "Chicken",
+        "Porg",
+        "Sauce",
+        "Bun"
+      ]
+    },
+
+    {
+      "BurgerName": "HumanDelight",
+      "BurgerRecipe": [
+        "Soylent",
+        "Cheese",
+        "Pickle",
+        "Bun"
+      ]
+    },
+
+    {
+      "BurgerName": "ProteinKing",
+      "BurgerRecipe": [
+        "Tomato",
+        "Insect",
+        "Praun",
+        "Pickle",
+        "Bun"
       ]
     },
 
