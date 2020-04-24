@@ -54,14 +54,13 @@
     },
 
     {
-      "BurgerName": "Big Bag",
+      "BurgerName": "HeadCrabGrab",
       "BurgerRecipe": [
         "Lettuce",
-        "Beef",
-        "Bread",
-        "Beef",
         "Tomato",
-        "Buns"
+        "Mushroom",
+        "Pickle",
+        "HeadCrab"
       ]
     }
   ]
