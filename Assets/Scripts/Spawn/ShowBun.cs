@@ -36,14 +36,23 @@ public class ShowBun : MonoBehaviour
     }
 
     //윗빵 먹었을때 Active 함수 
-    public void SetActiveBun()
+    public void SetActiveBun(string ingre_info)
     {
-        sprite.sprite = Resources.Load<Sprite>("Sprites/Ingredients/Bun");
-        sprite.enabled = true;
-        TopBun.GetComponent<BoxCollider2D>().size = new Vector2(2f, 0.2f);
-        TopBun.GetComponent<Rigidbody2D>().gravityScale = 1f;
-        TopBun.GetComponent<Transform>().position = new Vector2(8f, 5f);
-        TopBun.GetComponent<BoxCollider2D>().enabled = true;
+        if(ingre_info == "FaceHugger"){
+            sprite.sprite = Resources.Load<Sprite>("Sprites/Ingredients/ingre_info");
+            sprite.enabled = true;
+            TopBun.GetComponent<BoxCollider2D>().size = new Vector2(2f, 0.1f);
+            TopBun.GetComponent<Rigidbody2D>().gravityScale = 1f;
+            TopBun.GetComponent<Transform>().position = new Vector2(8f, 5f);
+            TopBun.GetComponent<BoxCollider2D>().enabled = true;
+        }else{
+            sprite.sprite = Resources.Load<Sprite>("Sprites/Ingredients/ingre_info");
+            sprite.enabled = true;
+            TopBun.GetComponent<BoxCollider2D>().size = new Vector2(2f, 0.2f);
+            TopBun.GetComponent<Rigidbody2D>().gravityScale = 1f;
+            TopBun.GetComponent<Transform>().position = new Vector2(8f, 5f);
+            TopBun.GetComponent<BoxCollider2D>().enabled = true;
+        }
     }
 
     //Bun이 밑에 재료의 collider와 만났을때 다시 시작 (여기에 애니매이션 넣으면 됨.)

@@ -55,11 +55,11 @@ public class showEaten : MonoBehaviour
     //먹은 ingre_name을 받아 맞는 sprite를 호출
     public void showEatenToUser(string ingre_info)
     {
-        if (ingre_info == Bun || ingre_info == "HeadCrap")
+        if (ingre_info == Bun || ingre_info == "HeadCrap" || ingre_info == "FaceHugger")
         {
             EventManager.eventManager.Invoke_GamePausedEvent("InventoryUI");
             ShowBun.showBun.getIndexCount(arrIndex);
-            ShowBun.showBun.SetActiveBun();
+            ShowBun.showBun.SetActiveBun(ingre_info);
             arrIndex = 0;
         }
         else if(ingre_info=="FaceHugger"){
