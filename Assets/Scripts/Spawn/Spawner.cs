@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    string[] spawnableObjTypes;
     bool _active;
     public bool active
     {
@@ -56,10 +55,5 @@ public class Spawner : MonoBehaviour
     private void Awake()
     {
         _active = false;
-    }
-    private void Start()
-    {
-        //생성 가능한 오브젝트들의 이름을 오브젝트 매니져에게서 받아온다
-        //ObjectManager.objectManager.GetSpawnableObjTypes(ref spawnableObjTypes);
     }
 }
