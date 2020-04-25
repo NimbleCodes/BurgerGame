@@ -27,12 +27,23 @@ public class Spawner : MonoBehaviour
     //스폰 할 오브젝트를 결정하는 함수 -> 추후 수정 가능
     string ChooseObjToSpawn()
     {
+<<<<<<< Updated upstream
         return spawnableObjTypes[GameManager.gameManager.getRandNum(spawnableObjTypes.Length)];
+=======
+        int randInd = GameManager.gameManager.getRandNum(BurgerRecipe.burgerRecipe.menu.BurgerMenu[BurgerRecipe.burgerRecipe.curBurgerOrder].BurgerRecipe.Length);
+        return (BurgerRecipe.burgerRecipe.menu.BurgerMenu[BurgerRecipe.burgerRecipe.curBurgerOrder].BurgerRecipe[randInd]);
+>>>>>>> Stashed changes
     }
     //오브젝트를 현재 위치에 생성
     void SpawnObj(string objName, Vector3 position)
     {
+<<<<<<< Updated upstream
         GameObject temp = ObjectManager.objectManager.getGameObject(objName);
+=======
+        GameObject temp = ObjectManager.objectManager.GetGameObject(objName);
+        if (temp == null)
+            return;
+>>>>>>> Stashed changes
         temp.transform.position = position;
         temp.SetActive(true);
     }

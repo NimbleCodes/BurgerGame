@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class BurgerRecipe : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class BurgerRecipe : MonoBehaviour
     {
         public burgerMenu[] BurgerMenu;
     }
-    Menu menu;
+    public Menu menu;
     Image panel;
 
     float Correctingre = 3;
@@ -29,18 +30,97 @@ public class BurgerRecipe : MonoBehaviour
         menu = JsonUtility.FromJson<Menu>(menuJson);
     }
 
+    //Dictionary<string, int> remainingIngr;
+    public class myTuple
+    {
+        public myTuple(string _name)
+        {
+            name = _name;
+            numLeft = 1;
+        }
+        public string name;
+        public int numLeft;
+    }
+    List<myTuple> remainingIngr;
     int ChooseRecipe()
     {
         return GameManager.gameManager.getRandNum(menu.BurgerMenu.Length);
     }
-    int curBurgerOrder;
+    public int curBurgerOrder;
     void GoNextRecipe()
     {
         curBurgerOrder = ChooseRecipe();
+<<<<<<< Updated upstream
 
         Debug.Log("Recipe Changed");
+=======
+        loadRecipeToList(curBurgerOrder);
     }
+    void loadRecipeToList(int burgerOrderInd)
+    {
+        foreach(string n in menu.BurgerMenu[burgerOrderInd].BurgerRecipe)
+        {
+            bool contains = false;
+            for(int i = 0; i < remainingIngr.Count; i++)
+            {
+                if(remainingIngr[i].name == n)
+                {
+                    remainingIngr[i].numLeft += 1;
+                    contains = true;
+                }
+            }
+            if (!contains)
+                remainingIngr.Add(new myTuple(n));
+        }
+>>>>>>> Stashed changes
+    }
+    void OnIngrObtained(string ingr_info)
+    {
+        bool contains = false;
+        foreach(myTuple mt in remainingIngr)
+        {
+            if(mt.name == ingr_info && mt.numLeft > 0)
+            {
+                contains = true;
+                mt.numLeft--;
+                correctIngre();
+            }
+        }
+        if (!contains)
+        {
+            ScoreCounter = 0;
+            EventManager.eventManager.Invoke_BurgerCompleteEvent(false);
+            GoNextRecipe();
+            showEaten.ShowObtain.InitiateObj();//보여주기 오브젝트 초기화
+            curBurgerOrderInd = 0;
+            return;
+        }
 
+        bool empty = true;
+        foreach (myTuple mt in remainingIngr)
+        {
+            if (mt.numLeft > 0)
+                empty = false;
+        }
+        if (empty)
+        {
+            ScoreCounter += 1;
+            DisplayScore.Instance.AddScore(ScoreCounter);
+            GoNextRecipe();
+            curBurgerOrderInd = 0;
+            remainingIngr.Clear();
+            ScoreCounter = 0;
+            showEaten.ShowObtain.showEatenToUser("Bun");
+        }
+        else if(ingr_info != "Bun")
+        {
+            //먹었다고 표시
+            showEaten.ShowObtain.showEatenToUser(ingr_info);
+            //체력 추가
+            HealthManager.Instance.addHealth(Correctingre);
+        }
+    }
+    /*
     List<string> curIngrInventory;
     int curBurgerOrderInd = 0;
     void OnIngrObtained(string ingr_info)
@@ -81,11 +161,13 @@ public class BurgerRecipe : MonoBehaviour
             curBurgerOrderInd = 0;
         }
     }
+    */
 
     private void Awake()
     {
         LoadMenuFromJson();
-        curIngrInventory = new List<string>();
+        //curIngrInventory = new List<string>();
+        remainingIngr = new List<myTuple>();
         burgerRecipe = this;
     }
     private void Start()
@@ -96,9 +178,10 @@ public class BurgerRecipe : MonoBehaviour
 
     public void currrecTotop(ref string[] giveRecipie){
         giveRecipie = menu.BurgerMenu[curBurgerOrder].BurgerRecipe;
-    } 
+    }
+    int curBurgerOrderInd = 0;
     public void correctIngre(){
-        panel = GameObject.FindGameObjectWithTag("T_Panel"+(curBurgerOrderInd)).GetComponent<Image>();
+        panel = GameObject.FindGameObjectWithTag("T_Panel"+(++curBurgerOrderInd)).GetComponent<Image>();
         panel.color = UnityEngine.Color.green;
     }
 }
