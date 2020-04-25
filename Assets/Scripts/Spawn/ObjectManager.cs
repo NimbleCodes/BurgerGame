@@ -26,7 +26,6 @@ public abstract class ObjectManager : MonoBehaviour
     {
         if (cor)
         {
-            Debug.Log(curActiveObj.Count);
             for(int i = 0; i < curActiveObj.Count; i++)
             {
                 curActiveObj[i].SetActive(false);

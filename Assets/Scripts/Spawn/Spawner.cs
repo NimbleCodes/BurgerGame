@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    List<string> spawnableObjTypes;
+    string[] spawnableObjTypes;
     bool _active;
     public bool active
     {
@@ -28,15 +27,17 @@ public class Spawner : MonoBehaviour
     //스폰 할 오브젝트를 결정하는 함수 -> 추후 수정 가능
     string ChooseObjToSpawn()
     {
-        return spawnableObjTypes[GameManager.gameManager.getRandNum(spawnableObjTypes.Count)];
+        int randInd = GameManager.gameManager.getRandNum(BurgerRecipe.burgerRecipe.menu.BurgerMenu[BurgerRecipe.burgerRecipe.curBurgerOrder].BurgerRecipe.Length);
+        return (BurgerRecipe.burgerRecipe.menu.BurgerMenu[BurgerRecipe.burgerRecipe.curBurgerOrder].BurgerRecipe[randInd]);
     }
     //오브젝트를 현재 위치에 생성
     void SpawnObj(string objName, Vector3 position)
     {
         GameObject temp = ObjectManager.objectManager.GetGameObject(objName);
+        if (temp == null)
+            return;
         temp.transform.position = position;
         temp.SetActive(true);
-        ObjectManager.objectManager.AddToActiveList(temp);
     }
     //일정 시간마다 오브젝트를 생성하는 코루틴
     IEnumerator SpawnCoroutine()
@@ -59,6 +60,6 @@ public class Spawner : MonoBehaviour
     private void Start()
     {
         //생성 가능한 오브젝트들의 이름을 오브젝트 매니져에게서 받아온다
-        spawnableObjTypes = ObjectManager.objectManager.GetSpawnableObjNames();
+        //ObjectManager.objectManager.GetSpawnableObjTypes(ref spawnableObjTypes);
     }
 }
