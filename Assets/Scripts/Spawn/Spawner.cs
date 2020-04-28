@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    bool _active;
+    bool _active = false;
     public bool active
     {
         //active가 false -> true가 되면 스포닝 코루틴 시작
@@ -50,10 +50,5 @@ public class Spawner : MonoBehaviour
         }
         else
             coroutineRunning = false;
-    }
-
-    private void Awake()
-    {
-        _active = false;
     }
 }
