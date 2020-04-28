@@ -9,6 +9,7 @@ public class BurgerRecipe : MonoBehaviour
     [System.Serializable]
     public class burgerMenu
     {
+        public string Character;
         public string BurgerName;
         public string[] BurgerRecipe;
     }
@@ -91,12 +92,17 @@ public class BurgerRecipe : MonoBehaviour
         EventManager.eventManager.IngrObtainedEvent += OnIngrObtained;
         GoNextRecipe();
     }
-
+    //현재 레시피 보내주기
     public void currrecTotop(ref string[] giveRecipie){
         giveRecipie = menu.BurgerMenu[curBurgerOrder].BurgerRecipe;
     } 
+    //맞는 재료를 먹었을때 패널 색상변경
     public void correctIngre(){
         panel = GameObject.FindGameObjectWithTag("T_Panel"+(curBurgerOrderInd)).GetComponent<Image>();
         panel.color = UnityEngine.Color.green;
+    }
+    //캐릭터 이름 받아오기
+    public void currentChar(ref string CharName){
+        CharName = menu.BurgerMenu[curBurgerOrder].Character;
     }
 }

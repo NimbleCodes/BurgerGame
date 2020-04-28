@@ -1,6 +1,7 @@
 {
   "BurgerMenu": [
     {
+      "Character": "Issac",
       "BurgerName": "DoublerMarker",
       "BurgerRecipe": [
         "Sauce",
@@ -12,6 +13,7 @@
       ]
     },
     {
+      "Character": "Predator",
       "BurgerName": "SupremeFaceHugger",
       "BurgerRecipe": [
         "FaceHugger",
@@ -22,6 +24,7 @@
       ]
     },
     {
+      "Character": "Kylo",
       "BurgerName": "TenderPorg",
       "BurgerRecipe": [
         "Lettuce",
@@ -33,6 +36,7 @@
     },
 
     {
+      "Character": "Thorn",
       "BurgerName": "HumanDelight",
       "BurgerRecipe": [
         "Soylent",
@@ -43,6 +47,7 @@
     },
 
     {
+      "Character": "K",
       "BurgerName": "ProteinKing",
       "BurgerRecipe": [
         "Tomato",
@@ -54,6 +59,7 @@
     },
 
     {
+      "Character": "Gordon",
       "BurgerName": "HeadCrabGrab",
       "BurgerRecipe": [
         "Lettuce",
