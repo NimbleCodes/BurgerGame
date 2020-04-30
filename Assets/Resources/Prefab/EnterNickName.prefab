@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1121237350520788251}
   - component: {fileID: 1121237350520788248}
   - component: {fileID: 1121237350520788249}
-  m_Layer: 5
-  m_Name: EnterNickName 1
+  m_Layer: 8
+  m_Name: EnterNickName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 1121237350838614654}
   - component: {fileID: 1121237350838614648}
   - component: {fileID: 1121237350838614649}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: TextOK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 1121237351049353302}
   - component: {fileID: 1121237351049353303}
   - component: {fileID: 1121237351049353300}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Buttonok
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 1121237351098646777}
   - component: {fileID: 1121237351098646779}
   - component: {fileID: 1121237351098646776}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 1121237351279612790}
   - component: {fileID: 1121237351279612784}
   - component: {fileID: 1121237351279612785}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Placeholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -466,7 +466,7 @@ GameObject:
   - component: {fileID: 1121237351325724410}
   - component: {fileID: 1121237351325724388}
   - component: {fileID: 1121237351325724389}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -543,7 +543,7 @@ GameObject:
   - component: {fileID: 1121237351903027388}
   - component: {fileID: 1121237351903027390}
   - component: {fileID: 1121237351903027391}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: nickpannel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -621,7 +621,7 @@ GameObject:
   - component: {fileID: 1121237351980432793}
   - component: {fileID: 1121237351980432798}
   - component: {fileID: 1121237351980432799}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: InputField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -759,7 +759,7 @@ GameObject:
   - component: {fileID: 1121237352338799215}
   - component: {fileID: 1121237352338799212}
   - component: {fileID: 1121237352338799213}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: NickP_background
   m_TagString: Untagged
   m_Icon: {fileID: 0}

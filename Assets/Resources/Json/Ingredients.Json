@@ -1,48 +1,64 @@
 {
   "ingrArr": [
     {
-      "ingrClass": "Meat",
-      "ingrName": "Beef"
+      	"ingrClass": "Meat",
+      	"ingrName": "Beef"
     },
     {
-      "ingrClass": "Meat",
-      "ingrName": "Soylent"
+      	"ingrClass": "Meat",
+      	"ingrName": "Soylent"
     },
     {
-      "ingrClass": "Vege",
-      "ingrName": "Lettuce"
+      	"ingrClass": "Vege",
+      	"ingrName": "Lettuce"
     },
     {
-      "ingrClass": "Bun",
-      "ingrName": "Bun"
+      	"ingrClass": "Bun",
+      	"ingrName": "Bun"
     },
     {
-      "ingrClass": "Cheese",
-      "ingrName": "Cheese"
+      	"ingrClass": "Cheese",
+      	"ingrName": "Cheese"
     },
     {
-      "ingrClass": "FaceHugger",
-      "ingrName": "FaceHugger"
+      	"ingrClass": "FaceHugger",
+      	"ingrName": "FaceHugger"
     },
     {
-      "ingrClass": "HeadCrap",
-      "ingrName": "HeadCrap"
+      	"ingrClass": "HeadCrap",
+      	"ingrName": "HeadCrap"
     },
     {
-      "ingrClass": "Insect",
-      "ingrName": "Insect"
+      	"ingrClass": "Insect",
+      	"ingrName": "Insect"
     },
     {
-      "ingrClass": "Marker",
-      "ingrName": "Marker"
+      	"ingrClass": "Marker",
+      	"ingrName": "Marker"
     },
     {
-      "ingrClass": "Porg",
-      "ingrName": "Porg"
+      	"ingrClass": "Porg",
+      	"ingrName": "Porg"
     },
     {
-      "ingrClass": "Tomato",
-      "ingrName": "Tomato"
+      	"ingrClass": "Tomato",
+      	"ingrName": "Tomato"
+    },
+    {
+      	"ingrClass": "Pickle",
+      	"ingrName": "Pickle"			
+    },
+    {
+      	"ingrClass": "Shrimp",
+      	"ingrName": "Shrimp"	
+    },
+    {
+      	"ingrClass": "Chicken",
+      	"ingrName": "Chicken"
+    },
+    {
+    	"ingrClass": "Mushroom",
+    	"ingrName": "Mushroom"
     }
   ]
 }
