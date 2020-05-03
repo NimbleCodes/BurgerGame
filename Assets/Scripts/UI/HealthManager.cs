@@ -31,7 +31,10 @@ public class HealthManager : MonoBehaviour
     [SerializeField]
     public GameObject slidercontroll;
     //싱글턴, score 관리에서 health관리를 위함
-    
+
+    //재활용 시 체력 증가량
+    float ingrReturned = 1f;
+
     Slider healthBar;
     #endregion
     void Awake(){
@@ -43,6 +46,7 @@ public class HealthManager : MonoBehaviour
         EventManager.eventManager.BurgerCompleteEvent += OnBurgerComplete;
         EventManager.eventManager.GameOverEvent += PopLeaderboard;
         EventManager.eventManager.IngrDestroyedEvent += minusHealth;
+        EventManager.eventManager.IngrReturnedEvent += OnIngrReturned;
         startDecr();
     }
     
@@ -55,8 +59,13 @@ public class HealthManager : MonoBehaviour
         isGameOver();
     }
 
- 
-    #region Functions
+
+    #region 
+    void OnIngrReturned()
+    {
+        addHealth(ingrReturned);
+    }
+
     //감소를 시작한다. decrStart를 true로 설정한다.
     public void startDecr(){
         decrStart = true;
