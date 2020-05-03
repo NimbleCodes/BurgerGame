@@ -35,10 +35,4 @@ public class Left_Ani : MonoBehaviour
         Initiate_Ani();
        // show_Ani();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
