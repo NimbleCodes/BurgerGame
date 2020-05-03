@@ -35,6 +35,7 @@ class EventManager : MonoBehaviour
 
     public event Action<string> IngrObtainedEvent;
     public event Action IngrDestroyedEvent;
+    public event Action IngrReturnedEvent;
     public void Invoke_IngrObtainedEvent(string what)
     {
         if (IngrObtainedEvent != null)
@@ -45,6 +46,12 @@ class EventManager : MonoBehaviour
         if (IngrDestroyedEvent != null)
             IngrDestroyedEvent();
     }
+    public void Invoke_IngrReturnedEvent()
+    {
+        if (IngrReturnedEvent != null)
+            IngrReturnedEvent();
+    }
+
 
     //난이도 상승시 호출
     //스포너 및 트리거의 변경 가능한 값들 다시 할당

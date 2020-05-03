@@ -46,7 +46,7 @@ public class ShowBun : MonoBehaviour
             TopBun.GetComponent<Transform>().position = new Vector2(8f, 5f);
             TopBun.GetComponent<BoxCollider2D>().enabled = true;
         }else{
-            sprite.sprite = Resources.Load<Sprite>("Sprites/Ingredients/Bun");
+            sprite.sprite = Resources.Load<Sprite>("Sprites/Ingredients/" + ingre_info);
             sprite.enabled = true;
             TopBun.GetComponent<BoxCollider2D>().size = new Vector2(2f, 0.2f);
             TopBun.GetComponent<Rigidbody2D>().gravityScale = 1f;

@@ -4,8 +4,6 @@
       "Character": "Issac",
       "BurgerName": "DoublerMarker",
       "BurgerRecipe": [
-        "Sauce",
-        "Onion",
         "Marker",
         "Cheese",
         "Marker",
@@ -30,7 +28,6 @@
         "Lettuce",
         "Chicken",
         "Porg",
-        "Sauce",
         "Bun"
       ]
     },
@@ -52,7 +49,7 @@
       "BurgerRecipe": [
         "Tomato",
         "Insect",
-        "Praun",
+        "Shrimp",
         "Pickle",
         "Bun"
       ]
