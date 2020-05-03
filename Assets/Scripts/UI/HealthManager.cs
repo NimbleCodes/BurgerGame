@@ -43,6 +43,7 @@ public class HealthManager : MonoBehaviour
         EventManager.eventManager.BurgerCompleteEvent += OnBurgerComplete;
         EventManager.eventManager.GameOverEvent += PopLeaderboard;
         EventManager.eventManager.IngrDestroyedEvent += minusHealth;
+        startDecr();
     }
     
     void Update()
@@ -52,7 +53,6 @@ public class HealthManager : MonoBehaviour
         hpToTime = decrTime/maxHealth;
         decrHealth();
         isGameOver();
-        
     }
 
  

@@ -60,6 +60,7 @@ public class BurgerRecipe : MonoBehaviour
                 ScoreCounter = 0;
                 //먹었다고 표시
                 showEaten.ShowObtain.showEatenToUser(ingr_info);
+                Debug.Log(ingr_info);
             }
             else
             {

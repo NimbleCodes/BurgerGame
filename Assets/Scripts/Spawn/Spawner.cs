@@ -36,6 +36,7 @@ public class Spawner : MonoBehaviour
         if (temp == null)
             return;
         temp.transform.position = position;
+        temp.GetComponent<Rigidbody2D>().gravityScale = 0.5f;
         temp.SetActive(true);
     }
     //일정 시간마다 오브젝트를 생성하는 코루틴

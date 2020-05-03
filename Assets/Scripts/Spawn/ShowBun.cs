@@ -39,14 +39,14 @@ public class ShowBun : MonoBehaviour
     public void SetActiveBun(string ingre_info)
     {
         if(ingre_info == "FaceHugger"){
-            sprite.sprite = Resources.Load<Sprite>("Sprites/Ingredients/ingre_info");
+            sprite.sprite = Resources.Load<Sprite>("Sprites/Ingredients/" + ingre_info);
             sprite.enabled = true;
             TopBun.GetComponent<BoxCollider2D>().size = new Vector2(2f, 0.1f);
             TopBun.GetComponent<Rigidbody2D>().gravityScale = 1f;
             TopBun.GetComponent<Transform>().position = new Vector2(8f, 5f);
             TopBun.GetComponent<BoxCollider2D>().enabled = true;
         }else{
-            sprite.sprite = Resources.Load<Sprite>("Sprites/Ingredients/ingre_info");
+            sprite.sprite = Resources.Load<Sprite>("Sprites/Ingredients/" + ingre_info);
             sprite.enabled = true;
             TopBun.GetComponent<BoxCollider2D>().size = new Vector2(2f, 0.2f);
             TopBun.GetComponent<Rigidbody2D>().gravityScale = 1f;
