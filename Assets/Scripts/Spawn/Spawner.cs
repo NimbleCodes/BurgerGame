@@ -20,6 +20,7 @@ public class Spawner : MonoBehaviour
     bool coroutineRunning = false;
     //스포닝 사이 시간
     public float nextSpawnTime;
+    public float baseSpawnTime;
     //현재는 안쓰는 중 >> 리지드 바디 중력 기능 사용중
     public float spawnedObjSpeed;
 
@@ -38,6 +39,9 @@ public class Spawner : MonoBehaviour
         temp.transform.position = position;
         temp.GetComponent<Rigidbody2D>().gravityScale = 0.5f;
         temp.SetActive(true);
+
+        int rand = GameManager.gameManager.getRandNum(99);
+        nextSpawnTime = baseSpawnTime + ((1f + rand) / 50);
     }
     //일정 시간마다 오브젝트를 생성하는 코루틴
     IEnumerator SpawnCoroutine()
@@ -51,5 +55,11 @@ public class Spawner : MonoBehaviour
         }
         else
             coroutineRunning = false;
+    }
+
+    private void Awake()
+    {
+        int rand = GameManager.gameManager.getRandNum(99);
+        nextSpawnTime = baseSpawnTime + ((1f + rand) / 25);
     }
 }

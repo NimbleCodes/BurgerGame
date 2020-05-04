@@ -38,7 +38,7 @@ public class SpawnerManager : MonoBehaviour
         for (int i = 0; i < numActiveSpawner; i++)
         {
             spawnerArr[Difficulty.difficulty.activationOrder[i]].GetComponent<Spawner>().spawnedObjSpeed = Difficulty.difficulty.diffTable.stageDiffVals[curDiff].spawnedObjSpeed[i];
-            spawnerArr[Difficulty.difficulty.activationOrder[i]].GetComponent<Spawner>().nextSpawnTime = Difficulty.difficulty.diffTable.stageDiffVals[curDiff].nextSpawnTime[i];
+            spawnerArr[Difficulty.difficulty.activationOrder[i]].GetComponent<Spawner>().baseSpawnTime = Difficulty.difficulty.diffTable.stageDiffVals[curDiff].nextSpawnTime[i];
             spawnerArr[Difficulty.difficulty.activationOrder[i]].GetComponent<Spawner>().enabled = true;
             spawnerArr[Difficulty.difficulty.activationOrder[i]].GetComponent<Spawner>().active = true;
         }
