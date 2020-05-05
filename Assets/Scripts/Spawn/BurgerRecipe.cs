@@ -60,7 +60,6 @@ public class BurgerRecipe : MonoBehaviour
                 ScoreCounter = 0;
                 //먹었다고 표시
                 showEaten.ShowObtain.showEatenToUser(ingr_info);
-                Debug.Log(ingr_info);
             }
             else
             {
@@ -75,6 +74,8 @@ public class BurgerRecipe : MonoBehaviour
         else
         {
             ScoreCounter = 0;
+            //여기서 애니메이션
+
             EventManager.eventManager.Invoke_BurgerCompleteEvent(false);
             GoNextRecipe();
             showEaten.ShowObtain.InitiateObj();//보여주기 오브젝트 초기화
