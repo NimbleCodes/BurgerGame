@@ -61,7 +61,7 @@ public class HealthManager : MonoBehaviour
 
 
     #region 
-    void OnIngrReturned()
+    void OnIngrReturned()//IngreReturn시에 체력추가
     {
         addHealth(ingrReturned);
     }
