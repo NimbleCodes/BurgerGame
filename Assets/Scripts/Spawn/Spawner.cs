@@ -27,6 +27,7 @@ public class Spawner : MonoBehaviour
     //스폰 할 오브젝트를 결정하는 함수 -> 추후 수정 가능
     string ChooseObjToSpawn()
     {
+
         int randInd = GameManager.gameManager.getRandNum(BurgerRecipe.burgerRecipe.menu.BurgerMenu[BurgerRecipe.burgerRecipe.curBurgerOrder].BurgerRecipe.Length);
         return (BurgerRecipe.burgerRecipe.menu.BurgerMenu[BurgerRecipe.burgerRecipe.curBurgerOrder].BurgerRecipe[randInd]);
     }
