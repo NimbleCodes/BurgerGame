@@ -6,43 +6,63 @@ using UnityEngine.UI;
 public class Char_Ani : MonoBehaviour
 {  
     //캐릭터 오브젝트(이미지 오브젝트는 애니메이션 적용시 지우면 됨)
-    public GameObject Ani_Object;
-    public Image showChar;
-    string CharName;
-    Animation charAni;
+    public GameObject GObject;
+    public SpriteRenderer ShowChar;
+    public string CharName;
+    private string Ani_Name;
+    public Animator charAnima;
     //배경 오브젝트
     public Image B_Panel;
+    public static Char_Ani Character_Animation;
+
+    void Awake(){
+        Character_Animation = this;
+    }
     
     public void Initiate_Ani(){
-        showChar = Ani_Object.GetComponent<Image>();
+        ShowChar = GObject.GetComponent<SpriteRenderer>();
         /* 이미지로 배경을 넣어도되고, 색상만 넣어줘도 되고(원하는 대로)
         B_Panel.color = UnityEngine.Color.Black;
         B_Panel.Sprite = Resources.Load<Sprite>("");
         */
-        showChar.enabled = false;
+        ShowChar.enabled = false;
+        charAnima.enabled = false;
 
     }
-    //캐릭터 이름 받아와 애니메이션 재생
-    public void show_Ani(){
+    //캐릭터 이름 받아와 보여주기
+    public void show_Char(){
         BurgerRecipe.burgerRecipe.currentChar(ref CharName);
+        Ani_Name = CharName;
+        Ani_Name +="_Ani";
         Debug.Log(CharName);
+        charAnima.enabled = false;
         /*
         charAni = Ani_Object.GetComponent<Animation>();
         charAni.animation.Play("animation_Name");
         */
-        showChar.sprite = Resources.Load<Sprite>("Sprites/Characters/"+ CharName);
-        showChar.enabled = true;
+        ShowChar.sprite = Resources.Load<Sprite>("Sprites/Characters/"+ CharName);
+        ShowChar.transform.localScale = new Vector3(650,650,100);
+        ShowChar.enabled = true;
+    }
+
+    public void show_Ani_Failed(bool Fail){
+        if(Fail == false){
+            charAnima.enabled = true;
+            charAnima.Play(Ani_Name);
+        }
     }
 
     public void onComplete(bool TF){
-        Initiate_Ani();
-        show_Ani();
+        if(TF == true){
+            show_Char();
+        }
     }
     void Start()
     {
         EventManager.eventManager.BurgerCompleteEvent += onComplete;
+        EventManager.eventManager.BurgerCompleteEvent += show_Ani_Failed;
         Initiate_Ani();
-        show_Ani();
+        show_Char();
     }
 
 }

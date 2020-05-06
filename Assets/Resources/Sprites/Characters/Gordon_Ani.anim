@@ -8,7 +8,7 @@ AnimationClip:
   m_PrefabAsset: {fileID: 0}
   m_Name: Gordon_Ani
   serializedVersion: 6
-  m_Legacy: 1
+  m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
   m_RotationCurves: []
@@ -22,39 +22,52 @@ AnimationClip:
     - time: 0
       value: {fileID: -405834327707033792, guid: 6815720ced2baca4d9b9dae796e300d9,
         type: 3}
-    - time: 0.016666668
+    - time: 0.083333336
       value: {fileID: 2228097911624662433, guid: 6815720ced2baca4d9b9dae796e300d9,
         type: 3}
-    - time: 0.05
+    - time: 0.16666667
       value: {fileID: 2977586078435357915, guid: 6815720ced2baca4d9b9dae796e300d9,
         type: 3}
-    - time: 0.06666667
+    - time: 0.25
       value: {fileID: -250666325618404973, guid: 6815720ced2baca4d9b9dae796e300d9,
         type: 3}
-    - time: 0.1
+    - time: 0.33333334
       value: {fileID: -5178354383111420030, guid: 6815720ced2baca4d9b9dae796e300d9,
         type: 3}
-    - time: 0.11666667
+    - time: 0.41666666
       value: {fileID: 2625262758002574176, guid: 6815720ced2baca4d9b9dae796e300d9,
         type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 60
+  m_SampleRate: 12
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
-    genericBindings: []
-    pptrCurveMapping: []
+    genericBindings:
+    - serializedVersion: 2
+      path: 0
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+    pptrCurveMapping:
+    - {fileID: -405834327707033792, guid: 6815720ced2baca4d9b9dae796e300d9, type: 3}
+    - {fileID: 2228097911624662433, guid: 6815720ced2baca4d9b9dae796e300d9, type: 3}
+    - {fileID: 2977586078435357915, guid: 6815720ced2baca4d9b9dae796e300d9, type: 3}
+    - {fileID: -250666325618404973, guid: 6815720ced2baca4d9b9dae796e300d9, type: 3}
+    - {fileID: -5178354383111420030, guid: 6815720ced2baca4d9b9dae796e300d9, type: 3}
+    - {fileID: 2625262758002574176, guid: 6815720ced2baca4d9b9dae796e300d9, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.13333334
+    m_StopTime: 0.5833333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -73,4 +86,18 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.5833333
+    functionName: Initiate_Ani
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.5833333
+    functionName: show_Char
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
