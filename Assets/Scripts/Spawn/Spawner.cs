@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -24,12 +25,27 @@ public class Spawner : MonoBehaviour
     //현재는 안쓰는 중 >> 리지드 바디 중력 기능 사용중
     public float spawnedObjSpeed;
 
+    Roulette burgerIngrRoulette;
+    int RandomIngr = 2;
     //스폰 할 오브젝트를 결정하는 함수 -> 추후 수정 가능
+    void OnBurgerComplete(bool cor)
+    {
+        int numNeededIngrTypes = BurgerRecipe.burgerRecipe.menu.BurgerMenu[BurgerRecipe.burgerRecipe.curBurgerOrder].BurgerRecipe.Length;
+        burgerIngrRoulette.createRoulette(numNeededIngrTypes + RandomIngr);
+    }
+    List<string> spawnableObjTypes;
     string ChooseObjToSpawn()
     {
-
-        int randInd = GameManager.gameManager.getRandNum(BurgerRecipe.burgerRecipe.menu.BurgerMenu[BurgerRecipe.burgerRecipe.curBurgerOrder].BurgerRecipe.Length);
-        return (BurgerRecipe.burgerRecipe.menu.BurgerMenu[BurgerRecipe.burgerRecipe.curBurgerOrder].BurgerRecipe[randInd]);
+        int chosenIngrInd = burgerIngrRoulette.Spin();
+        int numNeededIngrTypes = BurgerRecipe.burgerRecipe.menu.BurgerMenu[BurgerRecipe.burgerRecipe.curBurgerOrder].BurgerRecipe.Length;
+        if (chosenIngrInd >= numNeededIngrTypes)
+        {
+            Debug.Log("Random!");
+            Debug.Log(burgerIngrRoulette.ToString());
+            return spawnableObjTypes[GameManager.gameManager.getRandNum(spawnableObjTypes.Count)];
+        }
+        Debug.Log(burgerIngrRoulette.ToString());
+        return BurgerRecipe.burgerRecipe.menu.BurgerMenu[BurgerRecipe.burgerRecipe.curBurgerOrder].BurgerRecipe[chosenIngrInd];
     }
     //오브젝트를 현재 위치에 생성
     void SpawnObj(string objName, Vector3 position)
@@ -62,5 +78,14 @@ public class Spawner : MonoBehaviour
     {
         int rand = GameManager.gameManager.getRandNum(99);
         nextSpawnTime = baseSpawnTime + ((1f + rand) / 25);
+        burgerIngrRoulette = new BurgerIngrRoulette();
+    }
+    private void Start()
+    {
+        EventManager.eventManager.BurgerCompleteEvent += OnBurgerComplete;
+        int numNeededIngrTypes = BurgerRecipe.burgerRecipe.menu.BurgerMenu[BurgerRecipe.burgerRecipe.curBurgerOrder].BurgerRecipe.Length;
+        burgerIngrRoulette.createRoulette(numNeededIngrTypes + RandomIngr);
+        spawnableObjTypes = new List<string>();
+        spawnableObjTypes = ObjectManager.objectManager.GetSpawnableObjNames();
     }
 }
