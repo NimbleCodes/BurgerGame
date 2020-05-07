@@ -44,7 +44,7 @@ public class HealthManager : MonoBehaviour
     {
         healthBar = GetComponent<Slider>();
         EventManager.eventManager.BurgerCompleteEvent += OnBurgerComplete;
-        EventManager.eventManager.GameOverEvent += PopLeaderboard;
+        //EventManager.eventManager.GameOverEvent += PopLeaderboard;
         EventManager.eventManager.IngrDestroyedEvent += minusHealth;
         EventManager.eventManager.IngrReturnedEvent += OnIngrReturned;
         startDecr();

@@ -22,13 +22,6 @@ public class showEaten : MonoBehaviour
         ingr = new GameObject[10];
         InitiateObj();
     }
-    public void Update()
-    {//for test
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            showEatenToUser(ingre);
-        }
-    }
 
     public void InitiateObj()
     {//오브젝트 초기화

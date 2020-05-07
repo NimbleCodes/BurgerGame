@@ -34,7 +34,6 @@ public class Char_Ani : MonoBehaviour
         BurgerRecipe.burgerRecipe.currentChar(ref CharName);
         Ani_Name = CharName;
         Ani_Name +="_Ani";
-        Debug.Log(CharName);
         charAnima.enabled = false;
         /*
         charAni = Ani_Object.GetComponent<Animation>();
@@ -44,14 +43,12 @@ public class Char_Ani : MonoBehaviour
         ShowChar.transform.localScale = new Vector3(650,650,100);
         ShowChar.enabled = true;
     }
-
     public void show_Ani_Failed(bool Fail){
         if(Fail == false){
             charAnima.enabled = true;
             charAnima.Play(Ani_Name);
         }
     }
-
     public void onComplete(bool TF){
         if(TF == true){
             show_Char();

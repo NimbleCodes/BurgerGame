@@ -21,7 +21,7 @@ public class DisplayScore : MonoBehaviour
     {
         if (success && score%5 ==0){
             gameObject.GetComponent<TextMeshProUGUI>().text = "Burgers: \n\n" + score.ToString();
-            temp.changeTriggerKeys_random();
+            //temp.changeTriggerKeys_random();
         }
         if(success){
             gameObject.GetComponent<TextMeshProUGUI>().text = "Burgers: \n\n" + score.ToString();

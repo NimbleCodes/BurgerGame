@@ -40,11 +40,8 @@ public class Spawner : MonoBehaviour
         int numNeededIngrTypes = BurgerRecipe.burgerRecipe.menu.BurgerMenu[BurgerRecipe.burgerRecipe.curBurgerOrder].BurgerRecipe.Length;
         if (chosenIngrInd >= numNeededIngrTypes)
         {
-            Debug.Log("Random!");
-            Debug.Log(burgerIngrRoulette.ToString());
             return spawnableObjTypes[GameManager.gameManager.getRandNum(spawnableObjTypes.Count)];
         }
-        Debug.Log(burgerIngrRoulette.ToString());
         return BurgerRecipe.burgerRecipe.menu.BurgerMenu[BurgerRecipe.burgerRecipe.curBurgerOrder].BurgerRecipe[chosenIngrInd];
     }
     //오브젝트를 현재 위치에 생성

@@ -22,7 +22,6 @@ public class BurgerRecipe : MonoBehaviour
     Image panel;
 
     float Correctingre = 3;
-    float ingreLost = 1;
     float ScoreCounter;
     void LoadMenuFromJson()
     {
@@ -32,7 +31,9 @@ public class BurgerRecipe : MonoBehaviour
 
     int ChooseRecipe()
     {
-        return GameManager.gameManager.getRandNum(menu.BurgerMenu.Length);
+        int ret = GameManager.gameManager.getRandNum(menu.BurgerMenu.Length);
+        Debug.Log(ret);
+        return ret;
     }
     public int curBurgerOrder;
     void GoNextRecipe()
@@ -45,11 +46,11 @@ public class BurgerRecipe : MonoBehaviour
     void OnIngrObtained(string ingr_info)
     {
         //correct ingr
-        if(menu.BurgerMenu[curBurgerOrder].BurgerRecipe[curBurgerOrderInd++] == ingr_info)
+        if(menu.BurgerMenu[curBurgerOrder].BurgerRecipe[curBurgerOrderInd] == ingr_info)
         {
             correctIngre();
             //end of recipe
-            if(curBurgerOrderInd == menu.BurgerMenu[curBurgerOrder].BurgerRecipe.Length)
+            if(curBurgerOrderInd+1 == menu.BurgerMenu[curBurgerOrder].BurgerRecipe.Length)
             {
                 //점수합산
                 ScoreCounter += 1;
@@ -69,15 +70,15 @@ public class BurgerRecipe : MonoBehaviour
                 curIngrInventory.Add(ingr_info);
                 //체력 추가
                 HealthManager.Instance.addHealth(Correctingre);
+                curBurgerOrderInd++;
             }
         }
         else
         {
             ScoreCounter = 0;
             //여기서 애니메이션
-
-            EventManager.eventManager.Invoke_BurgerCompleteEvent(false);
             GoNextRecipe();
+            EventManager.eventManager.Invoke_BurgerCompleteEvent(false);
             showEaten.ShowObtain.InitiateObj();//보여주기 오브젝트 초기화
             curBurgerOrderInd = 0;
         }
@@ -100,7 +101,7 @@ public class BurgerRecipe : MonoBehaviour
     } 
     //맞는 재료를 먹었을때 패널 색상변경
     public void correctIngre(){
-        panel = GameObject.FindGameObjectWithTag("T_Panel"+(curBurgerOrderInd)).GetComponent<Image>();
+        panel = GameObject.FindGameObjectWithTag("T_Panel"+(curBurgerOrderInd+1)).GetComponent<Image>();
         panel.color = UnityEngine.Color.green;
     }
     //캐릭터 이름 받아오기
