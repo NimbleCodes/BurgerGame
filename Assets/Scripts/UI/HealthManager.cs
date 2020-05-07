@@ -14,7 +14,7 @@ public class HealthManager : MonoBehaviour
     //현재 체력. 개발의 용이성을 위해 존재한다.(디버그용임)
     float curHealth = 100;
     //MaxHealth가 자연적으로 소진되는 시간.
-    float decrTime = 20;
+    float decrTime = 30;
     //decrTime의 최소 한계점. decrTime은 이 시점 이하로 내려가지 않는다.
     float decrLimit = 10;
     //hp와 Time 의 비율. hp 증감의 쉬운 계산을 위해 이용된다.
@@ -22,7 +22,7 @@ public class HealthManager : MonoBehaviour
     //현재 흘러가는 시간 
     float activeTime = 0;
     //True 이면 HP가 감소하기 시작한다.
-    float correctBurger = 20;
+    float correctBurger = 100;
     float lostIngre = 1;
     bool decrStart = false;
     bool areusure = true;
