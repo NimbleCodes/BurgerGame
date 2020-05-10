@@ -77,5 +77,4 @@ public class BurgerIngrRoulette : Roulette
         }
         probs[ind] = 0;
     }
-    }
 }

@@ -2,13 +2,15 @@
   "stageDiffVals": [
     {
       "numActiveSpawner": 4,
-      "spawnedObjSpeed": [10,10,10,10,10,10],
-      "nextSpawnTime": [ 2.1, 2.2, 2.3, 2.4, 2.5, 2.6 ]
+      "spawnedObjSpeed": [ 10, 10, 10, 10, 10, 10 ],
+      "nextSpawnTime": [ 2.1, 2.2, 2.3, 2.4, 2.5, 2.6 ],
+      "healthDecRate": 1
     },
     {
       "NumActiveSpawner": 5,
       "SpawnedObjSpeed": [ 10, 10, 10, 10, 10, 10 ],
-      "nextSpawnTime": []
+      "nextSpawnTime": [],
+      "healthDecRate": 1
     }
   ]
 }
