@@ -9,9 +9,15 @@ public class Left_Ani : MonoBehaviour
     public GameObject Ani_Object;
     public SpriteRenderer showChar;
     string CharName;
+    int burgerCount; //애니메이션 속도 증가 판별을 위한 변수
     Animator charAni;
     //배경 오브젝트
     public Image B_Panel;
+    public static Left_Ani left_Animation;
+
+    public void Awake(){
+        left_Animation = this;
+    }
     public void Initiate_Ani(){
         showChar = Ani_Object.GetComponent<SpriteRenderer>();
         /* 이미지로 배경을 넣어도되고, 색상만 넣어줘도 되고(원하는 대로)
@@ -31,7 +37,17 @@ public class Left_Ani : MonoBehaviour
             //showChar.enabled = false;
             charAni.enabled = true;
             charAni.Play("Protagonist_Ani");
+       }else if(burgerFail == true){
+            charAni.enabled = true;
+            charAni.Play("Protagonist_Ani");
+            if(burgerCount%5 ==0){
+                charAni.speed += 0.2f;
+            }
        }
+    }
+
+    public void getBurgerCount(int count){
+        count = burgerCount;
     }
     void Start()
     {

@@ -10,6 +10,7 @@ public class Char_Ani : MonoBehaviour
     public SpriteRenderer ShowChar;
     public string CharName;
     private string Ani_Name;
+    private int CountBurger;//애니메이션 속도 증가 판별 변수
     public Animator charAnima;
     //배경 오브젝트
     public Image B_Panel;
@@ -51,8 +52,16 @@ public class Char_Ani : MonoBehaviour
     }
     public void onComplete(bool TF){
         if(TF == true){
-            show_Char();
+            charAnima.enabled = true;
+            charAnima.Play(Ani_Name);
+            if(CountBurger%5 == 0){
+                charAnima.speed += 0.2f;
+            }
         }
+    }
+
+    public void getCountBurger(int count){
+        count = CountBurger;
     }
     void Start()
     {

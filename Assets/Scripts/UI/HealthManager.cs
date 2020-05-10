@@ -16,7 +16,7 @@ public class HealthManager : MonoBehaviour
     //MaxHealth가 자연적으로 소진되는 시간.
     float decrTime = 30;
     //decrTime의 최소 한계점. decrTime은 이 시점 이하로 내려가지 않는다.
-    float decrLimit = 10;
+    float decrLimit = 20;
     //hp와 Time 의 비율. hp 증감의 쉬운 계산을 위해 이용된다.
     float hpToTime;
     //현재 흘러가는 시간 
