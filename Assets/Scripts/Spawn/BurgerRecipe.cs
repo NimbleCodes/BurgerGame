@@ -19,6 +19,7 @@ public class BurgerRecipe : MonoBehaviour
         public burgerMenu[] BurgerMenu;
     }
     public Menu menu;
+
     Image panel;
 
     float Correctingre = 3;
@@ -31,8 +32,9 @@ public class BurgerRecipe : MonoBehaviour
 
     int ChooseRecipe()
     {
-        int ret = GameManager.gameManager.getRandNum(menu.BurgerMenu.Length);
-        Debug.Log(ret);
+        int ret = curBurgerOrder;
+        while(ret == curBurgerOrder)
+            ret = GameManager.gameManager.getRandNum(menu.BurgerMenu.Length);
         return ret;
     }
     public int curBurgerOrder;

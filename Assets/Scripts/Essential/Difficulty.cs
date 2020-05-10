@@ -15,6 +15,7 @@ public class Difficulty : MonoBehaviour
         //Spawner
         public float[] spawnedObjSpeed;
         public float[] nextSpawnTime;
+        public float healthDecRate;
     }
     [System.Serializable]
     public struct DiffTable
