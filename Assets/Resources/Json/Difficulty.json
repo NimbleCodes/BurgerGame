@@ -4,13 +4,13 @@
       "numActiveSpawner": 4,
       "spawnedObjSpeed": [ 10, 10, 10, 10, 10, 10 ],
       "nextSpawnTime": [ 2.1, 2.2, 2.3, 2.4, 2.5, 2.6 ],
-      "healthDecRate": 1
+      "healthDecRate": 2.5
     },
     {
-      "NumActiveSpawner": 5,
+      "NumActiveSpawner": 6,
       "SpawnedObjSpeed": [ 10, 10, 10, 10, 10, 10 ],
       "nextSpawnTime": [],
-      "healthDecRate": 1
+      "healthDecRate": 2.5
     }
   ]
 }
