@@ -61,25 +61,21 @@ public class BurgerIngrRoulette : Roulette
     protected override void balancing(int ind)
     {
         int numEntries = probs.Count;
-        int distribute;
-        if(probs[ind] > numEntries - 1)
+        int distribute = probs[ind];
+        int q = distribute / (numEntries-1);
+        int r = distribute % (numEntries-1);
+        for(int i = 0; i < numEntries; i++)
         {
-            distribute = numEntries - 1;
-            probs[ind] -= distribute;
-        }
-        else
-        {
-            distribute = probs[ind];
-            probs[ind] = 0;
-        }
-        for(int i = 0; i < distribute; i++)
-        {
-            if(i == ind)
-            {
-                distribute++;
+            if (i == ind)
                 continue;
+            if (r > 0)
+            {
+                probs[i]++;
+                r--;
             }
-            probs[i]++;
+            probs[i] += q;
         }
+        probs[ind] = 0;
+    }
     }
 }

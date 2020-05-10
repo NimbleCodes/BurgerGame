@@ -26,7 +26,7 @@ public class Spawner : MonoBehaviour
     public float spawnedObjSpeed;
 
     Roulette burgerIngrRoulette;
-    int RandomIngr = 2;
+    int RandomIngr = 1;
     //스폰 할 오브젝트를 결정하는 함수 -> 추후 수정 가능
     void OnBurgerComplete(bool cor)
     {
@@ -38,6 +38,7 @@ public class Spawner : MonoBehaviour
     {
         int chosenIngrInd = burgerIngrRoulette.Spin();
         int numNeededIngrTypes = BurgerRecipe.burgerRecipe.menu.BurgerMenu[BurgerRecipe.burgerRecipe.curBurgerOrder].BurgerRecipe.Length;
+        Debug.Log(burgerIngrRoulette.ToString());
         if (chosenIngrInd >= numNeededIngrTypes)
         {
             return spawnableObjTypes[GameManager.gameManager.getRandNum(spawnableObjTypes.Count)];
