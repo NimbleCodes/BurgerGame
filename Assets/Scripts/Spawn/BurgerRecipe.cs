@@ -23,7 +23,7 @@ public class BurgerRecipe : MonoBehaviour
     Image panel;
 
     float Correctingre = 3;
-    float ScoreCounter;
+    int ScoreCounter;
     void LoadMenuFromJson()
     {
         string menuJson = File.ReadAllText(Application.dataPath + "/Resources/Json/Recipe.json");
