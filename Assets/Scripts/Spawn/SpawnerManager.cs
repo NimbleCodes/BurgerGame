@@ -39,7 +39,7 @@ public class SpawnerManager : MonoBehaviour
         int numActiveSpawner = Difficulty.difficulty.diffTable.stageDiffVals[curDiff].numActiveSpawner;
         for (int i = 0; i < numActiveSpawner; i++)
         {
-            spawnerArr[Difficulty.difficulty.activationOrder[i]].GetComponent<Spawner>().spawnedObjSpeed = Difficulty.difficulty.diffTable.stageDiffVals[curDiff].spawnedObjSpeed[i];
+            spawnerArr[Difficulty.difficulty.activationOrder[i]].GetComponent<Spawner>().spawnedObjGravScale = Difficulty.difficulty.diffTable.stageDiffVals[curDiff].spawnedObjGravScale[i];
             spawnerArr[Difficulty.difficulty.activationOrder[i]].GetComponent<Spawner>().baseSpawnTime = Difficulty.difficulty.diffTable.stageDiffVals[curDiff].nextSpawnTime[i];
             spawnerArr[Difficulty.difficulty.activationOrder[i]].GetComponent<Spawner>().enabled = true;
             spawnerArr[Difficulty.difficulty.activationOrder[i]].GetComponent<Spawner>().active = true;
@@ -66,6 +66,10 @@ public class SpawnerManager : MonoBehaviour
         spawnListMut.ReleaseMutex();
         return ret;
     }
+    void OnBurgerCompleteEvent(bool cor)
+    {
+        spawnList.Clear();
+    }
 
     private void Awake()
     {
@@ -78,6 +82,7 @@ public class SpawnerManager : MonoBehaviour
         burgerIngrRoulette.createRoulette(BurgerRecipe.burgerRecipe.menu.BurgerMenu[BurgerRecipe.burgerRecipe.curBurgerOrder].BurgerRecipe.Length + 1);
         numBurgerMenu = BurgerRecipe.burgerRecipe.menu.BurgerMenu.Length;
 
+        EventManager.eventManager.BurgerCompleteEvent += OnBurgerCompleteEvent;
         EventManager.eventManager.RefreshEvent += RefreshSpawners;
         EventManager.eventManager.GamePausedEvent += DisableAllSpawners;
         EventManager.eventManager.GameResumeEvent += RefreshSpawners;

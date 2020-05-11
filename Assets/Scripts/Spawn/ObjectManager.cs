@@ -13,6 +13,7 @@ public abstract class ObjectManager : MonoBehaviour
     protected abstract void InitObjPools();
 
     //ACTIVE OBJECT LIST
+    [SerializeField]
     List<GameObject> curActiveObj;
     public void AddToActiveList(GameObject g)
     {

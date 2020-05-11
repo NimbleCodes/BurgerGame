@@ -24,15 +24,15 @@ public class Spawner : MonoBehaviour
     //스포닝 사이 시간
     public float nextSpawnTime;
     public float baseSpawnTime;
-    //현재는 안쓰는 중 >> 리지드 바디 중력 기능 사용중
-    public float spawnedObjSpeed;
+
+    public float spawnedObjGravScale;
 
     public string spawnObjType;
-
+    /*
     //Roulette burgerIngrRoulette;
     int RandomIngr = 1;
     //스폰 할 오브젝트를 결정하는 함수 -> 추후 수정 가능
-    /*
+
     void OnBurgerComplete(bool cor)
     {
         int numNeededIngrTypes = BurgerRecipe.burgerRecipe.menu.BurgerMenu[BurgerRecipe.burgerRecipe.curBurgerOrder].BurgerRecipe.Length;
@@ -58,10 +58,11 @@ public class Spawner : MonoBehaviour
     void SpawnObj(string objName, Vector3 position)
     {
         GameObject temp = ObjectManager.objectManager.GetGameObject(objName);
+        ObjectManager.objectManager.AddToActiveList(temp);
         if (temp == null)
             return;
         temp.transform.position = position;
-        temp.GetComponent<Rigidbody2D>().gravityScale = 0.5f;
+        temp.GetComponent<Rigidbody2D>().gravityScale = spawnedObjGravScale;
         temp.SetActive(true);
 
         int rand = GameManager.gameManager.getRandNum(99);

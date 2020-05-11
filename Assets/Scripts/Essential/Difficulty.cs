@@ -13,7 +13,7 @@ public class Difficulty : MonoBehaviour
     {
         public int numActiveSpawner;
         //Spawner
-        public float[] spawnedObjSpeed;
+        public float[] spawnedObjGravScale;
         public float[] nextSpawnTime;
         public float healthDecRate;
     }
