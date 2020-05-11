@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Threading;
+using UnityEngine;
 
 public class SpawnerManager : MonoBehaviour
 {
@@ -51,8 +53,31 @@ public class SpawnerManager : MonoBehaviour
         }
     }
 
+    Mutex spawnListMut;
+    List<string> spawnList;
+    const int spawnListMaxSize = 12;
+    Roulette burgerIngrRoulette;
+    int numBurgerMenu;
+    public string getObjToSpawn()
+    {
+        spawnListMut.WaitOne();
+        string ret = spawnList[0];
+        spawnList.RemoveAt(0);
+        spawnListMut.ReleaseMutex();
+        return ret;
+    }
+
+    private void Awake()
+    {
+        burgerIngrRoulette = new BurgerIngrRoulette();
+        spawnList = new List<string>();
+        spawnListMut = new Mutex();
+    }
     private void Start()
     {
+        burgerIngrRoulette.createRoulette(BurgerRecipe.burgerRecipe.menu.BurgerMenu[BurgerRecipe.burgerRecipe.curBurgerOrder].BurgerRecipe.Length + 1);
+        numBurgerMenu = BurgerRecipe.burgerRecipe.menu.BurgerMenu.Length;
+
         EventManager.eventManager.RefreshEvent += RefreshSpawners;
         EventManager.eventManager.GamePausedEvent += DisableAllSpawners;
         EventManager.eventManager.GameResumeEvent += RefreshSpawners;
@@ -62,5 +87,29 @@ public class SpawnerManager : MonoBehaviour
 
         InitSpawners();
         RefreshSpawners();
+    }
+    private void Update()
+    {
+        if(spawnList.Count < 6)
+        {
+            spawnListMut.WaitOne();
+            while(spawnList.Count < 12)
+            {
+                string newObjType;
+                int spawnInd = burgerIngrRoulette.Spin();
+                if(spawnInd >= BurgerRecipe.burgerRecipe.menu.BurgerMenu[BurgerRecipe.burgerRecipe.curBurgerOrder].BurgerRecipe.Length)
+                {
+                    int randBurgerInd = GameManager.gameManager.getRandNum(numBurgerMenu);
+                    int randBurgerIngr = GameManager.gameManager.getRandNum(BurgerRecipe.burgerRecipe.menu.BurgerMenu[randBurgerInd].BurgerRecipe.Length);
+                    newObjType = BurgerRecipe.burgerRecipe.menu.BurgerMenu[randBurgerInd].BurgerRecipe[randBurgerIngr];
+                }
+                else
+                {
+                    newObjType = BurgerRecipe.burgerRecipe.menu.BurgerMenu[BurgerRecipe.burgerRecipe.curBurgerOrder].BurgerRecipe[spawnInd];
+                }
+                spawnList.Add(newObjType);
+            }
+            spawnListMut.ReleaseMutex();
+        }
     }
 }

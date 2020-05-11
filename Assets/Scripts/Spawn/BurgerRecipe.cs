@@ -91,11 +91,11 @@ public class BurgerRecipe : MonoBehaviour
         LoadMenuFromJson();
         curIngrInventory = new List<string>();
         burgerRecipe = this;
+        GoNextRecipe();
     }
     private void Start()
     {
         EventManager.eventManager.IngrObtainedEvent += OnIngrObtained;
-        GoNextRecipe();
     }
     //현재 레시피 보내주기
     public void currrecTotop(ref string[] giveRecipie){
