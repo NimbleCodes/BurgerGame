@@ -56,6 +56,7 @@ public class ShowBun : MonoBehaviour
     }
 
     //Bun이 밑에 재료의 collider와 만났을때 다시 시작 (여기에 애니매이션 넣으면 됨.)
+    
     void OnCollisionEnter2D(Collision2D col)
     {
         showEaten.ShowObtain.InitiateObj();

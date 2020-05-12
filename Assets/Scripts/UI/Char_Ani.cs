@@ -15,6 +15,8 @@ public class Char_Ani : MonoBehaviour
     //배경 오브젝트
     public Image B_Panel;
     public static Char_Ani Character_Animation;
+    public showEaten showObtain;
+    public ShowBun showBun;
 
     void Awake(){
         Character_Animation = this;
@@ -28,7 +30,6 @@ public class Char_Ani : MonoBehaviour
         */
         ShowChar.enabled = false;
         charAnima.enabled = false;
-
     }
     //캐릭터 이름 받아와 보여주기
     public void show_Char(){
