@@ -496,7 +496,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &52623849
 RectTransform:
   m_ObjectHideFlags: 0
@@ -652,7 +652,6 @@ GameObject:
   - component: {fileID: 95476743}
   - component: {fileID: 95476746}
   - component: {fileID: 95476745}
-  - component: {fileID: 95476744}
   - component: {fileID: 95476747}
   m_Layer: 5
   m_Name: TutorialPopUp
@@ -688,18 +687,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0.00012207031, y: 0.00012207031}
   m_SizeDelta: {x: 0.00012207, y: -0.00012207}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &95476744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 95476742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dc0b6810fd7c204e92ee947e81ad1f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &95476745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -713,7 +700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.6745098}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1254,7 +1241,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &171364598
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1327,7 +1314,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &240527616
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1918,7 +1905,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &408971643
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2181,7 +2168,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 490266772}
-  - component: {fileID: 490266771}
   - component: {fileID: 490266770}
   m_Layer: 0
   m_Name: Tutorial
@@ -2202,19 +2188,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 664cd4afb2b1c184e94f61a6e31ef9f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &490266771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 490266769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 104199d57d48aef43a53830c46547088, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TutorialPopUp: {fileID: 95476742}
+  lane_highlight: {fileID: 1497142957}
+  trigpoint_highlight: {fileID: 240527617}
+  trigger_highlight: {fileID: 1553061426}
+  lane_text: {fileID: 408971644}
+  trigpoint_text: {fileID: 1343948555}
+  trigger_text: {fileID: 52623850}
+  ingr_highlight: {fileID: 171364597}
+  ingr_text: {fileID: 1353257363}
 --- !u!4 &490266772
 Transform:
   m_ObjectHideFlags: 0
@@ -6034,7 +6015,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1343948554
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6191,7 +6172,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1353257364
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6774,7 +6755,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1497142956
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6933,7 +6914,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1553061425
 RectTransform:
   m_ObjectHideFlags: 0

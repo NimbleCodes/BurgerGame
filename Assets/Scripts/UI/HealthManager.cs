@@ -47,9 +47,10 @@ public class HealthManager : MonoBehaviour
         //EventManager.eventManager.GameOverEvent += PopLeaderboard;
         EventManager.eventManager.IngrDestroyedEvent += minusHealth;
         EventManager.eventManager.IngrReturnedEvent += OnIngrReturned;
+        EventManager.eventManager.GamePausedEvent += OnGamePaused;
+        EventManager.eventManager.GameResumeEvent += OnGameResume;
         startDecr();
     }
-    
     void Update()
     {
         //test
@@ -59,6 +60,14 @@ public class HealthManager : MonoBehaviour
         isGameOver();
     }
 
+    void OnGamePaused()
+    {
+        decrStart = false;
+    }
+    void OnGameResume()
+    {
+        decrStart = true;
+    }
 
     #region 
     void OnIngrReturned()//IngreReturn시에 체력추가

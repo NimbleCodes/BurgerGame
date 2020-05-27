@@ -1,14 +1,19 @@
-﻿abstract class Breakpoint
+﻿using System;
+using UnityEngine;
+
+abstract class Breakpoint
 {
     public bool active;
     int bpNum;
     float delay;
+    Action executeOnBp;
 
-    public Breakpoint(int _bpNum, float _delay)
+    public Breakpoint(int _bpNum, float _delay, Action _executeOnBP)
     {
         active = false;
         bpNum = _bpNum;
         delay = _delay;
+        executeOnBp = _executeOnBP;
     }
     public Breakpoint(int _bpNum)
     {
@@ -17,6 +22,10 @@
         delay = 0;
     }
     protected abstract bool BpReached();
+    public virtual void Execute()
+    {
+        executeOnBp.Invoke();
+    }
     public bool BpQuery()
     {
         if (active)
@@ -37,11 +46,19 @@
 }
 
 //테스트용
-class Breakpoint_WaitOneSecond : Breakpoint
+class Breakpoint_Wait : Breakpoint
 {
-    public Breakpoint_WaitOneSecond(int _bpNum) : base(_bpNum, 1f)
+    bool finished = false;
+
+    public Breakpoint_Wait(int _bpNum, float _delay, Action _executeOnBp) : base(_bpNum, _delay, _executeOnBp)
     {
-        //wow such emptiness
+        
+    }
+    public override void Execute()
+    {
+        finished = false;
+        base.Execute();
+        finished = true;
     }
     protected override bool BpReached()
     {
