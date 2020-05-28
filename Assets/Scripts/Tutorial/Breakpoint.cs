@@ -1,19 +1,21 @@
 ﻿using System;
 using UnityEngine;
 
-abstract class Breakpoint
+class Breakpoint
 {
     public bool active;
     int bpNum;
     float delay;
     Action executeOnBp;
+    Action executeOnClear;
 
-    public Breakpoint(int _bpNum, float _delay, Action _executeOnBP)
+    public Breakpoint(int _bpNum, float _delay, Action _executeOnBP, Action _executeOnClear)
     {
         active = false;
         bpNum = _bpNum;
         delay = _delay;
         executeOnBp = _executeOnBP;
+        executeOnClear = _executeOnClear;
     }
     public Breakpoint(int _bpNum)
     {
@@ -21,10 +23,9 @@ abstract class Breakpoint
         bpNum = _bpNum;
         delay = 0;
     }
-    protected abstract bool BpReached();
-    public virtual void Execute()
+    protected virtual bool BpReached()
     {
-        executeOnBp.Invoke();
+        return true;
     }
     public bool BpQuery()
     {
@@ -35,6 +36,24 @@ abstract class Breakpoint
         }
         return false;
     }
+
+    public void Execute()
+    {
+        executeOnBp.Invoke();
+    }
+    public void ExecuteClear()
+    {
+        executeOnClear.Invoke();
+    }
+    public virtual bool ClearCond()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            return true;
+        }
+        return false;
+    }
+
     public float getDelay()
     {
         return delay;
@@ -42,26 +61,5 @@ abstract class Breakpoint
     public int getBpNum()
     {
         return bpNum; 
-    }
-}
-
-//테스트용
-class Breakpoint_Wait : Breakpoint
-{
-    bool finished = false;
-
-    public Breakpoint_Wait(int _bpNum, float _delay, Action _executeOnBp) : base(_bpNum, _delay, _executeOnBp)
-    {
-        
-    }
-    public override void Execute()
-    {
-        finished = false;
-        base.Execute();
-        finished = true;
-    }
-    protected override bool BpReached()
-    {
-        return true;
     }
 }
