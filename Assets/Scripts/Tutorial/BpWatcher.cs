@@ -35,10 +35,10 @@ class BpWatcher : MonoBehaviour
     {
         breakpoints = new Queue<Breakpoint>();
         //add breakpoints here
-        breakpoints.Enqueue(new Breakpoint(0, 1, Active_ingr,       Deactive_ingr));
-        breakpoints.Enqueue(new Breakpoint(0, 1, Active_lane,       Deactive_lane));
-        breakpoints.Enqueue(new Breakpoint(0, 1, Active_trigpoint,  Deactive_trigpoint));
-        breakpoints.Enqueue(new Breakpoint(0, 1, Active_trigger,    Deactive_trigger));
+        breakpoints.Enqueue(new Breakpoint(0, 0, Active_ingr,       Deactive_ingr));
+        breakpoints.Enqueue(new Breakpoint(0, 0, Active_lane,       Deactive_lane));
+        breakpoints.Enqueue(new Breakpoint(0, 0, Active_trigpoint,  Deactive_trigpoint));
+        breakpoints.Enqueue(new Breakpoint(0, 0, Active_trigger,    Deactive_trigger));
 
         if (breakpoints.Count > 0)
             breakpoints.Peek().active = true;

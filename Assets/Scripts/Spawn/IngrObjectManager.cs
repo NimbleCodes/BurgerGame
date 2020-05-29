@@ -22,8 +22,8 @@ public class IngrObjectManager : ObjectManager
     protected override void InitObjPools()
     {
         //LOAD INGR DATA FROM JSON
-        string burgerIngrArrJsonStr = File.ReadAllText(Application.dataPath + "/Resources/Json/Ingredients.json");
-        burgerIngrArr = JsonUtility.FromJson<IngrArr>(burgerIngrArrJsonStr);
+        TextAsset burgerIngrArrJsonStr = Resources.Load("Json/Ingredients") as TextAsset;
+        burgerIngrArr = JsonUtility.FromJson<IngrArr>(burgerIngrArrJsonStr.ToString());
 
         //INIT OBJPOOLS
         foreach(Ingr i in burgerIngrArr.ingrArr)

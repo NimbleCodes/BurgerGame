@@ -509,7 +509,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 95476743}
-  m_RootOrder: 7
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -672,13 +672,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1353257364}
+  - {fileID: 408971643}
+  - {fileID: 1343948554}
+  - {fileID: 52623849}
   - {fileID: 171364598}
   - {fileID: 1497142956}
-  - {fileID: 408971643}
   - {fileID: 240527616}
-  - {fileID: 1343948554}
   - {fileID: 1553061425}
-  - {fileID: 52623849}
   m_Father: {fileID: 261735298}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1254,7 +1254,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 95476743}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1327,7 +1327,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 95476743}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1918,7 +1918,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 95476743}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2188,14 +2188,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 664cd4afb2b1c184e94f61a6e31ef9f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lane_highlight: {fileID: 1497142957}
-  trigpoint_highlight: {fileID: 240527617}
-  trigger_highlight: {fileID: 1553061426}
-  lane_text: {fileID: 408971644}
-  trigpoint_text: {fileID: 1343948555}
-  trigger_text: {fileID: 52623850}
   ingr_highlight: {fileID: 171364597}
+  lane_highlight: {fileID: 408971642}
+  trigpoint_highlight: {fileID: 1343948553}
+  trigger_highlight: {fileID: 52623848}
   ingr_text: {fileID: 1353257363}
+  lane_text: {fileID: 1497142955}
+  trigpoint_text: {fileID: 240527615}
+  trigger_text: {fileID: 1553061424}
 --- !u!4 &490266772
 Transform:
   m_ObjectHideFlags: 0
@@ -6028,7 +6028,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 95476743}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6768,7 +6768,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 95476743}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6927,7 +6927,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 95476743}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

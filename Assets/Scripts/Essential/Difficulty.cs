@@ -25,8 +25,8 @@ public class Difficulty : MonoBehaviour
     public DiffTable diffTable;
     void LoadDiffTableFromJson()
     {
-        string DiffTableStr = File.ReadAllText(Application.dataPath + "/Resources/Json/Difficulty.json");
-        diffTable = JsonUtility.FromJson<DiffTable>(DiffTableStr);
+        TextAsset DiffTableStr = Resources.Load("Json/Difficulty") as TextAsset;
+        diffTable = JsonUtility.FromJson<DiffTable>(DiffTableStr.ToString());
     }
     //현재 난이도
     public int curDiff = 0;
