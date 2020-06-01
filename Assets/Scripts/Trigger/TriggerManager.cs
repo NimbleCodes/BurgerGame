@@ -102,6 +102,16 @@ public class TriggerManager : MonoBehaviour
             }
         }
     }
+    void DisableAllTriggers()
+    {
+        foreach(triggerSet ts in triggerSetArr)
+        {
+            foreach(GameObject t in ts.triggers)
+            {
+                t.GetComponent<Trigger>().enabled = false;
+            }
+        }
+    }
 
     //트리거의 키를 변화하고 싶을 때 triggerKeys를 변경하고 refresh호출
     enum patternNames
@@ -173,6 +183,7 @@ public class TriggerManager : MonoBehaviour
     private void Start()
     {
         EventManager.eventManager.RefreshEvent += RefreshTriggers;
+        EventManager.eventManager.GameOverEvent += DisableAllTriggers;
 
         numTriggerSet = Difficulty.difficulty.maxNumSpawner;
         triggerSetArr = new triggerSet[numTriggerSet];
