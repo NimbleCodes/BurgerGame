@@ -26,8 +26,8 @@ public class BurgerRecipe : MonoBehaviour
     int ScoreCounter;
     void LoadMenuFromJson()
     {
-        string menuJson = File.ReadAllText(Application.dataPath + "/Resources/Json/Recipe.json");
-        menu = JsonUtility.FromJson<Menu>(menuJson);
+        TextAsset menuJson = Resources.Load("Json/Recipe") as TextAsset;
+        menu = JsonUtility.FromJson<Menu>(menuJson.ToString());
     }
 
     int ChooseRecipe()

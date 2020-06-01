@@ -7,94 +7,111 @@ using TMPro;
 
 class BpWatcher : MonoBehaviour
 {
-    public Image ingr_highlight;
-    public Image lane_highlight;
-    public Image trigpoint_highlight;
-    public Image trigger_highlight;
-    public TextMeshProUGUI ingr_text;
-    public TextMeshProUGUI lane_text;
-    public TextMeshProUGUI trigpoint_text;
-    public TextMeshProUGUI trigger_text;
-    Action startQue;
-    Queue<Breakpoint> breakpoints;
-    bool timerStart = false;
+    //public Image ingr_highlight;
+    public GameObject ingr_highlight;
+    public GameObject lane_highlight;
+    public GameObject trigpoint_highlight;
+    public GameObject trigger_highlight;
 
+    //public TextMeshProUGUI ingr_text;
+    public GameObject ingr_text;
+    public GameObject lane_text;
+    public GameObject trigpoint_text;
+    public GameObject trigger_text;
+
+    bool timer = false;
+    Queue<Breakpoint> breakpoints;
     IEnumerator DelayedBpTimer(float delay, int bpNum)
     {
         yield return new WaitForSeconds(delay);
         EventManager.eventManager.Invoke_BreakpointReachedEvent(bpNum);
-        timerStart = false;
-        if (breakpoints.Count > 0)
-            breakpoints.Peek().active = true;
-    }
+        EventManager.eventManager.Invoke_GamePausedEvent("Tutorial");
 
+        breakpoints.Peek().Execute();
+        timer = false;
+    }
 
     private void Awake()
     {
         breakpoints = new Queue<Breakpoint>();
         //add breakpoints here
-        breakpoints.Enqueue(new Breakpoint_WaitOneSecond(0));
-        breakpoints.Enqueue(new Breakpoint_WaitOneSecond(1));
-        breakpoints.Enqueue(new Breakpoint_WaitOneSecond(2));
+        breakpoints.Enqueue(new Breakpoint(0, 0, Active_ingr,       Deactive_ingr));
+        breakpoints.Enqueue(new Breakpoint(0, 0, Active_lane,       Deactive_lane));
+        breakpoints.Enqueue(new Breakpoint(0, 0, Active_trigpoint,  Deactive_trigpoint));
+        breakpoints.Enqueue(new Breakpoint(0, 0, Active_trigger,    Deactive_trigger));
+
         if (breakpoints.Count > 0)
             breakpoints.Peek().active = true;
     }
-    
     private void Update()
     {
-        if (breakpoints.Count > 0)
+        if(breakpoints.Count > 0)
         {
-            if (!timerStart)
+            //첫번째 bp가 active이고 BpReached를 만족하면 true
+            if (breakpoints.Peek().BpQuery())
             {
-                Breakpoint curBp = breakpoints.Dequeue();
-                if (curBp.active & curBp.BpQuery())
+                if(breakpoints.Peek().getDelay() > 0)
                 {
-                    if (curBp.getDelay() > 0)
-                    {
-                        //delayed bp
-                        StartCoroutine(DelayedBpTimer(curBp.getDelay(), curBp.getBpNum()));
-                        timerStart = true;
-                    }
-                    else
-                    {
-                        EventManager.eventManager.Invoke_BreakpointReachedEvent(curBp.getBpNum());
-                        if (breakpoints.Count > 0)
-                            breakpoints.Peek().active = true;
-                    }
+                    StartCoroutine(DelayedBpTimer(breakpoints.Peek().getDelay(), breakpoints.Peek().getBpNum()));
+                    timer = true;
                 }
+                else
+                {
+                    EventManager.eventManager.Invoke_BreakpointReachedEvent(breakpoints.Peek().getBpNum());
+                    EventManager.eventManager.Invoke_GamePausedEvent("Tutorial");
+                    breakpoints.Peek().Execute();
+                }
+            }
+            if (!timer && breakpoints.Peek().ClearCond() == true)
+            {
+                breakpoints.Peek().ExecuteClear();
+                breakpoints.Dequeue();
+                if (breakpoints.Count > 0)
+                    breakpoints.Peek().active = true;
+                EventManager.eventManager.Invoke_GameResumeEvent("Tutorial");
             }
         }
         else
         {
-            gameObject.GetComponent<BpWatcher>().enabled = false;
+            gameObject.SetActive(false);
         }
     }
 
-
 //-----------Order[ingr -> lane -> trigpoint -> trigger]
-    private void Active_ingr(){ //Activate ingr tutorial
-        ingr_highlight.enabled = true;
-        ingr_text.enabled = true;
+    private void Active_ingr(){
+        ingr_highlight.SetActive(true);
+        ingr_text.SetActive(true);
     }
-
-    private void Active_lane(){//Activate lane tutorial
-        ingr_highlight.enabled =false;
-        ingr_text.enabled = false;
-        lane_highlight.enabled = true;
-        lane_text.enabled = true;
+    private void Deactive_ingr()
+    { 
+        ingr_highlight.SetActive(false);
+        ingr_text.SetActive(false);
     }
-
-    private void Active_trigpoint(){//Active trigpoint tutorial
-        lane_highlight.enabled = false;
-        lane_text.enabled = false;
-        trigpoint_highlight.enabled = true;
-        trigpoint_text.enabled = true;
+    private void Active_lane(){
+        lane_highlight.SetActive(true);
+        lane_text.SetActive(true);
     }
-
-    private void Active_trigger(){//Active trigger tutorial
-        trigpoint_highlight.enabled = false;
-        trigpoint_text.enabled = false;
-        trigger_highlight.enabled = true;
-        trigger_text.enabled = true;
+    private void Deactive_lane()
+    {
+        lane_highlight.SetActive(false);
+        lane_text.SetActive(false);
+    }
+    private void Active_trigpoint(){
+        trigpoint_highlight.SetActive(true);
+        trigpoint_text.SetActive(true);
+    }
+    private void Deactive_trigpoint()
+    {
+        trigpoint_highlight.SetActive(false);
+        trigpoint_text.SetActive(false);
+    }
+    private void Active_trigger(){
+        trigger_highlight.SetActive(true);
+        trigger_text.SetActive(true);
+    }
+    private void Deactive_trigger()
+    {
+        trigger_highlight.SetActive(false);
+        trigger_text.SetActive(false);
     }
 }

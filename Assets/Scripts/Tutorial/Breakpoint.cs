@@ -1,14 +1,21 @@
-﻿abstract class Breakpoint
+﻿using System;
+using UnityEngine;
+
+class Breakpoint
 {
     public bool active;
     int bpNum;
     float delay;
+    Action executeOnBp;
+    Action executeOnClear;
 
-    public Breakpoint(int _bpNum, float _delay)
+    public Breakpoint(int _bpNum, float _delay, Action _executeOnBP, Action _executeOnClear)
     {
         active = false;
         bpNum = _bpNum;
         delay = _delay;
+        executeOnBp = _executeOnBP;
+        executeOnClear = _executeOnClear;
     }
     public Breakpoint(int _bpNum)
     {
@@ -16,7 +23,10 @@
         bpNum = _bpNum;
         delay = 0;
     }
-    protected abstract bool BpReached();
+    protected virtual bool BpReached()
+    {
+        return true;
+    }
     public bool BpQuery()
     {
         if (active)
@@ -26,6 +36,24 @@
         }
         return false;
     }
+
+    public void Execute()
+    {
+        executeOnBp.Invoke();
+    }
+    public void ExecuteClear()
+    {
+        executeOnClear.Invoke();
+    }
+    public virtual bool ClearCond()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            return true;
+        }
+        return false;
+    }
+
     public float getDelay()
     {
         return delay;
@@ -33,18 +61,5 @@
     public int getBpNum()
     {
         return bpNum; 
-    }
-}
-
-//테스트용
-class Breakpoint_WaitOneSecond : Breakpoint
-{
-    public Breakpoint_WaitOneSecond(int _bpNum) : base(_bpNum, 1f)
-    {
-        //wow such emptiness
-    }
-    protected override bool BpReached()
-    {
-        return true;
     }
 }
