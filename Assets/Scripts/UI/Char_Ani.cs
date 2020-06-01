@@ -45,6 +45,11 @@ public class Char_Ani : MonoBehaviour
         ShowChar.transform.localScale = new Vector3(650,650,100);
         ShowChar.enabled = true;
     }
+
+    public void show_shutter(){
+        ShowChar.transform.localScale = new Vector3(100,100,100);
+        charAnima.Play("shutter");
+    }
     public void show_Ani_Failed(bool Fail){
         if(Fail == false){
             charAnima.enabled = true;

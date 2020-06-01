@@ -1,25 +1,37 @@
 fileFormatVersion: 2
-guid: 10b6d1554a0f1394b82d279e9c811dfb
+guid: b56f16a6601d4a64c97f9d18b65e6507
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1665508346122075896
-    second: Issac_Fail_0
+      213: -3187812742025855189
+    second: Shutter_0
   - first:
-      213: 418657636949046217
-    second: Issac_Fail_1
+      213: 6078589562198469498
+    second: Shutter_0
   - first:
-      213: 917168824340625222
-    second: Issac_Fail_2
+      213: -4900464410566329196
+    second: Shutter_0
   - first:
-      213: -2721543136957179395
-    second: Issac_Fail_3
+      213: 7860450283628808558
+    second: Shutter_0
   - first:
-      213: 5828437678782819609
-    second: Issac_Fail_4
+      213: 1282678724259347081
+    second: Shutter_0
   - first:
-      213: -5766546610761083127
-    second: Issac_Fail_5
+      213: -5600223115991478074
+    second: Shutter_0
+  - first:
+      213: -3868149645314102158
+    second: Shutter_0
+  - first:
+      213: -4358440995316975646
+    second: Shutter_0
+  - first:
+      213: 4321963759434864343
+    second: Shutter_0
+  - first:
+      213: -6802286372008414022
+    second: Shutter_5
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -112,131 +124,143 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Issac_Fail_0
+      name: Shutter_1
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 0
+        width: 286
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c0956c4fb20842b0800000000000000
+      internalID: -5600223115991478074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shutter_2
+      rect:
+        serializedVersion: 2
+        x: 572
+        y: 0
+        width: 286
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27ceff45462915ac0800000000000000
+      internalID: -3868149645314102158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shutter_3
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 0
+        width: 286
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e7b1abb105b383c0800000000000000
+      internalID: -4358440995316975646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shutter_4
+      rect:
+        serializedVersion: 2
+        x: 1142
+        y: 0
+        width: 286
+        height: 325
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d61a35f323bafb30800000000000000
+      internalID: 4321963759434864343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shutter_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 50
-        height: 50
+        width: 285
+        height: 325
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8fefd0d34031d1710800000000000000
-      internalID: 1665508346122075896
+      spriteID: 98afd68f08dfcc110800000000000000
+      internalID: 1282678724259347081
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Issac_Fail_1
+      name: Shutter_5
       rect:
         serializedVersion: 2
-        x: 50
+        x: 1430
         y: 0
-        width: 50
-        height: 50
+        width: 286
+        height: 325
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c33ad417ee5fc500800000000000000
-      internalID: 418657636949046217
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Issac_Fail_2
-      rect:
-        serializedVersion: 2
-        x: 100
-        y: 0
-        width: 50
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 647b2e5bf207abc00800000000000000
-      internalID: 917168824340625222
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Issac_Fail_3
-      rect:
-        serializedVersion: 2
-        x: 150
-        y: 0
-        width: 50
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: df9d3c0bfe22b3ad0800000000000000
-      internalID: -2721543136957179395
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Issac_Fail_4
-      rect:
-        serializedVersion: 2
-        x: 200
-        y: 0
-        width: 50
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 91d2a5f3035c2e050800000000000000
-      internalID: 5828437678782819609
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Issac_Fail_5
-      rect:
-        serializedVersion: 2
-        x: 250
-        y: 0
-        width: 50
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9075ad4f86c19ffa0800000000000000
-      internalID: -5766546610761083127
+      spriteID: ab435ffa59c6991a0800000000000000
+      internalID: -6802286372008414022
       vertices: []
       indices: 
       edges: []

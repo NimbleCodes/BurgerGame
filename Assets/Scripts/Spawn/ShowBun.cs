@@ -31,8 +31,6 @@ public class ShowBun : MonoBehaviour
         TopBun.GetComponent<Transform>().position = new Vector2(8f, 5f);
         TopBun.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         TopBun.GetComponent<BoxCollider2D>().enabled = false;
-
-
     }
 
     //윗빵 먹었을때 Active 함수 
@@ -59,8 +57,8 @@ public class ShowBun : MonoBehaviour
     
     void OnCollisionEnter2D(Collision2D col)
     {
-        showEaten.ShowObtain.InitiateObj();
-        InitiateBun();
+        //showEaten.ShowObtain.InitiateObj();
+        //InitiateBun();
         EventManager.eventManager.Invoke_GameResumeEvent("InventoryUI");
         EventManager.eventManager.Invoke_BurgerCompleteEvent(true);
     }
