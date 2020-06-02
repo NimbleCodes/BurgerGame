@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: shutter
+  m_Name: shutter_1
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -23,13 +23,13 @@ AnimationClip:
       value: {fileID: -3187812742025855189, guid: b56f16a6601d4a64c97f9d18b65e6507,
         type: 3}
     - time: 0.083333336
-      value: {fileID: 6078589562198469498, guid: b56f16a6601d4a64c97f9d18b65e6507,
+      value: {fileID: -3868149645314102158, guid: b56f16a6601d4a64c97f9d18b65e6507,
         type: 3}
     - time: 0.16666667
-      value: {fileID: -4900464410566329196, guid: b56f16a6601d4a64c97f9d18b65e6507,
+      value: {fileID: -4358440995316975646, guid: b56f16a6601d4a64c97f9d18b65e6507,
         type: 3}
     - time: 0.25
-      value: {fileID: 7860450283628808558, guid: b56f16a6601d4a64c97f9d18b65e6507,
+      value: {fileID: 4321963759434864343, guid: b56f16a6601d4a64c97f9d18b65e6507,
         type: 3}
     attribute: m_Sprite
     path: 
@@ -51,9 +51,9 @@ AnimationClip:
       isPPtrCurve: 1
     pptrCurveMapping:
     - {fileID: -3187812742025855189, guid: b56f16a6601d4a64c97f9d18b65e6507, type: 3}
-    - {fileID: 6078589562198469498, guid: b56f16a6601d4a64c97f9d18b65e6507, type: 3}
-    - {fileID: -4900464410566329196, guid: b56f16a6601d4a64c97f9d18b65e6507, type: 3}
-    - {fileID: 7860450283628808558, guid: b56f16a6601d4a64c97f9d18b65e6507, type: 3}
+    - {fileID: -3868149645314102158, guid: b56f16a6601d4a64c97f9d18b65e6507, type: 3}
+    - {fileID: -4358440995316975646, guid: b56f16a6601d4a64c97f9d18b65e6507, type: 3}
+    - {fileID: 4321963759434864343, guid: b56f16a6601d4a64c97f9d18b65e6507, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -88,6 +88,13 @@ AnimationClip:
     messageOptions: 0
   - time: 0.33333334
     functionName: show_Char
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.33333334
+    functionName: Initiate_Buns
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

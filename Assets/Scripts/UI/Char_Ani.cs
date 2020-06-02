@@ -12,6 +12,8 @@ public class Char_Ani : MonoBehaviour
     private string Ani_Name;
     private int CountBurger;//애니메이션 속도 증가 판별 변수
     public Animator charAnima;
+    public Animator shutter_Control;
+    public SpriteRenderer shutter_sprite;
     //배경 오브젝트
     public Image B_Panel;
     public static Char_Ani Character_Animation;
@@ -30,6 +32,12 @@ public class Char_Ani : MonoBehaviour
         */
         ShowChar.enabled = false;
         charAnima.enabled = false;
+        shutter_sprite.enabled=false;
+        shutter_Control.enabled=false;
+    }
+    public void Initiate_Buns(){
+        ShowBun.showBun.InitiateBun();
+        showEaten.ShowObtain.InitiateObj();
     }
     //캐릭터 이름 받아와 보여주기
     public void show_Char(){
@@ -37,10 +45,6 @@ public class Char_Ani : MonoBehaviour
         Ani_Name = CharName;
         Ani_Name +="_Ani";
         charAnima.enabled = false;
-        /*
-        charAni = Ani_Object.GetComponent<Animation>();
-        charAni.animation.Play("animation_Name");
-        */
         ShowChar.sprite = Resources.Load<Sprite>("Sprites/Characters/"+ CharName);
         ShowChar.transform.localScale = new Vector3(650,650,100);
         ShowChar.enabled = true;
@@ -48,7 +52,7 @@ public class Char_Ani : MonoBehaviour
 
     public void show_shutter(){
         ShowChar.transform.localScale = new Vector3(100,100,100);
-        charAnima.Play("shutter");
+        charAnima.Play("shutter_1");
     }
     public void show_Ani_Failed(bool Fail){
         if(Fail == false){
@@ -65,6 +69,13 @@ public class Char_Ani : MonoBehaviour
             }
         }
     }
+
+    public void show_shutter_Ani(){
+        shutter_sprite.enabled = true;
+        shutter_Control.enabled = true;
+        shutter_Control.Play("shutter_bun");
+    }
+
 
     public void getCountBurger(int count){
         count = CountBurger;

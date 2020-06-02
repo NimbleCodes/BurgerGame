@@ -32,6 +32,15 @@ TextureImporter:
   - first:
       213: -6802286372008414022
     second: Shutter_5
+  - first:
+      213: -3868149645314102158
+    second: Shutter_1
+  - first:
+      213: -4358440995316975646
+    second: Shutter_2
+  - first:
+      213: 4321963759434864343
+    second: Shutter_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -140,7 +149,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Shutter_1
+      name: Shutter_0
       rect:
         serializedVersion: 2
         x: 286
@@ -148,7 +157,7 @@ TextureImporter:
         width: 286
         height: 325
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -161,7 +170,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Shutter_2
+      name: Shutter_1
       rect:
         serializedVersion: 2
         x: 572
@@ -169,7 +178,7 @@ TextureImporter:
         width: 286
         height: 325
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -182,7 +191,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Shutter_3
+      name: Shutter_2
       rect:
         serializedVersion: 2
         x: 858
@@ -190,7 +199,7 @@ TextureImporter:
         width: 286
         height: 325
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -203,15 +212,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Shutter_4
+      name: Shutter_3
       rect:
         serializedVersion: 2
-        x: 1142
+        x: 1144
         y: 0
         width: 286
         height: 325
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -219,48 +228,6 @@ TextureImporter:
       bones: []
       spriteID: 7d61a35f323bafb30800000000000000
       internalID: 4321963759434864343
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Shutter_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 285
-        height: 325
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 98afd68f08dfcc110800000000000000
-      internalID: 1282678724259347081
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Shutter_5
-      rect:
-        serializedVersion: 2
-        x: 1430
-        y: 0
-        width: 286
-        height: 325
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ab435ffa59c6991a0800000000000000
-      internalID: -6802286372008414022
       vertices: []
       indices: 
       edges: []
