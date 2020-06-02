@@ -86,6 +86,7 @@ public class SpawnerManager : MonoBehaviour
         EventManager.eventManager.RefreshEvent += RefreshSpawners;
         EventManager.eventManager.GamePausedEvent += DisableAllSpawners;
         EventManager.eventManager.GameResumeEvent += RefreshSpawners;
+        EventManager.eventManager.GameOverEvent += DisableAllSpawners;
 
         numSpawner = Difficulty.difficulty.maxNumSpawner;
         spawnerArr = new GameObject[numSpawner];
