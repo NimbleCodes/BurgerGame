@@ -31,6 +31,6 @@ public class Camera_UIGlowEffect : MonoBehaviour
             temp = temp2;
         }
         Graphics.Blit(temp, destination);
-        //RenderTexture.ReleaseTemporary(temp);
+        RenderTexture.ReleaseTemporary(temp);
     }
 }
