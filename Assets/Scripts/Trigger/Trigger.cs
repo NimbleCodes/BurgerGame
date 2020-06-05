@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Trigger : MonoBehaviour
 {
+    public int trignum;
+
     public bool active;
     public float triggOnTime = 0.25f;
     bool triggOn;

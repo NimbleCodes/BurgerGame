@@ -6,7 +6,8 @@ using System.Collections;
 using System.Collections.Generic;
 public class TriggerManager : MonoBehaviour
 {
-    public GameObject[] obtainEffect;
+    public GameObject[] obtainEffects;
+    public GameObject[] throwEffects;
 
     //트리거 종류
     enum triggerType
@@ -58,12 +59,15 @@ public class TriggerManager : MonoBehaviour
             triggerSetArr[i] = new triggerSet();
             int numTriggerType = Enum.GetNames(typeof(triggerType)).Length;
             triggerSetArr[i].triggers = new GameObject[numTriggerType];
-            
+
             Vector2 size = new Vector2((topRight.x - bottomLeft.x) / numTriggerSet, ySize);
             float x = bottomLeft.x + ((topRight.x - bottomLeft.x) * xPosByScreenPerc) + (size.x / 2) + (size.x * i);
             float y = bottomLeft.y + ((topRight.y - bottomLeft.y) * yPosByScreenPerc) + (size.y / 2);
             GameObject tempParentRef = new GameObject("TriggerSet_" + i);
             tempParentRef.transform.position = new Vector3(x, y);
+
+            obtainEffects[i].transform.position = tempParentRef.transform.position;
+            throwEffects[i].transform.position = tempParentRef.transform.position;
 
             for (int j = 0; j < numTriggerType; j++)
             {
@@ -71,12 +75,11 @@ public class TriggerManager : MonoBehaviour
                 triggerSetArr[i].triggers[j].name = ((triggerType)j).ToString() + "Trigger" + i;
                 triggerSetArr[i].triggers[j].GetComponent<Transform>().position = new Vector3(x, y);
                 triggerSetArr[i].triggers[j].transform.parent = tempParentRef.transform;
+
                 switch (j)
                 {
                     case (int)triggerType.Obtain:
                         triggerSetArr[i].triggers[j].AddComponent<ObtainTrigger>();
-                        obtainEffect[i].transform.position = triggerSetArr[i].triggers[j].transform.position;
-                        triggerSetArr[i].triggers[j].GetComponent<ObtainTrigger>().obtainEffect = obtainEffect[i];
                         break;
                     case (int)triggerType.Return:
                         triggerSetArr[i].triggers[j].AddComponent<ReturnTrigger>();
@@ -89,6 +92,7 @@ public class TriggerManager : MonoBehaviour
                 triggerSetArr[i].triggers[j].GetComponent<Trigger>().triggeredBy = LayerMask.GetMask("Ingredients");
                 triggerSetArr[i].triggers[j].GetComponent<Trigger>().size = (size / 2);
                 triggerSetArr[i].triggers[j].GetComponent<Trigger>().active = false;
+                triggerSetArr[i].triggers[j].GetComponent<Trigger>().trignum = i;
             }
         }
     }

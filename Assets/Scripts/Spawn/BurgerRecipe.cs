@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class BurgerRecipe : MonoBehaviour
 {
+    public GameObject[] obtainEffects;
+    public GameObject[] throwEffects;
+
     public static BurgerRecipe burgerRecipe;
     [System.Serializable]
     public class burgerMenu
@@ -45,11 +48,12 @@ public class BurgerRecipe : MonoBehaviour
 
     List<string> curIngrInventory;
     int curBurgerOrderInd = 0;
-    void OnIngrObtained(string ingr_info)
+    void OnIngrObtained(string ingr_info, int trignum)
     {
         //correct ingr
         if(menu.BurgerMenu[curBurgerOrder].BurgerRecipe[curBurgerOrderInd] == ingr_info)
         {
+            obtainEffects[trignum].GetComponent<ParticleSystem>().Play();
             correctIngre();
             //end of recipe
             if(curBurgerOrderInd+1 == menu.BurgerMenu[curBurgerOrder].BurgerRecipe.Length)
@@ -85,6 +89,10 @@ public class BurgerRecipe : MonoBehaviour
             curBurgerOrderInd = 0;
         }
     }
+    void OnIngrReturned(int trignum)
+    {
+        throwEffects[trignum].GetComponent<ParticleSystem>().Play();
+    }
 
     private void Awake()
     {
@@ -96,6 +104,7 @@ public class BurgerRecipe : MonoBehaviour
     private void Start()
     {
         EventManager.eventManager.IngrObtainedEvent += OnIngrObtained;
+        EventManager.eventManager.IngrReturnedEvent += OnIngrReturned;
     }
     //현재 레시피 보내주기
     public void currrecTotop(ref string[] giveRecipie){

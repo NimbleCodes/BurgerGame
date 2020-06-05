@@ -33,23 +33,23 @@ class EventManager : MonoBehaviour
         }
     }
 
-    public event Action<string> IngrObtainedEvent;
+    public event Action<string, int> IngrObtainedEvent;
     public event Action IngrDestroyedEvent;
-    public event Action IngrReturnedEvent;
-    public void Invoke_IngrObtainedEvent(string what)
+    public event Action<int> IngrReturnedEvent;
+    public void Invoke_IngrObtainedEvent(string what, int trignum)
     {
         if (IngrObtainedEvent != null)
-            IngrObtainedEvent(what);
+            IngrObtainedEvent(what, trignum);
     }
     public void Invoke_IngrDestroyedEvent()
     {
         if (IngrDestroyedEvent != null)
             IngrDestroyedEvent();
     }
-    public void Invoke_IngrReturnedEvent()
+    public void Invoke_IngrReturnedEvent(int trignum)
     {
         if (IngrReturnedEvent != null)
-            IngrReturnedEvent();
+            IngrReturnedEvent(trignum);
     }
 
 
