@@ -17,7 +17,6 @@ public class Camera_UIGlowEffect : MonoBehaviour
         uiGlowEffectMat = new Material(uiGlowEffect);
         uiGlowEffectMat.EnableKeyword("_BlurredTex");
         uiGlowEffectMat.SetTexture("_BlurredTex", blurredTex);
-        Screen.SetResolution(1980,1080,true);
     }
     private void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
@@ -31,6 +30,6 @@ public class Camera_UIGlowEffect : MonoBehaviour
             temp = temp2;
         }
         Graphics.Blit(temp, destination);
-        //RenderTexture.ReleaseTemporary(temp);
+        RenderTexture.ReleaseTemporary(temp);
     }
 }
