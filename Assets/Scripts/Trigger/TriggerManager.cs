@@ -6,6 +6,8 @@ using System.Collections;
 using System.Collections.Generic;
 public class TriggerManager : MonoBehaviour
 {
+    public GameObject[] obtainEffect;
+
     //트리거 종류
     enum triggerType
     {
@@ -73,6 +75,8 @@ public class TriggerManager : MonoBehaviour
                 {
                     case (int)triggerType.Obtain:
                         triggerSetArr[i].triggers[j].AddComponent<ObtainTrigger>();
+                        obtainEffect[i].transform.position = triggerSetArr[i].triggers[j].transform.position;
+                        triggerSetArr[i].triggers[j].GetComponent<ObtainTrigger>().obtainEffect = obtainEffect[i];
                         break;
                     case (int)triggerType.Return:
                         triggerSetArr[i].triggers[j].AddComponent<ReturnTrigger>();
