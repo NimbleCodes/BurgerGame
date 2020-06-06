@@ -37,13 +37,13 @@ public class Left_Ani : MonoBehaviour
             //showChar.enabled = false;
             charAni.enabled = true;
             charAni.Play("Protagonist_Ani");
-       }else if(burgerFail == true){
+       }/*else if(burgerFail == true){
             charAni.enabled = true;
             charAni.Play("Protagonist_Ani");
             if(burgerCount%5 ==0){
                 charAni.speed += 0.2f;
             }
-       }
+       }*/
     }
 
     public void getBurgerCount(int count){

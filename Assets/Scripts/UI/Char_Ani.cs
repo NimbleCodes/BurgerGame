@@ -63,7 +63,8 @@ public class Char_Ani : MonoBehaviour
     public void onComplete(bool TF){
         if(TF == true){
             charAnima.enabled = true;
-            charAnima.Play(Ani_Name);
+            show_shutter();
+            show_shutter_Ani();
             if(CountBurger%5 == 0){
                 charAnima.speed += 0.2f;
             }
