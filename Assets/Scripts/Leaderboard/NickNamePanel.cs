@@ -18,6 +18,7 @@ public class NickNamePanel : MonoBehaviour
     [SerializeField]
     private Text okText;
     
+    private int score;
     private Action N_Action;
     public string username;
     public GameObject inputField;
@@ -57,6 +58,7 @@ public class NickNamePanel : MonoBehaviour
         background.SetActive(true);
 
         PopupNickName.SetActive(true);
+        score = DisplayScore.Instance.getScore();
     }
 
     public void ShowNickPanel(Action N_Action = null)
@@ -81,7 +83,7 @@ public class NickNamePanel : MonoBehaviour
         N_Action();
 
         StoreName();
-        Data_manager.AddNewHighscore(username,23000);
+        Data_manager.AddNewHighscore(username,score);
         CloseNickPanel();
     }
 }

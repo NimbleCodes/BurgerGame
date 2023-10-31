@@ -22,10 +22,7 @@ public class Data_manager : MonoBehaviour
 	public static void AddNewHighscore(string username, int score){
 		instance.StartCoroutine(instance.UploadNewHighscore(username,score));
 	}
-
-
-	IEnumerator UploadNewHighscore(string username, int score)
-	{
+	IEnumerator UploadNewHighscore(string username, int score){
 		WWW www = new WWW(webURL + privateCode + "/add/" + WWW.EscapeURL(username)
 			+ "/" + score);
 		yield return www;
@@ -38,8 +35,6 @@ public class Data_manager : MonoBehaviour
 			print("Error uploading: " + www.error);
 		}
 	}
-
-
 	public void DownloadHighscores(){
 		StartCoroutine("DownloadHighscoresFromDatabase");
 	}
@@ -61,13 +56,11 @@ public class Data_manager : MonoBehaviour
 	void FormatHighScores(string textStream){
 		string[] entries = textStream.Split(new char[] {'\n'},System.StringSplitOptions.RemoveEmptyEntries);
 		highscoresList = new HighScore[entries.Length];
-		for(int i = 0; i < entries.Length; i++)
-		{
+		for(int i = 0; i < entries.Length; i++){
 			string[] entryInfo = entries[i].Split(new char[] {'|'});
 			string username = entryInfo[0];
 			int score = int.Parse(entryInfo[1]);
 			highscoresList[i] = new HighScore(username,score);
-			
 		}
 	}
 }

@@ -23,7 +23,7 @@ public class showEaten : MonoBehaviour
         InitiateObj();
     }
 
-    public void InitiateObj()
+    public void InitiateObj()       
     {//오브젝트 초기화
         arrIndex = 1;
         for (int i = 0; i < 10; i++)
@@ -58,7 +58,6 @@ public class showEaten : MonoBehaviour
         else
         {
             //일반재료
-            //ingr[arrIndex] = GameObject.FindGameObjectWithTag("showEat" + arrIndex);
             spriteR = ingr[arrIndex].GetComponent<SpriteRenderer>();
             spriteR.sprite = Resources.Load<Sprite>("Sprites/Ingredients/" + ingre_info);
             spriteR.enabled = true;
@@ -68,17 +67,5 @@ public class showEaten : MonoBehaviour
             arrIndex++;
 
         }
-
-        /*
-        else if(ingre_info=="FaceHugger"){
-            spriteR = ingr[arrIndex].GetComponent<SpriteRenderer>();
-            spriteR.sprite = Resources.Load<Sprite>("Sprites/Ingredients/" + ingre_info);
-            spriteR.enabled = true;
-            ingr[arrIndex].GetComponent<BoxCollider2D>().size = new Vector3(2f, 0.1f);
-            ingr[arrIndex].GetComponent<Rigidbody2D>().gravityScale = 1f;
-            ingr[arrIndex].GetComponent<BoxCollider2D>().enabled = true;
-            arrIndex++;
-        }
-        */
     }
 }

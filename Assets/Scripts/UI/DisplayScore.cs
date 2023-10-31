@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class DisplayScore : MonoBehaviour
 {
-    public GameObject left_hideOut;
-    public GameObject right_hideOut;
-    public int score = 0;
+    [SerializeField] GameObject left_hideOut;
+    [SerializeField] GameObject right_hideOut;
+    [SerializeField] int score = 0;
     public static DisplayScore Instance;//싱글턴
     TriggerManager temp;
     void Awake(){
@@ -19,6 +19,7 @@ public class DisplayScore : MonoBehaviour
     {
         EventManager.eventManager.BurgerCompleteEvent += OnBurgerCompleteEvent;
         Initiate_hideOuts();
+        gameObject.GetComponent<TextMeshProUGUI>().text = "\n" + score.ToString();
     }
     public void Update(){
         Char_Ani.Character_Animation.getCountBurger(score);
@@ -28,7 +29,9 @@ public class DisplayScore : MonoBehaviour
             score = 20;
         }
     }
-
+    public int getScore(){
+        return score; 
+    }
     public void Initiate_hideOuts(){
         left_hideOut.SetActive(true);
         right_hideOut.SetActive(true);

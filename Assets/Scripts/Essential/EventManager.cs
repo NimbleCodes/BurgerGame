@@ -5,16 +5,13 @@ class EventManager : MonoBehaviour
 {
     public static EventManager eventManager;
 
-    public event Action GameOverEvent;
-    public void Invoke_GameOverEvent()
-    {
-        if (GameOverEvent != null)
-            GameOverEvent();
-    }
-
-    //게임 일시정지 이벤트
     string prevWho = null;
+    public event Action GameOverEvent;
     public event Action GamePausedEvent;
+    public event Action GameResumeEvent;
+    public event Action<string, int> IngrObtainedEvent;
+    public event Action IngrDestroyedEvent;
+    public event Action<int> IngrReturnedEvent;
     public void Invoke_GamePausedEvent(string who)
     {
         if (prevWho == null)
@@ -23,19 +20,11 @@ class EventManager : MonoBehaviour
             GamePausedEvent();
         }
     }
-    public event Action GameResumeEvent;
-    public void Invoke_GameResumeEvent(string who)
+    public void Invoke_GameOverEvent()
     {
-        if (who == prevWho)
-        {
-            prevWho = null;
-            GameResumeEvent();
-        }
+        if (GameOverEvent != null)
+            GameOverEvent();
     }
-
-    public event Action<string, int> IngrObtainedEvent;
-    public event Action IngrDestroyedEvent;
-    public event Action<int> IngrReturnedEvent;
     public void Invoke_IngrObtainedEvent(string what, int trignum)
     {
         if (IngrObtainedEvent != null)
@@ -51,7 +40,14 @@ class EventManager : MonoBehaviour
         if (IngrReturnedEvent != null)
             IngrReturnedEvent(trignum);
     }
-
+    public void Invoke_GameResumeEvent(string who)
+    {
+        if (who == prevWho)
+        {
+            prevWho = null;
+            GameResumeEvent();
+        }
+    }
 
     //난이도 상승시 호출
     //스포너 및 트리거의 변경 가능한 값들 다시 할당

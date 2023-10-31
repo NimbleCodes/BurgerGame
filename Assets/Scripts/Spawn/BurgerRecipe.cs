@@ -8,27 +8,21 @@ public class BurgerRecipe : MonoBehaviour
     public GameObject[] obtainEffects;
     public GameObject[] throwEffects;
 
-    public static BurgerRecipe burgerRecipe;
-    [System.Serializable]
-    public class burgerMenu
-    {
-        public string Character;
-        public string BurgerName;
-        public string[] BurgerRecipe;
-    }
-    [System.Serializable]
-    public class Menu
-    {
-        public burgerMenu[] BurgerMenu;
-    }
-    public Menu menu;
-
     Image panel;
 
     float Correctingre = 3;
     int ScoreCounter;
-    void LoadMenuFromJson()
-    {
+    public Menu menu;
+    public static BurgerRecipe burgerRecipe;
+    [System.Serializable] public class burgerMenu{
+        public string Character;
+        public string BurgerName;
+        public string[] BurgerRecipe;
+    }
+    [System.Serializable] public class Menu{
+        public burgerMenu[] BurgerMenu;
+    }
+    void LoadMenuFromJson(){
         TextAsset menuJson = Resources.Load("Json/Recipe") as TextAsset;
         menu = JsonUtility.FromJson<Menu>(menuJson.ToString());
     }

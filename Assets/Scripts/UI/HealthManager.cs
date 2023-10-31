@@ -7,6 +7,9 @@ using System;
 
 public class HealthManager : MonoBehaviour
 {
+    [SerializeField] GameObject _playerPanel;
+    [SerializeField] GameObject _AnimationPanel;
+    [SerializeField] GameObject[] _hideOuts;
 
     #region variables
     //MaxHealth의 기본 기준은 100이다. 쓰이는 곳은 없으나 계산의 용이성을 위해 존재한다.
@@ -44,11 +47,13 @@ public class HealthManager : MonoBehaviour
     {
         healthBar = GetComponent<Slider>();
         EventManager.eventManager.BurgerCompleteEvent += OnBurgerComplete;
-        //EventManager.eventManager.GameOverEvent += PopLeaderboard;
+        EventManager.eventManager.GameOverEvent += PopLeaderboard;
         EventManager.eventManager.IngrDestroyedEvent += minusHealth;
         EventManager.eventManager.IngrReturnedEvent += OnIngrReturned;
         EventManager.eventManager.GamePausedEvent += OnGamePaused;
         EventManager.eventManager.GameResumeEvent += OnGameResume;
+        _playerPanel.SetActive(true);
+        _AnimationPanel.SetActive(true);
         startDecr();
     }
     void Update()
@@ -146,12 +151,17 @@ public class HealthManager : MonoBehaviour
         else{
             //Do Nothing
         }
-
     }
 
     //게임오버시 레더보드, 닉네임입력창 팝업.
     public void PopLeaderboard()
     {
+        Time.timeScale =0;
+        _playerPanel.SetActive(false);
+        _AnimationPanel.SetActive(false);
+        foreach(GameObject hideout in _hideOuts){
+            hideout.SetActive(false);
+        }
         Action N_Action = () => Debug.Log("GameOver");
         LeaderboardControll.Instance.ShowLeaderboard(N_Action);
         NickNamePanel.Instance.ShowNickPanel(N_Action);

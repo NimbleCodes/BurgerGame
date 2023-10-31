@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
 
     public void LoadGame()
     {
+        Time.timeScale =1;
     	SceneManager.LoadScene(SceneToLoad);//Scene 호출
     }
 }
